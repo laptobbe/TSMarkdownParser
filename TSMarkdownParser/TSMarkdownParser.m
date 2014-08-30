@@ -44,25 +44,31 @@
         _paragraphFont = [UIFont systemFontOfSize:12];
         _boldFont = [UIFont boldSystemFontOfSize:12];
         _italicFont = [UIFont italicSystemFontOfSize:12];
-        _h1Font = [UIFont boldSystemFontOfSize:20];
-        _h2Font = [UIFont boldSystemFontOfSize:19];
+        _h1Font = [UIFont boldSystemFontOfSize:23];
+        _h2Font = [UIFont boldSystemFontOfSize:21];
+        _h3Font = [UIFont boldSystemFontOfSize:19];
+        _h4Font = [UIFont boldSystemFontOfSize:17];
+        _h5Font = [UIFont boldSystemFontOfSize:15];
+        _h6Font = [UIFont boldSystemFontOfSize:13];
     }
     return self;
 }
 
-+ (TSMarkdownParser *)defaultParser {
++ (TSMarkdownParser *)standardParser {
 
-    static TSMarkdownParser *defaultParser;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        defaultParser = [TSMarkdownParser new];
-        [defaultParser addStrongParsing];
-        [defaultParser addEmParsing];
-        [defaultParser addListParsing];
-        [defaultParser addLinkParsing];
-        [defaultParser addH1Parsing];
-        [defaultParser addH2Parsing];
-    });
+
+    TSMarkdownParser *defaultParser = [TSMarkdownParser new];
+    [defaultParser addStrongParsing];
+    [defaultParser addEmParsing];
+    [defaultParser addListParsing];
+    [defaultParser addLinkParsing];
+    [defaultParser addH1Parsing];
+    [defaultParser addH2Parsing];
+    [defaultParser addH3Parsing];
+    [defaultParser addH4Parsing];
+    [defaultParser addH5Parsing];
+    [defaultParser addH6Parsing];
+
     return defaultParser;
 }
 
@@ -132,6 +138,22 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
 - (void)addH2Parsing {
     [self addHeaderParsingWithInt:2 font:self.h2Font];
+}
+
+- (void)addH3Parsing {
+    [self addHeaderParsingWithInt:3 font:self.h3Font];
+}
+
+- (void)addH4Parsing {
+    [self addHeaderParsingWithInt:4 font:self.h4Font];
+}
+
+- (void)addH5Parsing {
+    [self addHeaderParsingWithInt:5 font:self.h5Font];
+}
+
+- (void)addH6Parsing {
+    [self addHeaderParsingWithInt:6 font:self.h6Font];
 }
 
 - (void)addHeaderParsingWithInt:(NSUInteger)header font:(UIFont *)font {

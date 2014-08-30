@@ -82,29 +82,29 @@
 }
 
 - (void)testDefaultBoldParsing {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] fontName], @".Helvetica NeueUI Bold");
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
 - (void)testDefaultEmParsing {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\nMen att *Pär är här* men inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\nMen att *Pär är här* men inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] fontName], @".Helvetica NeueUI Italic");
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
 - (void)testDefaultListWithAstricsParsing {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultListWithPlusParsing {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultLinkParsing {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(link, @"http://www.google.com/");
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
@@ -115,25 +115,66 @@
 }
 
 - (void)testDefaultFont {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL] fontName], @".Helvetica NeueUI");
 }
 
 - (void)testDefaultH1 {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
-    XCTAssertEqual(font.pointSize, 20.f);
+    XCTAssertEqual(font.pointSize, 23.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
 }
 
 - (void)testDefaultH2 {
-    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 21.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
+
+- (void)testDefaultH3 {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
     XCTAssertEqual(font.pointSize, 19.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
+
+- (void)testDefaultH4 {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n#### Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 17.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
+
+- (void)testDefaultH5 {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n##### Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 15.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
+
+- (void)testDefaultH6 {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 13.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
+
+- (void)testMultipleMatches {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"##Hello\nMen att *Pär* är här\n+ men inte Pia"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\\t men inte Pia");
 }
 @end

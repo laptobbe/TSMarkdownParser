@@ -17,8 +17,12 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 @property (nonatomic, strong) UIFont *italicFont;
 @property (nonatomic, strong) UIFont *h1Font;
 @property (nonatomic, strong) UIFont *h2Font;
+@property (nonatomic, strong) UIFont *h3Font;
+@property (nonatomic, strong) UIFont *h4Font;
+@property (nonatomic, strong) UIFont *h5Font;
+@property (nonatomic, strong) UIFont *h6Font;
 
-+ (TSMarkdownParser *)defaultParser;
++ (TSMarkdownParser *)standardParser;
 
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block;
 
@@ -35,4 +39,12 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 - (void)addH1Parsing;
 
 - (void)addH2Parsing;
+
+- (void)addH3Parsing;
+
+- (void)addH4Parsing;
+
+- (void)addH5Parsing;
+
+- (void)addH6Parsing;
 @end
