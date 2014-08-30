@@ -56,12 +56,17 @@
         defaultParser = [TSMarkdownParser new];
         [defaultParser addStrongParsing];
         [defaultParser addEmParsing];
+        [defaultParser addListParsing];
     });
     return defaultParser;
 }
 
+static NSString *const TSMarkdownBoldRegex  = @"\\*{2}.*\\*{2}";
+static NSString *const TSMarkdownEmRegex    = @"\\*.*\\*";
+static NSString *const TSMarkdownListRegex  = @"^\\*.+$";
+
 - (void)addStrongParsing {
-    NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{2}.*\\*{2}" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
     UIFont *font = self.boldFont;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
         for(NSTextCheckingResult *textCheckingResult in matches) {
@@ -75,7 +80,7 @@
 }
 
 - (void)addEmParsing {
-    NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{1}.*\\*{1}" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEmRegex options:NSRegularExpressionCaseInsensitive error:nil];
     UIFont *font = self.italicFont;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
         for(NSTextCheckingResult *textCheckingResult in matches) {
@@ -86,6 +91,16 @@
             [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location+textCheckingResult.range.length-2, 1)];
         }
     }];
+}
+
+- (void)addListParsing {
+    NSRegularExpression *listParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownListRegex options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:nil];
+    [self addParsingRuleWithRegularExpression:listParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
+        for(NSTextCheckingResult *textCheckingResult in matches) {
+            [attributedString replaceCharactersInRange:NSMakeRange(textCheckingResult.range.location, 1) withString:@"•\\t"];
+        }
+    }];
+
 }
 
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block {

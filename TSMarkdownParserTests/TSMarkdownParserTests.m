@@ -84,12 +84,17 @@
 - (void)testDefaultBoldParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] fontName], @".Helvetica NeueUI Bold");
-    XCTAssertTrue([attributedString.string rangeOfString:@"*"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
 - (void)testDefaultEmParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\nMen att *Pär är här* men inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] fontName], @".Helvetica NeueUI Italic");
-    XCTAssertTrue([attributedString.string rangeOfString:@"*"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
+}
+
+- (void)testDefaultListParsing {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
 }
 @end

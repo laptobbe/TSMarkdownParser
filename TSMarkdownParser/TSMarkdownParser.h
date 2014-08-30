@@ -25,4 +25,6 @@ typedef void (^TSMarkdownParserBlock)(NSArray *matches, NSMutableAttributedStrin
 - (void)addStrongParsing;
 
 - (void)addEmParsing;
+
+- (void)addListParsing;
 @end
