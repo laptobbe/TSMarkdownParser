@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC3C74E1CB1870F6AB393F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC3C7F901E1BE8D3F784B45E /* InfoPlist.strings */; };
+		CC3C74E52F377E0874E9D105 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C70A3CF901EEE211573EB /* Foundation.framework */; };
+		CC3C763E30B93EB6BA959C47 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C7991CED6A71640007C6A /* XCTest.framework */; };
+		CC3C7875ECF0C7A06DBB65AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C70A3CF901EEE211573EB /* Foundation.framework */; };
+		CC3C78BB152404965D77F4DA /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
+		CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */; };
+		CC3C7AA8E60F92B28C0A220C /* libTSMarkdownParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */; };
+		CC3C7CEAE8E781B631FD0CE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
+		CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC3C780E83E061BBF1B60607 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC3C7B67247952ADD508A0B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC3C704FF16FF7C75C832F3A;
+			remoteInfo = TSMarkdownParser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CC3C705730760162CE0455E6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CC3C70A3CF901EEE211573EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CC3C71671290DA5B31D12C72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CC3C71DDC9984C6E95E98E36 /* TSMarkdownParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSMarkdownParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3C73AAE67D9E3D273712D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownParserTests.m; sourceTree = "<group>"; };
+		CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTSMarkdownParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSMarkdownParser.h; sourceTree = "<group>"; };
+		CC3C7991CED6A71640007C6A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "TSMarkdownParserTests-Info.plist"; sourceTree = "<group>"; };
+		CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownParser.m; sourceTree = "<group>"; };
+		CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC3C78C5A7F8DA16BCD49E33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3C763E30B93EB6BA959C47 /* XCTest.framework in Frameworks */,
+				CC3C74E52F377E0874E9D105 /* Foundation.framework in Frameworks */,
+				CC3C7CEAE8E781B631FD0CE8 /* UIKit.framework in Frameworks */,
+				CC3C7AA8E60F92B28C0A220C /* libTSMarkdownParser.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC3C7B496F545DCC71E65168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3C7875ECF0C7A06DBB65AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC3C710FA5AE7D712CE7B74D = {
+			isa = PBXGroup;
+			children = (
+				CC3C75D2B9DE7B5A7C239205 /* Products */,
+				CC3C7D316168D5FD2480BED2 /* Frameworks */,
+				CC3C733B469527BABC08D90D /* TSMarkdownParser */,
+				CC3C750B1D35A760ECC29C14 /* TSMarkdownParserTests */,
+			);
+			sourceTree = "<group>";
+		};
+		CC3C72A1BA2FA83330E38DEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CC3C733B469527BABC08D90D /* TSMarkdownParser */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C72A1BA2FA83330E38DEB /* Supporting Files */,
+				CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */,
+				CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */,
+			);
+			path = TSMarkdownParser;
+			sourceTree = "<group>";
+		};
+		CC3C750B1D35A760ECC29C14 /* TSMarkdownParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C7FCE4FEE7203986A0468 /* Supporting Files */,
+				CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */,
+			);
+			path = TSMarkdownParserTests;
+			sourceTree = "<group>";
+		};
+		CC3C75D2B9DE7B5A7C239205 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */,
+				CC3C71DDC9984C6E95E98E36 /* TSMarkdownParserTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC3C7D316168D5FD2480BED2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C70A3CF901EEE211573EB /* Foundation.framework */,
+				CC3C7991CED6A71640007C6A /* XCTest.framework */,
+				CC3C73AAE67D9E3D273712D4 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC3C7FCE4FEE7203986A0468 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */,
+				CC3C7F901E1BE8D3F784B45E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC3C704FF16FF7C75C832F3A /* TSMarkdownParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC3C7601B458914854D8F5BE /* Build configuration list for PBXNativeTarget "TSMarkdownParser" */;
+			buildPhases = (
+				CC3C7A1A638B2A09DC1E4D81 /* Sources */,
+				CC3C7B496F545DCC71E65168 /* Frameworks */,
+				CC3C705730760162CE0455E6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TSMarkdownParser;
+			productName = TSMarkdownParser;
+			productReference = CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CC3C7DE1CDD4D3F7BEBA4C42 /* TSMarkdownParserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC3C715BD764EF6BC1E6B530 /* Build configuration list for PBXNativeTarget "TSMarkdownParserTests" */;
+			buildPhases = (
+				CC3C7348DB98D7A2EF5E22A6 /* Sources */,
+				CC3C78C5A7F8DA16BCD49E33 /* Frameworks */,
+				CC3C7304950B0607AFDE7070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC3C76B4CB8512A604AACC67 /* PBXTargetDependency */,
+			);
+			name = TSMarkdownParserTests;
+			productName = TSMarkdownParserTests;
+			productReference = CC3C71DDC9984C6E95E98E36 /* TSMarkdownParserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC3C7B67247952ADD508A0B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Computertalk Sweden";
+			};
+			buildConfigurationList = CC3C717FD5DA31AA1A2B87BF /* Build configuration list for PBXProject "TSMarkdownParser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CC3C710FA5AE7D712CE7B74D;
+			productRefGroup = CC3C75D2B9DE7B5A7C239205 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC3C704FF16FF7C75C832F3A /* TSMarkdownParser */,
+				CC3C7DE1CDD4D3F7BEBA4C42 /* TSMarkdownParserTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC3C7304950B0607AFDE7070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3C74E1CB1870F6AB393F4B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC3C7348DB98D7A2EF5E22A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC3C7A1A638B2A09DC1E4D81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3C78BB152404965D77F4DA /* TSMarkdownParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC3C76B4CB8512A604AACC67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC3C704FF16FF7C75C832F3A /* TSMarkdownParser */;
+			targetProxy = CC3C780E83E061BBF1B60607 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CC3C7F901E1BE8D3F784B45E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC3C71671290DA5B31D12C72 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CC3C730126B95B11146003EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/TSMarkdownParser.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CC3C75B20E774F01AA9D507C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
+				INFOPLIST_FILE = "TSMarkdownParserTests/TSMarkdownParserTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		CC3C777AD361D733D24A51EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CC3C7A22C12A4CACA538788A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/TSMarkdownParser.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CC3C7E8AA6D18F7A045CFBC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC3C7FD1E0A254C798F8235C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
+				INFOPLIST_FILE = "TSMarkdownParserTests/TSMarkdownParserTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC3C715BD764EF6BC1E6B530 /* Build configuration list for PBXNativeTarget "TSMarkdownParserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC3C7FD1E0A254C798F8235C /* Debug */,
+				CC3C75B20E774F01AA9D507C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CC3C717FD5DA31AA1A2B87BF /* Build configuration list for PBXProject "TSMarkdownParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC3C777AD361D733D24A51EB /* Debug */,
+				CC3C7E8AA6D18F7A045CFBC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC3C7601B458914854D8F5BE /* Build configuration list for PBXNativeTarget "TSMarkdownParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC3C7A22C12A4CACA538788A /* Debug */,
+				CC3C730126B95B11146003EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC3C7B67247952ADD508A0B9 /* Project object */;
+}
