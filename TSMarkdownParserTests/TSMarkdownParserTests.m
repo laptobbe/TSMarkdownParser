@@ -127,4 +127,13 @@
     XCTAssertEqual(font.pointSize, 20.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
 }
+
+- (void)testDefaultH2 {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 19.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
 @end

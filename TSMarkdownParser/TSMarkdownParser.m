@@ -45,6 +45,7 @@
         _boldFont = [UIFont boldSystemFontOfSize:12];
         _italicFont = [UIFont italicSystemFontOfSize:12];
         _h1Font = [UIFont boldSystemFontOfSize:20];
+        _h2Font = [UIFont boldSystemFontOfSize:19];
     }
     return self;
 }
@@ -60,17 +61,16 @@
         [defaultParser addListParsing];
         [defaultParser addLinkParsing];
         [defaultParser addH1Parsing];
+        [defaultParser addH2Parsing];
     });
     return defaultParser;
 }
 
-
-
-static NSString *const TSMarkdownBoldRegex  = @"\\*{2}.*\\*{2}";
-static NSString *const TSMarkdownEmRegex    = @"\\*.*\\*";
-static NSString *const TSMarkdownListRegex  = @"^(\\*|\\+).+$";
-static NSString *const TSMarkdownLinkRegex  = @"\\[.*\\]\\(.*\\)";
-static NSString *const TSMarkdownH1Regex    = @"^#.+$";
+static NSString *const TSMarkdownBoldRegex      = @"\\*{2}.*\\*{2}";
+static NSString *const TSMarkdownEmRegex        = @"\\*.*\\*";
+static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
+static NSString *const TSMarkdownLinkRegex      = @"\\[.*\\]\\(.*\\)";
+static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
@@ -127,17 +127,23 @@ static NSString *const TSMarkdownH1Regex    = @"^#.+$";
 }
 
 - (void)addH1Parsing {
-    NSRegularExpression *h1Parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownH1Regex options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:nil];
-    UIFont *font = self.h1Font;
-    [self addParsingRuleWithRegularExpression:h1Parsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+   [self addHeaderParsingWithInt:1 font:self.h1Font];
+}
 
+- (void)addH2Parsing {
+    [self addHeaderParsingWithInt:2 font:self.h2Font];
+}
+
+- (void)addHeaderParsingWithInt:(NSUInteger)header font:(UIFont *)font {
+    NSString *headerRegex = [NSString stringWithFormat:TSMarkdownHeaderRegex, header];
+    NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:headerRegex options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:nil];
+    [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:font
                                  range:match.range];
-        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, header)];
 
     }];
-
 }
 
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block {
