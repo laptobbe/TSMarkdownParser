@@ -15,6 +15,7 @@ typedef void (^TSMarkdownParserBlock)(NSArray *matches, NSMutableAttributedStrin
 @property (nonatomic, strong) UIFont *paragraphFont;
 @property (nonatomic, strong) UIFont *boldFont;
 @property (nonatomic, strong) UIFont *italicFont;
+@property (nonatomic, strong) UIFont *h1Font;
 
 + (TSMarkdownParser *)defaultParser;
 
@@ -27,4 +28,8 @@ typedef void (^TSMarkdownParserBlock)(NSArray *matches, NSMutableAttributedStrin
 - (void)addEmParsing;
 
 - (void)addListParsing;
+
+- (void)addLinkParsing;
+
+- (void)addH1Parsing;
 @end

@@ -44,6 +44,7 @@
         _paragraphFont = [UIFont systemFontOfSize:12];
         _boldFont = [UIFont boldSystemFontOfSize:12];
         _italicFont = [UIFont italicSystemFontOfSize:12];
+        _h1Font = [UIFont boldSystemFontOfSize:20];
     }
     return self;
 }
@@ -57,13 +58,19 @@
         [defaultParser addStrongParsing];
         [defaultParser addEmParsing];
         [defaultParser addListParsing];
+        [defaultParser addLinkParsing];
+        [defaultParser addH1Parsing];
     });
     return defaultParser;
 }
 
+
+
 static NSString *const TSMarkdownBoldRegex  = @"\\*{2}.*\\*{2}";
 static NSString *const TSMarkdownEmRegex    = @"\\*.*\\*";
 static NSString *const TSMarkdownListRegex  = @"^(\\*|\\+).+$";
+static NSString *const TSMarkdownLinkRegex  = @"\\[.*\\]\\(.*\\)";
+static NSString *const TSMarkdownH1Regex    = @"^#.+$";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
@@ -103,6 +110,40 @@ static NSString *const TSMarkdownListRegex  = @"^(\\*|\\+).+$";
 
 }
 
+- (void)addLinkParsing {
+    NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionCaseInsensitive error:nil];
+    [self addParsingRuleWithRegularExpression:linkParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
+        for(NSTextCheckingResult *textCheckingResult in matches) {
+            NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:0 range:textCheckingResult.range].location;
+            NSRange linkRange = NSMakeRange(linkStartInResult, textCheckingResult.range.length+textCheckingResult.range.location-linkStartInResult-1);
+            NSString *link = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
+
+            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location, 1)];
+            NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:textCheckingResult.range].location;
+            NSRange linkTextRange = NSMakeRange(textCheckingResult.range.location, linkTextEndLocation-textCheckingResult.range.location);
+
+            [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
+            [attributedString addAttribute:NSLinkAttributeName
+                                     value:link
+                                     range:linkTextRange];
+        }
+    }];
+}
+
+- (void)addH1Parsing {
+    NSRegularExpression *h1Parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownH1Regex options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:nil];
+    UIFont *font = self.h1Font;
+    [self addParsingRuleWithRegularExpression:h1Parsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
+        for(NSTextCheckingResult *textCheckingResult in matches) {
+            [attributedString addAttribute:NSFontAttributeName
+                                     value:font
+                                     range:textCheckingResult.range];
+            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location, 1)];
+        }
+    }];
+
+}
+
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block {
     @synchronized (self) {
         [self.parsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
@@ -111,6 +152,11 @@ static NSString *const TSMarkdownListRegex  = @"^(\\*|\\+).+$";
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
+
+    [mutableAttributedString addAttribute:NSFontAttributeName
+                                    value:self.paragraphFont
+                                    range:NSMakeRange(0, mutableAttributedString.length)];
+
     @synchronized (self) {
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
             NSString *currentString = mutableAttributedString.string;

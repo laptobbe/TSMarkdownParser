@@ -102,4 +102,29 @@
     NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
 }
+
+- (void)testDefaultLinkParsing {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, @"http://www.google.com/");
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+}
+
+- (void)testDefaultFont {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n Men att Pär är här\nmen inte Pia"];
+    XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL] fontName], @".Helvetica NeueUI");
+}
+
+- (void)testDefaultH1 {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqual(font.pointSize, 20.f);
+    XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+}
 @end
