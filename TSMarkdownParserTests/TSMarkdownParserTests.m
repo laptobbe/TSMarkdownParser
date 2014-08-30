@@ -32,14 +32,14 @@
     TSMarkdownParser *parser = [TSMarkdownParser new];
     NSError *error;
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{2}.*\\*{2}" options:NSRegularExpressionCaseInsensitive error:&error];
-    [parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
-        for(NSTextCheckingResult *textCheckingResult in matches) {
-            [attributedString addAttribute:NSFontAttributeName
-                                     value:[UIFont boldSystemFontOfSize:12]
-                                     range:textCheckingResult.range];
-            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location, 2)];
-            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location+textCheckingResult.range.length-4, 2)];
-        }
+    [parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:[UIFont boldSystemFontOfSize:12]
+                                 range:match.range];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-4, 2)];
+
     }];
 
     NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
@@ -51,14 +51,14 @@
     TSMarkdownParser *parser = [TSMarkdownParser new];
     NSError *error;
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{1}.*\\*{1}" options:NSRegularExpressionCaseInsensitive error:&error];
-    [parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSArray *matches, NSMutableAttributedString *attributedString) {
-        for(NSTextCheckingResult *textCheckingResult in matches) {
-            [attributedString addAttribute:NSFontAttributeName
-                                     value:[UIFont italicSystemFontOfSize:12]
-                                     range:textCheckingResult.range];
-            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location, 1)];
-            [attributedString deleteCharactersInRange:NSMakeRange(textCheckingResult.range.location+textCheckingResult.range.length-2, 1)];
-        }
+    [parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:[UIFont italicSystemFontOfSize:12]
+                                 range:match.range];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-2, 1)];
+
     }];
 
     NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att *Pär är här* men inte Pia"];

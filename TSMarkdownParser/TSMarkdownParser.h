@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^TSMarkdownParserBlock)(NSArray *matches, NSMutableAttributedString *attributedString);
+typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
 
 @interface TSMarkdownParser : NSObject
 
