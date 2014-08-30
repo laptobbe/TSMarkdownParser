@@ -93,8 +93,13 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
-- (void)testDefaultListParsing {
+- (void)testDefaultListWithAstricsParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
+}
+
+- (void)testDefaultListWithPlusParsing {
+    NSAttributedString *attributedString = [[TSMarkdownParser defaultParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
 }
 @end

@@ -63,7 +63,7 @@
 
 static NSString *const TSMarkdownBoldRegex  = @"\\*{2}.*\\*{2}";
 static NSString *const TSMarkdownEmRegex    = @"\\*.*\\*";
-static NSString *const TSMarkdownListRegex  = @"^\\*.+$";
+static NSString *const TSMarkdownListRegex  = @"^(\\*|\\+).+$";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
