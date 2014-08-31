@@ -117,8 +117,8 @@
 
 - (void)testDefaultLinkParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
-    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(link, @"http://www.google.com/");
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);

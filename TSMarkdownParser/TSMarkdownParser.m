@@ -125,7 +125,8 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
         NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:0 range:match.range].location;
         NSRange linkRange = NSMakeRange(linkStartInResult, match.range.length+match.range.location-linkStartInResult-1);
-        NSString *link = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
+        NSString *linkURLString = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
+        NSURL *url = [NSURL URLWithString:linkURLString];
 
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:match.range].location;
@@ -133,7 +134,7 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
         [attributedString addAttribute:NSLinkAttributeName
-                                 value:link
+                                 value:url
                                  range:linkTextRange];
         [attributedString addAttribute:NSUnderlineStyleAttributeName
                                  value:linkUnderlineStyle
