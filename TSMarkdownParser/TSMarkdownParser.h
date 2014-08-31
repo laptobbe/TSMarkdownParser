@@ -24,9 +24,9 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 
 + (TSMarkdownParser *)standardParser;
 
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block;
-
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown;
+
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block;
 
 - (void)addStrongParsing;
 
@@ -47,4 +47,7 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 - (void)addH5Parsing;
 
 - (void)addH6Parsing;
+
+- (void)addImageParsing;
+
 @end

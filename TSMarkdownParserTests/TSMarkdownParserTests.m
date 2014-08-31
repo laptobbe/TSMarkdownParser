@@ -189,4 +189,38 @@
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"##Hello\nMen att *Pär* är här\n+ men inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\\t men inte Pia");
 }
+
+- (void)testDefaultImage {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Men att ![Pär](markdown) är här\nmen inte Pia"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"!"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Men att  är här\nmen inte Pia");
+}
+
+- (void)testDefaultImageMissingImage {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Men att ![Pär](markdownas) är här\nmen inte Pia"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNil(attachment);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"!"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Men att Pär är här\nmen inte Pia");
+}
+
 @end

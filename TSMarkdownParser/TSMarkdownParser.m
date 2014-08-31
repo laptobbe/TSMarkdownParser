@@ -68,6 +68,7 @@
     [defaultParser addH4Parsing];
     [defaultParser addH5Parsing];
     [defaultParser addH6Parsing];
+    [defaultParser addImageParsing];
 
     return defaultParser;
 }
@@ -75,7 +76,8 @@
 static NSString *const TSMarkdownBoldRegex      = @"(\\*|_){2}.*(\\*|_){2}";
 static NSString *const TSMarkdownEmRegex        = @"(\\*|_).*(\\*|_)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
-static NSString *const TSMarkdownLinkRegex      = @"\\[.*\\]\\(.*\\)";
+static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*\\]\\(.*\\)";
+static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*\\]\\(.*\\)";
 static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
 - (void)addStrongParsing {
@@ -164,6 +166,29 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
                                  value:font
                                  range:match.range];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, header)];
+
+    }];
+}
+
+- (void)addImageParsing {
+    NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:TSMarkdownImageRegex options:NSRegularExpressionCaseInsensitive error:nil];
+    [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSUInteger imagePathStart = [attributedString.string rangeOfString:@"(" options:0 range:match.range].location;
+        NSRange linkRange = NSMakeRange(imagePathStart, match.range.length+match.range.location- imagePathStart -1);
+        NSString *imagePath = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
+        UIImage *image = [UIImage imageNamed:imagePath];
+        if(image){
+            [attributedString deleteCharactersInRange:match.range];
+            NSTextAttachment *imageAttachment = [NSTextAttachment new];
+            imageAttachment.image = image;
+            [attributedString addAttribute:NSAttachmentAttributeName value:imageAttachment range:NSMakeRange(match.range.location, 1)];
+        } else {
+            NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:match.range].location;
+            NSRange linkTextRange = NSMakeRange(match.range.location+2, linkTextEndLocation-match.range.location-2);
+            NSString *alternativeText = [attributedString.string substringWithRange:linkTextRange];
+            [attributedString replaceCharactersInRange:match.range withString:alternativeText];
+        }
+
 
     }];
 }

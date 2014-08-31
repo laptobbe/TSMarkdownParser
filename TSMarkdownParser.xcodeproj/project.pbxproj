@@ -12,9 +12,11 @@
 		CC3C763E30B93EB6BA959C47 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C7991CED6A71640007C6A /* XCTest.framework */; };
 		CC3C7875ECF0C7A06DBB65AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C70A3CF901EEE211573EB /* Foundation.framework */; };
 		CC3C78BB152404965D77F4DA /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
+		CC3C78DD2D0DF48F7FF83FD7 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
 		CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */; };
 		CC3C7AA8E60F92B28C0A220C /* libTSMarkdownParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */; };
 		CC3C7CEAE8E781B631FD0CE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
+		CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */; };
 		CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
 /* End PBXBuildFile section */
 
@@ -43,11 +45,14 @@
 
 /* Begin PBXFileReference section */
 		CC3C70A3CF901EEE211573EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CC3C715C2DB22E3B57578ABE /* markdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markdown.png; sourceTree = "<group>"; };
 		CC3C71671290DA5B31D12C72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CC3C71DDC9984C6E95E98E36 /* TSMarkdownParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSMarkdownParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tests.m"; sourceTree = "<group>"; };
 		CC3C73AAE67D9E3D273712D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownParserTests.m; sourceTree = "<group>"; };
 		CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTSMarkdownParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3C762E16C5BA064858D55B /* UIImage+Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tests.h"; sourceTree = "<group>"; };
 		CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSMarkdownParser.h; sourceTree = "<group>"; };
 		CC3C7991CED6A71640007C6A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "TSMarkdownParserTests-Info.plist"; sourceTree = "<group>"; };
@@ -111,6 +116,9 @@
 			children = (
 				CC3C7FCE4FEE7203986A0468 /* Supporting Files */,
 				CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */,
+				CC3C715C2DB22E3B57578ABE /* markdown.png */,
+				CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */,
+				CC3C762E16C5BA064858D55B /* UIImage+Tests.h */,
 			);
 			path = TSMarkdownParserTests;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C74E1CB1870F6AB393F4B /* InfoPlist.strings in Resources */,
+				CC3C78DD2D0DF48F7FF83FD7 /* markdown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */,
+				CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
