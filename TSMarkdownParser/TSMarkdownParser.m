@@ -219,9 +219,8 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
     @synchronized (self) {
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
-            NSString *currentString = mutableAttributedString.string;
-            NSArray *matches = [expressionBlockPair.regularExpression matchesInString:currentString options:0 range:NSMakeRange(0, currentString.length)];
-            for(NSTextCheckingResult *match in matches) {
+            NSTextCheckingResult *match;
+            while((match = [expressionBlockPair.regularExpression firstMatchInString:mutableAttributedString.string options:0 range:NSMakeRange(0, mutableAttributedString.string.length)])){
                 expressionBlockPair.block(match, mutableAttributedString);
             }
         }

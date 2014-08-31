@@ -131,6 +131,33 @@
 
 }
 
+- (void)testDefaultLinkParsingMultipleLinks {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte [Pia](http://www.google.com/) "];
+
+    //Pär link
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+
+    //Pia link
+    NSURL *piaLink = [attributedString attribute:NSLinkAttributeName atIndex:37 effectiveRange:NULL];
+    XCTAssertEqualObjects(piaLink, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pia"].location != NSNotFound);
+    NSNumber *piaUnderline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(piaUnderline, @(NSUnderlineStyleSingle));
+    UIColor *piasLinkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(piasLinkColor, [UIColor blueColor]);
+
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+}
+
 - (void)testDefaultFont {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects([[attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL] fontName], @".Helvetica NeueUI");
