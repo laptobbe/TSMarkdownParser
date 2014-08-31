@@ -273,4 +273,12 @@
     XCTAssertEqualObjects(attributedString.string, @"Men att Pär är här\nmen inte Pia");
 }
 
+- (void)testDefaultBoldParsingCustomFont {
+    TSMarkdownParser *parser = [TSMarkdownParser standardParser];
+    UIFont *customFont = [UIFont boldSystemFontOfSize:19];
+    parser.strongFont = customFont;
+    NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
+    XCTAssertEqual([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] pointSize], 19.f);
+}
+
 @end

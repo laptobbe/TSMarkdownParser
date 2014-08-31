@@ -57,13 +57,14 @@ NSAttributedString *string = [[TSMarkdownParser standardParser] attributedString
 You can configure how the markdown is to be displayed by changing the different properties on a TSMarkdownParser instance. Alternatively you could implement the parsing yourself and add custom attributes to the attributed string. You can also alter the attributed string returned from the parser. 
 
 #Adding custom parsing
-Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:withBlock: method. You can add a parsing rule to the standardParser or to your own instance of the parser.
+Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:withBlock: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
 
 ````
 NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*|_){2}.*(\\*|_){2}" options:NSRegularExpressionCaseInsensitive error:nil];
+__weak TSMarkdownParser *weakSelf = self;
 [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 	[attributedString addAttribute:NSFontAttributeName
-                             value:font
+                             value:weakSelf.strongFont
                              range:match.range];
     [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
     [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-4, 2)];

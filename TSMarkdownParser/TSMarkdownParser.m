@@ -84,11 +84,11 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
-    UIFont *font = self.strongFont;
+    __weak TSMarkdownParser *weakSelf = self;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         [attributedString addAttribute:NSFontAttributeName
-                                 value:font
+                                 value:weakSelf.strongFont
                                  range:match.range];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-4, 2)];
@@ -98,10 +98,10 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 
 - (void)addEmphasisParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEmRegex options:NSRegularExpressionCaseInsensitive error:nil];
-    UIFont *font = self.emphasisFont;
+    __weak TSMarkdownParser *weakSelf = self;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         [attributedString addAttribute:NSFontAttributeName
-                                 value:font
+                                 value:weakSelf.emphasisFont
                                  range:match.range];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-2, 1)];
@@ -119,8 +119,7 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 
 - (void)addLinkParsing {
     NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionCaseInsensitive error:nil];
-    NSNumber *linkUnderlineStyle = self.linkUnderlineStyle;
-    UIColor *linkColor = self.linkColor;
+    __weak TSMarkdownParser *weakSelf = self;
     [self addParsingRuleWithRegularExpression:linkParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:0 range:match.range].location;
@@ -137,44 +136,45 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
                                  value:url
                                  range:linkTextRange];
         [attributedString addAttribute:NSUnderlineStyleAttributeName
-                                 value:linkUnderlineStyle
+                                 value:weakSelf.linkUnderlineStyle
                                  range:linkTextRange];
         [attributedString addAttribute:NSForegroundColorAttributeName
-                                 value:linkColor
+                                 value:weakSelf.linkColor
                                  range:linkTextRange];
     }];
 }
 
 - (void)addH1Parsing {
-   [self addHeaderParsingWithInt:1 font:self.h1Font];
+   [self addHeaderParsingWithInt:1 font:@"h1Font"];
 }
 
 - (void)addH2Parsing {
-    [self addHeaderParsingWithInt:2 font:self.h2Font];
+    [self addHeaderParsingWithInt:2 font:@"h2Font"];
 }
 
 - (void)addH3Parsing {
-    [self addHeaderParsingWithInt:3 font:self.h3Font];
+    [self addHeaderParsingWithInt:3 font:@"h3Font"];
 }
 
 - (void)addH4Parsing {
-    [self addHeaderParsingWithInt:4 font:self.h4Font];
+    [self addHeaderParsingWithInt:4 font:@"h4Font"];
 }
 
 - (void)addH5Parsing {
-    [self addHeaderParsingWithInt:5 font:self.h5Font];
+    [self addHeaderParsingWithInt:5 font:@"h5Font"];
 }
 
 - (void)addH6Parsing {
-    [self addHeaderParsingWithInt:6 font:self.h6Font];
+    [self addHeaderParsingWithInt:6 font:@"h6Font"];
 }
 
-- (void)addHeaderParsingWithInt:(NSUInteger)header font:(UIFont *)font {
+- (void)addHeaderParsingWithInt:(NSUInteger)header font:(NSString *)fontKey{
     NSString *headerRegex = [NSString stringWithFormat:TSMarkdownHeaderRegex, header];
     NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:headerRegex options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:nil];
+    __weak TSMarkdownParser *weakSelf = self;
     [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         [attributedString addAttribute:NSFontAttributeName
-                                 value:font
+                                 value:[weakSelf valueForKey:fontKey]
                                  range:match.range];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, header)];
 
