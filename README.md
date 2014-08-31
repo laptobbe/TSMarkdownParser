@@ -57,7 +57,7 @@ NSAttributedString *string = [[TSMarkdownParser standardParser] attributedString
 You can configure the font that an instance of the parser uses by changing the different font properties. Alternatively you could implement the parsing your self and add custom attributes to the string. You can also alter the attributed string returned from the parser. 
 
 #Adding custom parsing
-Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:boldParsing:withBlock: method. You can add a parsing rule to the standardParser or to your own instance of the parser.
+Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:withBlock: method. You can add a parsing rule to the standardParser or to your own instance of the parser.
 
 ````
 NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*|_){2}.*(\\*|_){2}" options:NSRegularExpressionCaseInsensitive error:nil];
