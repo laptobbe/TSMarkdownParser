@@ -50,6 +50,8 @@
         _h4Font = [UIFont boldSystemFontOfSize:17];
         _h5Font = [UIFont boldSystemFontOfSize:15];
         _h6Font = [UIFont boldSystemFontOfSize:13];
+        _linkColor = [UIColor blueColor];
+        _linkUnderlineStyle = @(NSUnderlineStyleSingle);
     }
     return self;
 }
@@ -117,6 +119,8 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
 - (void)addLinkParsing {
     NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionCaseInsensitive error:nil];
+    NSNumber *linkUnderlineStyle = self.linkUnderlineStyle;
+    UIColor *linkColor = self.linkColor;
     [self addParsingRuleWithRegularExpression:linkParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:0 range:match.range].location;
@@ -130,6 +134,12 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
         [attributedString addAttribute:NSLinkAttributeName
                                  value:link
+                                 range:linkTextRange];
+        [attributedString addAttribute:NSUnderlineStyleAttributeName
+                                 value:linkUnderlineStyle
+                                 range:linkTextRange];
+        [attributedString addAttribute:NSForegroundColorAttributeName
+                                 value:linkColor
                                  range:linkTextRange];
     }];
 }

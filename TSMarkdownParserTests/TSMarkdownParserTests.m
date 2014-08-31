@@ -124,6 +124,11 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+
 }
 
 - (void)testDefaultFont {

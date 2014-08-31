@@ -21,6 +21,8 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 @property (nonatomic, strong) UIFont *h4Font;
 @property (nonatomic, strong) UIFont *h5Font;
 @property (nonatomic, strong) UIFont *h6Font;
+@property (nonatomic, strong) UIColor *linkColor;
+@property (nonatomic, copy) NSNumber *linkUnderlineStyle;
 
 + (TSMarkdownParser *)standardParser;
 
