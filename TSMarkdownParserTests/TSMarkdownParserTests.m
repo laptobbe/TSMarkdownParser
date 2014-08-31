@@ -217,6 +217,14 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
 }
 
+- (void)testDefaultH6NextLine {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
+    UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:30 effectiveRange:NULL];
+    XCTAssertNotNil(font);
+    XCTAssertEqualObjects(font.fontName, @".Helvetica NeueUI");
+    XCTAssertEqual(font.pointSize, 12.f);
+}
+
 - (void)testMultipleMatches {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"##Hello\nMen att *Pär* är här\n+ men inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\\t men inte Pia");

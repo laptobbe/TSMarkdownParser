@@ -80,7 +80,7 @@ static NSString *const TSMarkdownEmRegex        = @"(\\*|_).*(\\*|_)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*\\]\\(.*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*\\]\\(.*\\)";
-static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
+static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+\n";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
