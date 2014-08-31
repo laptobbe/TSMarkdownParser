@@ -42,8 +42,8 @@
     if(self) {
         _parsingPairs = [NSMutableArray array];
         _paragraphFont = [UIFont systemFontOfSize:12];
-        _boldFont = [UIFont boldSystemFontOfSize:12];
-        _italicFont = [UIFont italicSystemFontOfSize:12];
+        _strongFont = [UIFont boldSystemFontOfSize:12];
+        _emphasisFont = [UIFont italicSystemFontOfSize:12];
         _h1Font = [UIFont boldSystemFontOfSize:23];
         _h2Font = [UIFont boldSystemFontOfSize:21];
         _h3Font = [UIFont boldSystemFontOfSize:19];
@@ -59,7 +59,7 @@
 
     TSMarkdownParser *defaultParser = [TSMarkdownParser new];
     [defaultParser addStrongParsing];
-    [defaultParser addEmParsing];
+    [defaultParser addEmphasisParsing];
     [defaultParser addListParsing];
     [defaultParser addLinkParsing];
     [defaultParser addH1Parsing];
@@ -82,7 +82,7 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
 
 - (void)addStrongParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownBoldRegex options:NSRegularExpressionCaseInsensitive error:nil];
-    UIFont *font = self.boldFont;
+    UIFont *font = self.strongFont;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         [attributedString addAttribute:NSFontAttributeName
@@ -94,9 +94,9 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}[^#]+$";
     }];
 }
 
-- (void)addEmParsing {
+- (void)addEmphasisParsing {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEmRegex options:NSRegularExpressionCaseInsensitive error:nil];
-    UIFont *font = self.italicFont;
+    UIFont *font = self.emphasisFont;
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:font

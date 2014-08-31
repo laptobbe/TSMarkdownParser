@@ -13,8 +13,8 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 @interface TSMarkdownParser : NSObject
 
 @property (nonatomic, strong) UIFont *paragraphFont;
-@property (nonatomic, strong) UIFont *boldFont;
-@property (nonatomic, strong) UIFont *italicFont;
+@property (nonatomic, strong) UIFont *strongFont;
+@property (nonatomic, strong) UIFont *emphasisFont;
 @property (nonatomic, strong) UIFont *h1Font;
 @property (nonatomic, strong) UIFont *h2Font;
 @property (nonatomic, strong) UIFont *h3Font;
@@ -30,7 +30,7 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 
 - (void)addStrongParsing;
 
-- (void)addEmParsing;
+- (void)addEmphasisParsing;
 
 - (void)addListParsing;
 

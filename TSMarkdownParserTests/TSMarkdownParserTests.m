@@ -73,12 +73,12 @@
 
 - (void)testBoldFont {
     TSMarkdownParser *parser = [TSMarkdownParser new];
-    XCTAssertEqualObjects(parser.boldFont.fontName, @".Helvetica NeueUI Bold");
+    XCTAssertEqualObjects(parser.strongFont.fontName, @".Helvetica NeueUI Bold");
 }
 
 - (void)testItalicFont {
     TSMarkdownParser *parser = [TSMarkdownParser new];
-    XCTAssertEqualObjects(parser.italicFont.fontName, @".Helvetica NeueUI Italic");
+    XCTAssertEqualObjects(parser.emphasisFont.fontName, @".Helvetica NeueUI Italic");
 }
 
 - (void)testDefaultBoldParsing {
