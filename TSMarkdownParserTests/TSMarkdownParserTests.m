@@ -151,7 +151,7 @@
 }
 
 - (void)testDefaultLinkParsingMultipleLinks {
-    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte [Pia](http://www.google.com/) "];
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här. men inte [Pia](http://www.google.com/) "];
 
     //Pär link
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
@@ -161,7 +161,7 @@
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
     UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
-
+    
     //Pia link
     NSURL *piaLink = [attributedString attribute:NSLinkAttributeName atIndex:37 effectiveRange:NULL];
     XCTAssertEqualObjects(piaLink, [NSURL URLWithString:@"http://www.google.com/"]);
@@ -271,6 +271,23 @@
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Men att  är här\nmen inte Pia");
+}
+
+- (void)testDefaultImageMultiple {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Men att ![Pär](markdown) är här ![Pär](markdown)\nmen inte Pia"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"!"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Men att  är här \nmen inte Pia");
 }
 
 - (void)testDefaultImageMissingImage {
