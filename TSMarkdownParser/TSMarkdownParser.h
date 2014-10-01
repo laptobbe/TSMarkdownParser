@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
+typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
+typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range);
 
 @interface TSMarkdownParser : NSObject
 
@@ -28,28 +29,18 @@ typedef void (^TSMarkdownParserBlock)(NSTextCheckingResult *match, NSMutableAttr
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown;
 
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserBlock)block;
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block;
 
-- (void)addStrongParsing;
+- (void)addStrongParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addEmphasisParsing;
+- (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addListParsing;
+- (void)addListParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addLinkParsing;
+- (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addH1Parsing;
+- (void)addHeaderParsingWithLevel:(NSUInteger)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addH2Parsing;
-
-- (void)addH3Parsing;
-
-- (void)addH4Parsing;
-
-- (void)addH5Parsing;
-
-- (void)addH6Parsing;
-
-- (void)addImageParsing;
+- (void)addImageParsingWithImageFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock alternativeTextFormattingBlock:(TSMarkdownParserFormattingBlock)alternativeFormattingBlock;
 
 @end
