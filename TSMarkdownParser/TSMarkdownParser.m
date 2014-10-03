@@ -138,7 +138,7 @@ static NSString *const TSMarkdownEmRegex        = @"(\\*|_).*(\\*|_)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownHeaderRegex    = @"^#{%lu}(?!#).+$";
+static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 
 - (void)addStrongParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownStrongRegex options:NSRegularExpressionCaseInsensitive error:nil];
@@ -198,8 +198,8 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%lu}(?!#).+$";
     }];
 }
 
-- (void)addHeaderParsingWithLevel:(NSUInteger)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
-    NSString *headerRegex = [NSString stringWithFormat:TSMarkdownHeaderRegex, (unsigned long)header];
+- (void)addHeaderParsingWithLevel:(int)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
+    NSString *headerRegex = [NSString stringWithFormat:TSMarkdownHeaderRegex, header];
     NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:headerRegex options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:nil];
     [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         formattingBlock(attributedString, match.range);

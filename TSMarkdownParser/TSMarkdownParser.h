@@ -39,7 +39,7 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 
 - (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addHeaderParsingWithLevel:(NSUInteger)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+- (void)addHeaderParsingWithLevel:(int)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
 - (void)addImageParsingWithImageFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock alternativeTextFormattingBlock:(TSMarkdownParserFormattingBlock)alternativeFormattingBlock;
 
