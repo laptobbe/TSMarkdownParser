@@ -183,10 +183,10 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
         NSString *linkURLString = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
         NSURL *url = [NSURL URLWithString:linkURLString];
 
-        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:match.range].location;
-        NSRange linkTextRange = NSMakeRange(match.range.location, linkTextEndLocation-match.range.location);
+        NSRange linkTextRange = NSMakeRange(match.range.location, linkTextEndLocation-match.range.location-1);
 
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
 
         [attributedString addAttribute:NSLinkAttributeName

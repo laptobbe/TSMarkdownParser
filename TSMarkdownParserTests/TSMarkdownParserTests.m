@@ -147,7 +147,25 @@
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
     UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+    
+    NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:18 effectiveRange:NULL];
+    XCTAssertNil(linkAtTheNextCharacter);
+}
 
+- (void)testDefaultLinkParsingOnEndOfStrings {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/)"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+    
 }
 
 - (void)testDefaultLinkParsingMultipleLinks {
