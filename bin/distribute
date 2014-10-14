@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+version = ARGV[0]
+podspec = "TSMarkdownParser.podspec"
+
+
+#Update pod file
+currentVersion = `cat #{podspec} | grep 's.version ' | awk '{print $3}'`.gsub(/\"/, "").strip
+if version.nil?
+	print "Enter new version number (current version: #{currentVersion}) "	 
+	version = gets
+end
+abort "Need to supply version. Current version: #{currentVersion}" if version.nil? or version.length < 5
+abort "Need to supply a higher version. Current version: #{currentVersion}" if version.eql? currentVersion
+print "Preparing to upgrade from #{currentVersion} to #{version}\n"
+file = File.read(podspec).gsub("#{currentVersion}", "#{version}")
+
+File.write(podspec, file)
+
+#Create version commit
+system "git add #{podspec}"
+system "git commit -m 'Updated version to #{version}'"
+system "git push"
+
+#create git tag
+system "git tag -a #{version} -m #{version}"
+system "git push --tags"
+
+system "pod trunk push #{podspec}"
