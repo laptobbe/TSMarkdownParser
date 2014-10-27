@@ -23,7 +23,7 @@ system "git commit -m 'Updated version to #{version}'"
 system "git push"
 
 #create git tag
-system "git tag -m #{version}"
+system "git tag #{version}"
 system "git push --tags"
 
 system "pod trunk push #{podspec}"
