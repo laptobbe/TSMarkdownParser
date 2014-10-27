@@ -8,7 +8,7 @@ podspec = "TSMarkdownParser.podspec"
 currentVersion = `cat #{podspec} | grep 's.version ' | awk '{print $3}'`.gsub(/\"/, "").strip
 if version.nil?
 	print "Enter new version number (current version: #{currentVersion}) "	 
-	version = gets
+	version = gets.strip
 end
 abort "Need to supply version. Current version: #{currentVersion}" if version.nil? or version.length < 5
 abort "Need to supply a higher version. Current version: #{currentVersion}" if version.eql? currentVersion
