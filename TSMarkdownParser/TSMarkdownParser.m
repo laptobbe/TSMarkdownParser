@@ -133,8 +133,8 @@
     return defaultParser;
 }
 
-static NSString *const TSMarkdownStrongRegex    = @"(\\*|_){2}.*(\\*|_){2}";
-static NSString *const TSMarkdownEmRegex        = @"(\\*|_).*(\\*|_)";
+static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
+static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*|_]|^)(\\*|_)\\w+[\\w\\s]+(\\*|_)(?=[^\\*|_]|$)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
