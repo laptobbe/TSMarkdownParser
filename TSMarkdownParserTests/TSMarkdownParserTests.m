@@ -114,6 +114,17 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
+- (void)testDefaultStrongAndEmInSameInputParsing {
+    UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
+    UIFont *emphasisFont = [UIFont italicSystemFontOfSize:12];
+
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n*Men* att **Pär är här** men *inte* Pia"];
+    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL], strongFont);
+    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL], emphasisFont);
+    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:31 effectiveRange:NULL], emphasisFont);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
+}
+
 - (void)testDefaultListWithAstricsParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
