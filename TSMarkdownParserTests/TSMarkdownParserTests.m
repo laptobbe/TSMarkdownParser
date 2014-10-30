@@ -118,11 +118,37 @@
     UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
     UIFont *emphasisFont = [UIFont italicSystemFontOfSize:12];
 
-    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n*Men* att **Pär är här** men *inte* Pia"];
-    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL], strongFont);
-    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL], emphasisFont);
-    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:31 effectiveRange:NULL], emphasisFont);
-    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
+    NSUInteger expectedNumberOfEmphasisBlocks = 3;
+    __block NSUInteger actualNumberOfEmphasisBlocks = 0;
+    NSMutableArray *emphasizedSnippets = @[@"under", @"From", @"progress"].mutableCopy;
+
+    NSUInteger expectedNumberOfStrongBlocks = 3;
+    __block NSUInteger actualNumberOfStrongBlocks = 0;
+    NSMutableArray *strongSnippets = @[@"Tennis Court", @"Strawberries and Cream", @"Worn Grass"].mutableCopy;
+
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your seat.\n\n**Worn Grass** See the *progress* of the tournament."];
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                          UIFont *font = attributes[NSFontAttributeName];
+                                          if ( [emphasisFont isEqual:font] ) {
+                                              actualNumberOfEmphasisBlocks++;
+
+                                              NSString *snippet = [attributedString.string substringWithRange:range];
+                                              [emphasizedSnippets removeObject:snippet];
+                                          } else if ( [strongFont isEqual:font] ) {
+                                              actualNumberOfStrongBlocks++;
+
+                                              NSString *snippet = [attributedString.string substringWithRange:range];
+                                              [strongSnippets removeObject:snippet];
+                                          }
+                                      }];
+
+    XCTAssertEqual(actualNumberOfEmphasisBlocks, expectedNumberOfEmphasisBlocks);
+    XCTAssertEqual(emphasizedSnippets.count, 0);
+
+    XCTAssertEqual(actualNumberOfStrongBlocks, expectedNumberOfStrongBlocks);
+    XCTAssertEqual(strongSnippets.count, 0);
 }
 
 - (void)testDefaultListWithAstricsParsing {
