@@ -161,6 +161,43 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\n•\\t Men inte Pia");
 }
 
+- (void)testCustomListWithAsterisksParsingWithStrongText {
+    UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
+
+    TSMarkdownParser *parser = [[TSMarkdownParser alloc] init];
+    [parser addListParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString replaceCharactersInRange:range withString:@"    • "];
+    }];
+    [parser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:strongFont
+                                 range:range];
+    }];
+
+    NSUInteger expectedNumberOfStrongBlocks = 1;
+    __block NSUInteger actualNumberOfStrongBlocks = 0;
+    NSMutableArray *strongSnippets = @[@"Strong Text:"].mutableCopy;
+
+    NSString *expectedRawString = @"Strong Text: Some Subtitle.\n\n    •  List Item One\n    •  List Item Two";
+    NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"**Strong Text:** Some Subtitle.\n\n* List Item One\n* List Item Two"];
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                          UIFont *font = attributes[NSFontAttributeName];
+                                          if ( [strongFont isEqual:font] ) {
+                                              actualNumberOfStrongBlocks++;
+
+                                              NSString *snippet = [attributedString.string substringWithRange:range];
+                                              [strongSnippets removeObject:snippet];
+                                          }
+                                      }];
+
+    XCTAssertEqual(actualNumberOfStrongBlocks, expectedNumberOfStrongBlocks);
+    XCTAssertEqual(strongSnippets.count, 0);
+
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
 - (void)testDefaultListWithPlusParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
