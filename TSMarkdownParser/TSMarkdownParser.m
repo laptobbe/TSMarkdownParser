@@ -136,7 +136,7 @@
 static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
 static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]+[^\\*_\\n]+(\\*|_)(?=[^\\*_]|$)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+).+$";
-static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\(\\S*\\)";
+static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 

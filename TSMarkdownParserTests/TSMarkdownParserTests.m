@@ -205,6 +205,28 @@
     
 }
 
+- (void)testDefaultLinkParsingEnclosedInParenthesis {
+    NSString *expectedRawString = @"Hello\n Men att (Pär) är här\nmen inte Pia";
+
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att ([Pär](http://www.google.com/)) är här\nmen inte Pia"];
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                          NSURL *link = attributes[NSLinkAttributeName];
+                                          if ( link ) {
+                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+
+                                              NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
+                                              XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));
+
+                                              UIColor *linkColor = attributes[NSForegroundColorAttributeName];
+                                              XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+                                          }
+                                      }];
+
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
 - (void)testDefaultLinkParsingMultipleLinks {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här. men inte [Pia](http://www.google.com/) "];
 
