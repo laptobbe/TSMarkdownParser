@@ -32,6 +32,7 @@
 @interface TSMarkdownParser ()
 
 @property (nonatomic, strong) NSMutableArray *parsingPairs;
+@property (nonatomic, copy) void (^paragraphParsingBlock)(NSMutableAttributedString *attributedString);
 
 @end
 
@@ -61,6 +62,12 @@
     TSMarkdownParser *defaultParser = [TSMarkdownParser new];
 
     __weak TSMarkdownParser *weakParser = defaultParser;
+    [defaultParser addParagraphParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:weakParser.paragraphFont
+                                 range:range];
+    }];
+    
     [defaultParser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.strongFont
@@ -139,6 +146,13 @@ static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+)[^\\*].+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
+
+- (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
+    self.paragraphParsingBlock = ^(NSMutableAttributedString *attributedString) {
+        
+        formattingBlock(attributedString, NSMakeRange(0, attributedString.length));
+    };
+}
 
 - (void)addStrongParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownStrongRegex options:NSRegularExpressionCaseInsensitive error:nil];
@@ -239,10 +253,9 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
-
-    [mutableAttributedString addAttribute:NSFontAttributeName
-                                    value:self.paragraphFont
-                                    range:NSMakeRange(0, mutableAttributedString.length)];
+    if ( self.paragraphParsingBlock ) {
+        self.paragraphParsingBlock(mutableAttributedString);
+    }
 
     @synchronized (self) {
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
