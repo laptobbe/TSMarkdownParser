@@ -81,7 +81,7 @@
     }];
 
     [defaultParser addListParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        [attributedString replaceCharactersInRange:range withString:@"•\\t"];
+        [attributedString replaceCharactersInRange:range withString:@"•\t"];
     }];
 
     [defaultParser addLinkParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -145,7 +145,7 @@ static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+)[^\\*].+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
+static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     self.paragraphParsingBlock = ^(NSMutableAttributedString *attributedString) {
@@ -217,7 +217,7 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
     NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:headerRegex options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:nil];
     [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         formattingBlock(attributedString, match.range);
-        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, header)];
+        [attributedString deleteCharactersInRange:[match rangeAtIndex:1]];
     }];
 }
 
