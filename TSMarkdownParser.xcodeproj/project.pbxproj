@@ -58,6 +58,7 @@
 		CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "TSMarkdownParserTests-Info.plist"; sourceTree = "<group>"; };
 		CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownParser.m; sourceTree = "<group>"; };
 		CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-Prefix.pch"; sourceTree = "<group>"; };
+		F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = TSMarkdownParser.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		CC3C733B469527BABC08D90D /* TSMarkdownParser */ = {
 			isa = PBXGroup;
 			children = (
+				F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */,
 				CC3C72A1BA2FA83330E38DEB /* Supporting Files */,
 				CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */,
 				CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */,
@@ -399,6 +401,7 @@
 				CC3C75B20E774F01AA9D507C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC3C717FD5DA31AA1A2B87BF /* Build configuration list for PBXProject "TSMarkdownParser" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +419,7 @@
 				CC3C730126B95B11146003EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
