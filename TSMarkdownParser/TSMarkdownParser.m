@@ -232,14 +232,20 @@ static NSString *const TSMarkdownHeaderRegex    = @"^#{%i}(?!#).+$";
             [attributedString deleteCharactersInRange:match.range];
             NSTextAttachment *imageAttachment = [NSTextAttachment new];
             imageAttachment.image = image;
+            imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
+            NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
             NSRange imageRange = NSMakeRange(match.range.location, 1);
-            [attributedString addAttribute:NSAttachmentAttributeName value:imageAttachment range:imageRange];
-            formattingBlock(attributedString, imageRange);
+            [attributedString insertAttributedString:imgStr atIndex:match.range.location];
+            if(formattingBlock) {
+                formattingBlock(attributedString, imageRange);
+            }
         } else {
             NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:match.range].location;
             NSRange linkTextRange = NSMakeRange(match.range.location+2, linkTextEndLocation-match.range.location-2);
             NSString *alternativeText = [attributedString.string substringWithRange:linkTextRange];
-            alternativeFormattingBlock(attributedString, match.range);
+            if(alternativeFormattingBlock) {
+                alternativeFormattingBlock(attributedString, match.range);
+            }
             [attributedString replaceCharactersInRange:match.range withString:alternativeText];
         }
     }];
