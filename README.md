@@ -1,6 +1,8 @@
 TSMarkdownParser
 ================
 
+[![Build Status](https://travis-ci.org/laptobbe/TSMarkdownParser.svg)](https://travis-ci.org/laptobbe/TSMarkdownParser)
+
 TSMarkdownParser is a markdown to NSAttributedString parser for iOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
 
 #Supported tags
