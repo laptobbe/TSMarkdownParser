@@ -153,12 +153,12 @@
 
 - (void)testDefaultListWithAstricsParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultListWithAstricsParsingMultiple {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\n* Men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\n•\\t Men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\n•\t Men inte Pia");
 }
 
 - (void)testCustomListWithAsterisksParsingWithStrongText {
@@ -200,12 +200,12 @@
 
 - (void)testDefaultListWithPlusParsing {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\nmen inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultListWithPlusParsingMultiple {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\n+ Men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\\t Men att Pär är här\n•\\t Men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\n•\t Men inte Pia");
 }
 
 - (void)testDefaultLinkParsing {
@@ -305,6 +305,7 @@
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 23.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH2 {
@@ -314,6 +315,7 @@
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH3 {
@@ -324,6 +326,7 @@
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 19.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH4 {
@@ -334,6 +337,7 @@
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 17.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH5 {
@@ -344,6 +348,7 @@
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 15.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH6 {
@@ -354,6 +359,7 @@
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 13.f);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultH6NextLine {
@@ -363,11 +369,12 @@
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 12.f);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testMultipleMatches {
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"##Hello\nMen att *Pär* är här\n+ men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\\t men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\t men inte Pia");
 }
 
 - (void)testDefaultImage {
