@@ -384,7 +384,8 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
-    XCTAssertEqualObjects(attributedString.string, @"Men att  är här\nmen inte Pia");
+    NSString *expected = @"Men att \uFFFC är här\nmen inte Pia";
+    XCTAssertEqualObjects(attributedString.string, expected);
 }
 
 - (void)testDefaultImageMultiple {
@@ -401,7 +402,8 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"carrots"].location == NSNotFound);
-    XCTAssertEqualObjects(attributedString.string, @"Men att  är här \nmen inte Pia");
+    NSString *expected = @"Men att \uFFFC är här \uFFFC\nmen inte Pia";
+    XCTAssertEqualObjects(attributedString.string, expected);
 }
 
 - (void)testDefaultImageMissingImage {
