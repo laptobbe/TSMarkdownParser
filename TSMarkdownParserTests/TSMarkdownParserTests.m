@@ -428,4 +428,11 @@
     XCTAssertEqual([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] pointSize], 19.f);
 }
 
+- (void)testURLWithParenthesesInTheTitleText {
+    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n Men att [Pär och (Mia)](http://www.google.com/) är här."];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+}
+
 @end
