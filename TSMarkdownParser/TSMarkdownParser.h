@@ -25,9 +25,11 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 @property (nonatomic, strong) UIColor *linkColor;
 @property (nonatomic, copy) NSNumber *linkUnderlineStyle;
 
-+ (TSMarkdownParser *)standardParser;
++ (instancetype)standardParser;
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown;
+
+- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(NSDictionary *)attributes;
 
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block;
 

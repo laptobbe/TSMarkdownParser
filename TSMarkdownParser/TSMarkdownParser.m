@@ -57,7 +57,7 @@
     return self;
 }
 
-+ (TSMarkdownParser *)standardParser {
++ (instancetype)standardParser {
 
     TSMarkdownParser *defaultParser = [TSMarkdownParser new];
 
@@ -257,12 +257,17 @@ static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
     }
 }
 
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
-    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
+- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(NSDictionary *)attributes {
+    NSMutableAttributedString *mutableAttributedString = nil;
+    if (! attributes) {
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
+    } else {
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown attributes:attributes];
+    }
     if ( self.paragraphParsingBlock ) {
         self.paragraphParsingBlock(mutableAttributedString);
     }
-
+    
     @synchronized (self) {
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
             NSTextCheckingResult *match;
@@ -272,6 +277,10 @@ static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
         }
     }
     return mutableAttributedString;
+}
+
+- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
+    return [self attributedStringFromMarkdown:markdown attributes:nil];
 }
 
 
