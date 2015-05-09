@@ -93,6 +93,20 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
+- (void)testDefaultMonospaceFontParsing {
+    TSMarkdownParser *parser = [TSMarkdownParser standardParser];
+    UIFont *font = [parser monospaceFont];
+    NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att `Pär är här` men inte Pia"];
+    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL], font);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
+}
+
+- (void)testDefaultMonospaceParsing {
+    TSMarkdownParser *parser = [TSMarkdownParser standardParser];
+    NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att `Pär är här` men inte Pia"];
+    XCTAssertTrue([attributedString.string rangeOfString:@"`"].location == NSNotFound);
+}
+
 - (void)testDefaultEmParsing {
     UIFont *font = [UIFont italicSystemFontOfSize:12];
     NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\nMen att *Pär är här* men inte Pia"];
@@ -114,33 +128,42 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
-- (void)testDefaultStrongAndEmInSameInputParsing {
-    UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
-    UIFont *emphasisFont = [UIFont italicSystemFontOfSize:12];
+- (void)testDefaultStrongAndEmAndMonospaceInSameInputParsing {
+    TSMarkdownParser *parser = [TSMarkdownParser standardParser];
+    UIFont *strongFont = parser.strongFont;
+    UIFont *emphasisFont = parser.emphasisFont;
+    UIFont *monospaceFont = parser.monospaceFont;
 
-    NSUInteger expectedNumberOfEmphasisBlocks = 3;
-    __block NSUInteger actualNumberOfEmphasisBlocks = 0;
     NSMutableArray *emphasizedSnippets = @[@"under", @"From", @"progress"].mutableCopy;
+    NSUInteger expectedNumberOfEmphasisBlocks = emphasizedSnippets.count;
+    __block NSUInteger actualNumberOfEmphasisBlocks = 0;
 
-    NSUInteger expectedNumberOfStrongBlocks = 3;
-    __block NSUInteger actualNumberOfStrongBlocks = 0;
     NSMutableArray *strongSnippets = @[@"Tennis Court", @"Strawberries and Cream", @"Worn Grass"].mutableCopy;
+    NSUInteger expectedNumberOfStrongBlocks = strongSnippets.count;
+    __block NSUInteger actualNumberOfStrongBlocks = 0;
 
-    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your seat.\n\n**Worn Grass** See the *progress* of the tournament."];
+    NSMutableArray *monospaceSnippets = @[@"tournament", @"seat", ].mutableCopy;
+    NSUInteger expectedNumberOfMonospaceBlocks = monospaceSnippets.count;
+    __block NSUInteger actualNumberOfMonospaceBlocks = 0;
+    
+    void (^IncreaseCountAndRemoveSnippet)(NSUInteger *, NSString *, NSMutableArray *) = ^(NSUInteger *count, NSString *snippet, NSMutableArray *snippets) {
+        *count += 1;
+        [snippets removeObject:snippet];
+    };
+
+    NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your `seat`.\n\n**Worn Grass** See the *progress* of the `tournament`."];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
                                           UIFont *font = attributes[NSFontAttributeName];
+                                          NSString *snippet = [attributedString.string substringWithRange:range];
+
                                           if ( [emphasisFont isEqual:font] ) {
-                                              actualNumberOfEmphasisBlocks++;
-
-                                              NSString *snippet = [attributedString.string substringWithRange:range];
-                                              [emphasizedSnippets removeObject:snippet];
+                                              IncreaseCountAndRemoveSnippet(&actualNumberOfEmphasisBlocks, snippet, emphasizedSnippets);
                                           } else if ( [strongFont isEqual:font] ) {
-                                              actualNumberOfStrongBlocks++;
-
-                                              NSString *snippet = [attributedString.string substringWithRange:range];
-                                              [strongSnippets removeObject:snippet];
+                                              IncreaseCountAndRemoveSnippet(&actualNumberOfStrongBlocks, snippet, strongSnippets);
+                                          } else if ([monospaceFont isEqual:font]) {
+                                              IncreaseCountAndRemoveSnippet(&actualNumberOfMonospaceBlocks, snippet, monospaceSnippets);
                                           }
                                       }];
 
@@ -149,6 +172,9 @@
 
     XCTAssertEqual(actualNumberOfStrongBlocks, expectedNumberOfStrongBlocks);
     XCTAssertEqual(strongSnippets.count, 0);
+    
+    XCTAssertEqual(actualNumberOfMonospaceBlocks, expectedNumberOfMonospaceBlocks);
+    XCTAssertEqual(monospaceSnippets.count, 0);
 }
 
 - (void)testDefaultListWithAstricsParsing {

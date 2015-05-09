@@ -22,6 +22,8 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 @property (nonatomic, strong) UIFont *h4Font;
 @property (nonatomic, strong) UIFont *h5Font;
 @property (nonatomic, strong) UIFont *h6Font;
+@property (nonatomic, strong) UIFont *monospaceFont;
+@property (nonatomic, strong) UIColor *monospaceTextColor;
 @property (nonatomic, strong) UIColor *linkColor;
 @property (nonatomic, copy) NSNumber *linkUnderlineStyle;
 
@@ -44,6 +46,8 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 - (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
 - (void)addHeaderParsingWithLevel:(int)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+
+- (void)addMonospacedParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
 - (void)addImageParsingWithImageFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock alternativeTextFormattingBlock:(TSMarkdownParserFormattingBlock)alternativeFormattingBlock;
 
