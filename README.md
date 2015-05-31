@@ -30,6 +30,7 @@ Emphasis
 _Em_
 **Strong**
 __Strong__
+`code`
 
 URL
 [Link text](http://www.link.com)
