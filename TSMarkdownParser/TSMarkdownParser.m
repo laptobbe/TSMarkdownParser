@@ -53,6 +53,8 @@
         _h6Font = [UIFont boldSystemFontOfSize:13];
         _linkColor = [UIColor blueColor];
         _linkUnderlineStyle = @(NSUnderlineStyleSingle);
+        _monospaceFont = [UIFont fontWithName:@"Menlo" size:12];
+        _monospaceTextColor = [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1];
     }
     return self;
 }
@@ -91,6 +93,15 @@
                                  range:range];
         [attributedString addAttribute:NSForegroundColorAttributeName
                                  value:weakParser.linkColor
+                                 range:range];
+    }];
+    
+    [defaultParser addMonospacedParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:weakParser.monospaceFont
+                                 range:range];
+        [attributedString addAttribute:NSForegroundColorAttributeName
+                                 value:weakParser.monospaceTextColor
                                  range:range];
     }];
 
@@ -146,6 +157,7 @@ static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+)[^\\*].+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
+static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     self.paragraphParsingBlock = ^(NSMutableAttributedString *attributedString) {
@@ -218,6 +230,16 @@ static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
     [self addParsingRuleWithRegularExpression:headerExpression withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         formattingBlock(attributedString, match.range);
         [attributedString deleteCharactersInRange:[match rangeAtIndex:1]];
+    }];
+}
+
+- (void)addMonospacedParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock
+{
+    NSRegularExpression *monoParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownMonospaceRegex options:NSRegularExpressionCaseInsensitive error:nil];
+    [self addParsingRuleWithRegularExpression:monoParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        formattingBlock(attributedString, match.range);
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+        [attributedString deleteCharactersInRange:NSMakeRange((match.range.location + match.range.length - 2), 1)];
     }];
 }
 
