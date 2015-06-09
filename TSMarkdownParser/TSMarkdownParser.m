@@ -280,13 +280,23 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
 }
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(NSDictionary *)attributes {
-    NSMutableAttributedString *mutableAttributedString = nil;
+    NSAttributedString *attributedString = nil;
     if (! attributes) {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
+        attributedString = [[NSAttributedString alloc] initWithString:markdown];
     } else {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown attributes:attributes];
+        attributedString = [[NSAttributedString alloc] initWithString:markdown attributes:attributes];
     }
-    if ( self.paragraphParsingBlock ) {
+
+    return [self attributedStringFromAttributedMarkdownString:attributedString];
+}
+
+- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
+    return [self attributedStringFromMarkdown:markdown attributes:nil];
+}
+
+- (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString {
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+    if (self.paragraphParsingBlock) {
         self.paragraphParsingBlock(mutableAttributedString);
     }
     
@@ -300,10 +310,5 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
     }
     return mutableAttributedString;
 }
-
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
-    return [self attributedStringFromMarkdown:markdown attributes:nil];
-}
-
 
 @end
