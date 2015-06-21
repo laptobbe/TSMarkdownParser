@@ -282,6 +282,7 @@
 				F5A4F43E1B36EF4100C4F56C /* Frameworks */,
 				F5A4F43F1B36EF4100C4F56C /* Headers */,
 				F5A4F4401B36EF4100C4F56C /* Resources */,
+				F5A4F45D1B36F00400C4F56C /* Copy Artifacts */,
 			);
 			buildRules = (
 			);
@@ -371,6 +372,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F5A4F45D1B36F00400C4F56C /* Copy Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Artifacts";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ARTIFACTS=\"Artifacts\"\nBASE_DIR=$SRCROOT/$ARTIFACTS\nif [ -d \"${BASE_DIR}\" ];\nthen\nrm -rf $BASE_DIR\nfi\nmkdir -p $BASE_DIR\ncp -R $DWARF_DSYM_FOLDER_PATH/* $BASE_DIR";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC3C7348DB98D7A2EF5E22A6 /* Sources */ = {
@@ -694,6 +712,7 @@
 				F5A4F4561B36EF4100C4F56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F5A4F45A1B36EF4100C4F56C /* Build configuration list for PBXNativeTarget "MarkdownParserTests" */ = {
 			isa = XCConfigurationList;
@@ -702,6 +721,7 @@
 				F5A4F4581B36EF4100C4F56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
