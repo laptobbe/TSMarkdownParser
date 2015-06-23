@@ -21,7 +21,7 @@
 		F5A4F4471B36EF4100C4F56C /* MarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F44D1B36EF4100C4F56C /* MarkdownParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */; };
 		F5A4F4541B36EF4100C4F56C /* MarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */; };
-		F5A4F45B1B36EF4A00C4F56C /* TSMarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
+		F5A4F45B1B36EF4A00C4F56C /* TSMarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F45C1B36EF4A00C4F56C /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
 /* End PBXBuildFile section */
 
