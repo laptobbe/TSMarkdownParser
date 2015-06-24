@@ -156,7 +156,7 @@ static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+)[^\\*].+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
+static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s{1})(?!#).*$";
 static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
