@@ -326,9 +326,9 @@
 }
 
 - (void)testDefaultH1 {
-    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:23.f];
+    UIFont *expectedFont = self.standardParser.h1Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 23.f);
@@ -336,10 +336,52 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
+- (void)testThatH1IsParsedCorrectly {
+    NSString *header = @"header";
+    NSString *input = [NSString stringWithFormat:@"first line\n# %@\nsecond line", header];
+    UIFont *h1Font = self.standardParser.h1Font;
+    
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:input];
+    NSString *string = attributedString.string;
+    NSRange headerRange = [string rangeOfString:header];
+    XCTAssertTrue(headerRange.location != NSNotFound);
+    
+    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+        UIFont *font = attributes[NSFontAttributeName];
+        XCTAssertNotNil(font);
+        XCTAssertEqual(font, h1Font);
+    }];
+}
+
+// '#header' is not a valid header per markdown syntax and shouldn't be parsed as one
+- (void)testThatHeaderIsNotParsedWithoutSpaceInBetween {
+    NSString *header = @"header";
+    NSString *notValidHeader = [NSString stringWithFormat:@"#%@", header];
+    UIFont *h1Font = self.standardParser.h1Font;
+    
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:notValidHeader];
+    NSRange headerRange = [attributedString.string rangeOfString:header];
+    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+        UIFont *font = attributes[NSFontAttributeName];
+        XCTAssertNotEqual(font, h1Font);
+    }];
+    XCTAssertEqualObjects(attributedString.string, notValidHeader);
+}
+
+- (void)testThatHeaderIsNotParsedAtNotBeginningOfTheLine {
+    NSString *hashtag = @"#hashtag";
+    NSString *input = [NSString stringWithFormat:@"A sentence %@", hashtag];
+    
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:input];
+    XCTAssertEqualObjects(attributedString.string, input);
+    NSRange hashTagStillThereRange = [attributedString.string rangeOfString:hashtag];
+    XCTAssertTrue(hashTagStillThereRange.location != NSNotFound);
+}
+
 - (void)testDefaultH2 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:21.f];
+    UIFont *expectedFont = self.standardParser.h2Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
@@ -349,7 +391,7 @@
 - (void)testDefaultH3 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:19.f];
+    UIFont *expectedFont = self.standardParser.h3Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 19.f);
@@ -360,7 +402,7 @@
 - (void)testDefaultH4 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n#### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:17.f];
+    UIFont *expectedFont = self.standardParser.h4Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 17.f);
@@ -371,7 +413,7 @@
 - (void)testDefaultH5 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n##### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:15.f];
+    UIFont *expectedFont = self.standardParser.h5Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 15.f);
@@ -382,7 +424,7 @@
 - (void)testDefaultH6 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont boldSystemFontOfSize:13.f];
+    UIFont *expectedFont = self.standardParser.h6Font;
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 13.f);
@@ -401,7 +443,7 @@
 }
 
 - (void)testMultipleMatches {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"##Hello\nMen att *Pär* är här\n+ men inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"## Hello\nMen att *Pär* är här\n+ men inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\t men inte Pia");
 }
 
