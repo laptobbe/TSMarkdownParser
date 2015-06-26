@@ -231,10 +231,21 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
 }
 
+- (void)testDefaultListWithDashParsing {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n- Men att Pär är här\nmen inte Pia"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
+}
+
 - (void)testDefaultListWithPlusParsingMultiple {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\n+ Men inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\n•\t Men inte Pia");
 }
+
+- (void)testThatDefaultListWorksWithMultipleDifferentListOptions {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ item1\n- item2\n* item3"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t item1\n•\t item2\n•\t item3");
+}
+
 
 - (void)testDefaultLinkParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
