@@ -2,6 +2,7 @@ TSMarkdownParser
 ================
 
 [![Build Status](https://travis-ci.org/laptobbe/TSMarkdownParser.svg)](https://travis-ci.org/laptobbe/TSMarkdownParser)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
 [![Platform](https://img.shields.io/cocoapods/p/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
 [![Licence](https://img.shields.io/cocoapods/l/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
