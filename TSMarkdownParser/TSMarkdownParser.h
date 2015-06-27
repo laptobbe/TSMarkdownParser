@@ -33,6 +33,8 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(NSDictionary *)attributes;
 
+- (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString;
+
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block;
 
 - (void)addParagraphParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;

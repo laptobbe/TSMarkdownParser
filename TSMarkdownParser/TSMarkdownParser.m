@@ -60,9 +60,9 @@
 }
 
 + (instancetype)standardParser {
-
+    
     TSMarkdownParser *defaultParser = [TSMarkdownParser new];
-
+    
     __weak TSMarkdownParser *weakParser = defaultParser;
     [defaultParser addParagraphParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
@@ -75,19 +75,19 @@
                                  value:weakParser.strongFont
                                  range:range];
     }];
-
+    
     [defaultParser addEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.emphasisFont
                                  range:range];
     }];
-
+    
     [defaultParser addListParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString replaceCharactersInRange:range withString:@"•\t"];
     }];
-
+    
     [defaultParser addLinkParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-
+        
         [attributedString addAttribute:NSUnderlineStyleAttributeName
                                  value:weakParser.linkUnderlineStyle
                                  range:range];
@@ -104,59 +104,59 @@
                                  value:weakParser.monospaceTextColor
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:1 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h1Font
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:2 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h2Font
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:3 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h3Font
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:4 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h4Font
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:5 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h5Font
                                  range:range];
     }];
-
+    
     [defaultParser addHeaderParsingWithLevel:6 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h6Font
                                  range:range];
     }];
-
-
+    
+    
     [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-
+        
     }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-
+        
     }];
-
+    
     return defaultParser;
 }
 
 static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
 static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]+[^\\*_\\n]+(\\*|_)(?=[^\\*_]|$)";
-static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+)[^\\*].+$";
+static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+|\\-)[^\\*].+$";
 static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s*)(?!#).*$";
+static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s{1})(?!#).*$";
 static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
@@ -168,26 +168,26 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
 
 - (void)addStrongParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownStrongRegex options:NSRegularExpressionCaseInsensitive error:nil];
-
+    
     [self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
-
+        
         formattingBlock(attributedString, match.range);
-
+        
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-4, 2)];
-
+        
     }];
 }
 
 - (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
     NSRegularExpression *emphasisParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEmRegex options:NSRegularExpressionCaseInsensitive error:nil];
-
+    
     [self addParsingRuleWithRegularExpression:emphasisParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         formattingBlock(attributedString, match.range);
-
+        
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-2, 1)];
-
+        
     }];
 }
 
@@ -196,31 +196,31 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
     [self addParsingRuleWithRegularExpression:listParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         formattingBlock(attributedString, NSMakeRange(match.range.location, 1));
     }];
-
+    
 }
 
 - (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
     NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionCaseInsensitive error:nil];
-
+    
     [self addParsingRuleWithRegularExpression:linkParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
-
+        
         NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:NSBackwardsSearch range:match.range].location;
         NSRange linkRange = NSMakeRange(linkStartInResult, match.range.length+match.range.location-linkStartInResult-1);
         NSString *linkURLString = [attributedString.string substringWithRange:NSMakeRange(linkRange.location+1, linkRange.length-1)];
         NSURL *url = [NSURL URLWithString:linkURLString];
-
+        
         NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:0 range:match.range].location;
         NSRange linkTextRange = NSMakeRange(match.range.location, linkTextEndLocation-match.range.location-1);
-
+        
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
-
+        
         [attributedString addAttribute:NSLinkAttributeName
                                  value:url
                                  range:linkTextRange];
-
+        
         formattingBlock(attributedString, linkTextRange);
-
+        
     }];
 }
 
@@ -280,13 +280,23 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
 }
 
 - (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(NSDictionary *)attributes {
-    NSMutableAttributedString *mutableAttributedString = nil;
+    NSAttributedString *attributedString = nil;
     if (! attributes) {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown];
+        attributedString = [[NSAttributedString alloc] initWithString:markdown];
     } else {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:markdown attributes:attributes];
+        attributedString = [[NSAttributedString alloc] initWithString:markdown attributes:attributes];
     }
-    if ( self.paragraphParsingBlock ) {
+    
+    return [self attributedStringFromAttributedMarkdownString:attributedString];
+}
+
+- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
+    return [self attributedStringFromMarkdown:markdown attributes:nil];
+}
+
+- (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString {
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+    if (self.paragraphParsingBlock) {
         self.paragraphParsingBlock(mutableAttributedString);
     }
     
@@ -300,10 +310,5 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
     }
     return mutableAttributedString;
 }
-
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
-    return [self attributedStringFromMarkdown:markdown attributes:nil];
-}
-
 
 @end
