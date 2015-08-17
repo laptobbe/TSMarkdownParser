@@ -75,8 +75,6 @@
     
     [defaultParser addEscapingParsing];
     
-    [defaultParser addUnescapingParsing];
-    
     [defaultParser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.strongFont
@@ -186,9 +184,7 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
         NSString *escapedString = [NSString stringWithFormat:@"%04x", [matchString characterAtIndex:0]];
         [attributedString replaceCharactersInRange:range withString:escapedString];
     }];
-}
-
-- (void)addUnescapingParsing {
+    
     NSRegularExpression *unescapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownUnescapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
     
     [self addFinalParsingRuleWithRegularExpression:unescapingParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
