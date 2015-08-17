@@ -31,8 +31,9 @@
 
 @interface TSMarkdownParser ()
 
+@property (nonatomic, strong) NSMutableArray *initialParsingPairs;
 @property (nonatomic, strong) NSMutableArray *parsingPairs;
-@property (nonatomic, copy) void (^paragraphParsingBlock)(NSMutableAttributedString *attributedString);
+@property (nonatomic, strong) NSMutableArray *finalParsingPairs;
 
 @end
 
@@ -41,7 +42,9 @@
 - (instancetype)init {
     self = [super init];
     if(self) {
+        _initialParsingPairs = [NSMutableArray array];
         _parsingPairs = [NSMutableArray array];
+        _finalParsingPairs = [NSMutableArray array];
         _paragraphFont = [UIFont systemFontOfSize:12];
         _strongFont = [UIFont boldSystemFontOfSize:12];
         _emphasisFont = [UIFont italicSystemFontOfSize:12];
@@ -69,6 +72,10 @@
                                  value:weakParser.paragraphFont
                                  range:range];
     }];
+    
+    [defaultParser addEscapingParsing];
+    
+    [defaultParser addUnescapingParsing];
     
     [defaultParser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
@@ -151,6 +158,9 @@
     return defaultParser;
 }
 
+static NSString *const TSMarkdownParagraphRegex        = @".*";
+static NSString *const TSMarkdownEscapingRegex  = @"\\\\.";
+static NSString *const TSMarkdownUnescapingRegex       = @"\\\\[0-9a-z]{4}";
 static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
 static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]+[^\\*_\\n]+(\\*|_)(?=[^\\*_]|$)";
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+|\\-)[^\\*].+$";
@@ -160,10 +170,40 @@ static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s{1})(?!#).*$";
 static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
-    self.paragraphParsingBlock = ^(NSMutableAttributedString *attributedString) {
-        
-        formattingBlock(attributedString, NSMakeRange(0, attributedString.length));
-    };
+    NSRegularExpression *paragraphParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownParagraphRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    
+    [self addInitialParsingRuleWithRegularExpression:paragraphParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        formattingBlock(attributedString, match.range);
+    }];
+}
+
+- (void)addEscapingParsing {
+    NSRegularExpression *escapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEscapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    
+    [self addInitialParsingRuleWithRegularExpression:escapingParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSRange range = NSMakeRange(match.range.location+1, 1);
+        NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
+        NSString *escapedString = [NSString stringWithFormat:@"%04x", [matchString characterAtIndex:0]];
+        [attributedString replaceCharactersInRange:range withString:escapedString];
+    }];
+}
+
+- (void)addUnescapingParsing {
+    NSRegularExpression *unescapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownUnescapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    
+    [self addFinalParsingRuleWithRegularExpression:unescapingParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSRange range = NSMakeRange(match.range.location+1, 4);
+        NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
+        char byte_chars[5] = {'\0','\0','\0','\0','\0'};
+        byte_chars[0] = [matchString characterAtIndex:0];
+        byte_chars[1] = [matchString characterAtIndex:1];
+        byte_chars[2] = [matchString characterAtIndex:2];
+        byte_chars[3] = [matchString characterAtIndex:3];
+        unichar whole_char = strtol(byte_chars, NULL, 16);
+        NSString *unescapedString = [NSString stringWithCharacters:&whole_char length:1];
+        [attributedString replaceCharactersInRange:range withString:unescapedString];
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+    }];
 }
 
 - (void)addStrongParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
@@ -273,9 +313,21 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
     }];
 }
 
+- (void)addInitialParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block {
+    @synchronized (self) {
+        [self.initialParsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
+    }
+}
+
 - (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block {
     @synchronized (self) {
         [self.parsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
+    }
+}
+
+- (void)addFinalParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block {
+    @synchronized (self) {
+        [self.finalParsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
     }
 }
 
@@ -296,16 +348,26 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
 
 - (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString {
     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-    if (self.paragraphParsingBlock) {
-        self.paragraphParsingBlock(mutableAttributedString);
-    }
-    
     @synchronized (self) {
+        for (TSExpressionBlockPair *expressionBlockPair in self.initialParsingPairs) {
+            NSArray *matches = [expressionBlockPair.regularExpression matchesInString:mutableAttributedString.string options:0 range:NSMakeRange(0, mutableAttributedString.string.length)];
+            [matches enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+                expressionBlockPair.block(match, mutableAttributedString);
+            }];
+        }
+        
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
             NSTextCheckingResult *match;
             while((match = [expressionBlockPair.regularExpression firstMatchInString:mutableAttributedString.string options:0 range:NSMakeRange(0, mutableAttributedString.string.length)])){
                 expressionBlockPair.block(match, mutableAttributedString);
             }
+        }
+        
+        for (TSExpressionBlockPair *expressionBlockPair in self.finalParsingPairs) {
+            NSArray *matches = [expressionBlockPair.regularExpression matchesInString:mutableAttributedString.string options:0 range:NSMakeRange(0, mutableAttributedString.string.length)];
+            [matches enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+                expressionBlockPair.block(match, mutableAttributedString);
+            }];
         }
     }
     return mutableAttributedString;
