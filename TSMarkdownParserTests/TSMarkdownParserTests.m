@@ -476,6 +476,19 @@
     XCTAssertEqualObjects(attributedString.string, expected);
 }
 
+- (void)testDefaultImageWithUnderscores {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"A ![AltText](markdown_test_image)"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:2 effectiveRange:NULL];
+    XCTAssertNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:2 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertTrue([attributedString.string rangeOfString:@"AltText"].location == NSNotFound);
+    NSString *expected = @"A \uFFFC";
+    XCTAssertEqualObjects(attributedString.string, expected);
+    
+}
+
 - (void)testDefaultImageMultiple {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Men att ![Pär](markdown) är här ![Pär](markdown)\nmen inte Pia"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
