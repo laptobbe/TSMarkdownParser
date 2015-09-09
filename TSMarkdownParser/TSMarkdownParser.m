@@ -64,6 +64,14 @@
     TSMarkdownParser *defaultParser = [TSMarkdownParser new];
     
     __weak TSMarkdownParser *weakParser = defaultParser;
+    
+    [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        
+    }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        
+    }];
+    
+    
     [defaultParser addParagraphParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.paragraphFont
@@ -139,13 +147,6 @@
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h6Font
                                  range:range];
-    }];
-    
-    
-    [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        
-    }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        
     }];
     
     return defaultParser;
