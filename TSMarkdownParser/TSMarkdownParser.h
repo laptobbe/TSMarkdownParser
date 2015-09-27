@@ -39,18 +39,24 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 
 - (void)addParagraphParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addStrongParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
-
-- (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
-
-- (void)addListParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
-
-- (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+/* block parsing */
 
 - (void)addHeaderParsingWithLevel:(int)header formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
-- (void)addMonospacedParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+- (void)addListParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+
+/* bracket parsing */
 
 - (void)addImageParsingWithImageFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock alternativeTextFormattingBlock:(TSMarkdownParserFormattingBlock)alternativeFormattingBlock;
+
+- (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+
+/* inline parsing */
+
+- (void)addMonospacedParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+
+- (void)addStrongParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+
+- (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
 @end

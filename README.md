@@ -24,20 +24,21 @@ Headings
 
 Lists
 * item
-+ Item
++ item
+- item
+
+Images
+![Alternative text](image.png)
+
+URL
+[Link text](https://www.example.net)
 
 Emphasis
+`code`
 *Em*
 _Em_
 **Strong**
 __Strong__
-`code`
-
-URL
-[Link text](http://www.link.com)
-
-Images
-![Alternative text](image.png)
 
 
 ````
