@@ -65,52 +65,14 @@
     
     __weak TSMarkdownParser *weakParser = defaultParser;
     
-    [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        
-    }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        
-    }];
-    
-    
     [defaultParser addParagraphParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.paragraphFont
                                  range:range];
     }];
     
-    [defaultParser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        [attributedString addAttribute:NSFontAttributeName
-                                 value:weakParser.strongFont
-                                 range:range];
-    }];
-    
-    [defaultParser addEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        [attributedString addAttribute:NSFontAttributeName
-                                 value:weakParser.emphasisFont
-                                 range:range];
-    }];
-    
     [defaultParser addListParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString replaceCharactersInRange:range withString:@"•\t"];
-    }];
-    
-    [defaultParser addLinkParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        
-        [attributedString addAttribute:NSUnderlineStyleAttributeName
-                                 value:weakParser.linkUnderlineStyle
-                                 range:range];
-        [attributedString addAttribute:NSForegroundColorAttributeName
-                                 value:weakParser.linkColor
-                                 range:range];
-    }];
-    
-    [defaultParser addMonospacedParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        [attributedString addAttribute:NSFontAttributeName
-                                 value:weakParser.monospaceFont
-                                 range:range];
-        [attributedString addAttribute:NSForegroundColorAttributeName
-                                 value:weakParser.monospaceTextColor
-                                 range:range];
     }];
     
     [defaultParser addHeaderParsingWithLevel:1 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -146,6 +108,43 @@
     [defaultParser addHeaderParsingWithLevel:6 formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:weakParser.h6Font
+                                 range:range];
+    }];
+    
+    [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        
+    }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        
+    }];
+    
+    [defaultParser addLinkParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        
+        [attributedString addAttribute:NSUnderlineStyleAttributeName
+                                 value:weakParser.linkUnderlineStyle
+                                 range:range];
+        [attributedString addAttribute:NSForegroundColorAttributeName
+                                 value:weakParser.linkColor
+                                 range:range];
+    }];
+    
+    [defaultParser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:weakParser.strongFont
+                                 range:range];
+    }];
+    
+    [defaultParser addEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:weakParser.emphasisFont
+                                 range:range];
+    }];
+    
+    [defaultParser addMonospacedParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:weakParser.monospaceFont
+                                 range:range];
+        [attributedString addAttribute:NSForegroundColorAttributeName
+                                 value:weakParser.monospaceTextColor
                                  range:range];
     }];
     

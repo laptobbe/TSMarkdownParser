@@ -19,8 +19,6 @@
 		CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */; };
 		CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
 		CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
-		CF40360E1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
-		CF40360F1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
 		F5A4F4471B36EF4100C4F56C /* MarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F44D1B36EF4100C4F56C /* MarkdownParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */; };
 		F5A4F4541B36EF4100C4F56C /* MarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */; };
@@ -367,7 +365,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF40360E1BA06F0600C67594 /* markdown_test_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +372,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF40360F1BA06F0600C67594 /* markdown_test_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -514,7 +514,6 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"AltText"].location == NSNotFound);
     NSString *expected = @"A \uFFFC";
     XCTAssertEqualObjects(attributedString.string, expected);
-    
 }
 
 - (void)testDefaultImageMultiple {
