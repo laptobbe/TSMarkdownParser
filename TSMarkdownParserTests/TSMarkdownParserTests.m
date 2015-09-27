@@ -132,6 +132,13 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
 }
 
+//https://github.com/laptobbe/TSMarkdownParser/issues/24
+- (void)testDefaultEmParsingOneCharacter {
+    UIFont *font = [UIFont italicSystemFontOfSize:12];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"This is *a* nice *boy*"];
+    XCTAssertNotEqualObjects([attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL], font);
+}
+
 - (void)testDefaultStrongAndEmAndMonospaceInSameInputParsing {
     UIFont *strongFont = self.parser.strongFont;
     UIFont *emphasisFont = self.parser.emphasisFont;
@@ -248,9 +255,9 @@
 
 
 - (void)testDefaultLinkParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/) är här\nmen inte Pia"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
@@ -266,9 +273,9 @@
 }
 
 - (void)testDefaultLinkParsingOnEndOfStrings {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/)"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
@@ -283,14 +290,13 @@
 
 - (void)testDefaultLinkParsingEnclosedInParenthesis {
     NSString *expectedRawString = @"Hello\n Men att (Pär) är här\nmen inte Pia";
-
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att ([Pär](http://www.google.com/)) är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att ([Pär](https://www.example.net/)) är här\nmen inte Pia"];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
                                           NSURL *link = attributes[NSLinkAttributeName];
                                           if ( link ) {
-                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
 
                                               NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
                                               XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));
@@ -304,11 +310,11 @@
 }
 
 - (void)testDefaultLinkParsingMultipleLinks {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](http://www.google.com/) är här. men inte [Pia](http://www.google.com/) "];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/) är här. men inte [Pia](https://www.example.net/) "];
 
     //Pär link
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
     NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
@@ -317,7 +323,7 @@
     
     //Pia link
     NSURL *piaLink = [attributedString attribute:NSLinkAttributeName atIndex:37 effectiveRange:NULL];
-    XCTAssertEqualObjects(piaLink, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertEqualObjects(piaLink, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"Pia"].location != NSNotFound);
     NSNumber *piaUnderline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(piaUnderline, @(NSUnderlineStyleSingle));
@@ -328,6 +334,28 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+}
+
+// https://github.com/laptobbe/TSMarkdownParser/pull/22
+- (void)testDefaultLinkParsingWithPipe {
+    NSString *expectedRawString = @"Hello (link). Bye";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello ([link](https://www.example.net/|)). Bye"];
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                          NSURL *link = attributes[NSLinkAttributeName];
+                                          if ( link ) {
+                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/|"]);
+                                              
+                                              NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
+                                              XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));
+                                              
+                                              UIColor *linkColor = attributes[NSForegroundColorAttributeName];
+                                              XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+                                          }
+                                      }];
+    
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
 - (void)testDefaultFont {
@@ -518,9 +546,9 @@
 }
 
 - (void)testURLWithParenthesesInTheTitleText {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär och (Mia)](http://www.google.com/) är här."];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär och (Mia)](https://www.example.net/) är här."];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(link, [NSURL URLWithString:@"http://www.google.com/"]);
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
 }
 
