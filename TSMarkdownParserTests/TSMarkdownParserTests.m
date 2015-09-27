@@ -345,7 +345,7 @@
                                       usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
                                           NSURL *link = attributes[NSLinkAttributeName];
                                           if ( link ) {
-                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/|"]);
+                                              XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
                                               
                                               NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
                                               XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));

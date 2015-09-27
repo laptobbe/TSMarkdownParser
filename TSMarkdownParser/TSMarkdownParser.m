@@ -151,13 +151,18 @@
     return defaultParser;
 }
 
-static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
-static NSString *const TSMarkdownEmRegex        = @"(?<=[^\\*_]|^)(\\*|_)[^\\*_]+[^\\*_\\n]+(\\*|_)(?=[^\\*_]|$)";
+// line regex
 static NSString *const TSMarkdownListRegex      = @"^(\\*|\\+|\\-)[^\\*].+$";
-static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
-static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
 static NSString *const TSMarkdownHeaderRegex    = @"^(#{%i}\\s{1})(?!#).*$";
-static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
+
+// bracket regex
+static NSString *const TSMarkdownImageRegex     = @"\\!\\[.*?\\]\\(\\S*\\)";
+static NSString *const TSMarkdownLinkRegex      = @"(?<!\\!)\\[.*?\\]\\([^\\)]*\\)";
+
+// inline regex
+static NSString *const TSMarkdownStrongRegex    = @"([\\*|_]{2}).+?\\1";
+static NSString *const TSMarkdownEmRegex        = @"([\\*|_]{1}).+?\\1";
+static NSString *const TSMarkdownMonospaceRegex = @"(`+)\\s*([\\s\\S]*?[^`])\\s*\\1(?!`)";
 
 - (void)addParagraphParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     self.paragraphParsingBlock = ^(NSMutableAttributedString *attributedString) {
