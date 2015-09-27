@@ -215,9 +215,11 @@ static NSString *const TSMarkdownMonospaceRegex        = @"(`+)\\s*([\\s\\S]*?[^
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location-2, linkRange.length+2)];
         
-        [attributedString addAttribute:NSLinkAttributeName
-                                 value:url
-                                 range:linkTextRange];
+        if (url) {
+            [attributedString addAttribute:NSLinkAttributeName
+                                     value:url
+                                     range:linkTextRange];
+        }
         
         formattingBlock(attributedString, linkTextRange);
         
