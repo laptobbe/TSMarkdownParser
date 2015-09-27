@@ -18,6 +18,9 @@
 		CC3C7CEAE8E781B631FD0CE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
 		CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */; };
 		CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
+		CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
+		CF40360E1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
+		CF40360F1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
 		F5A4F4471B36EF4100C4F56C /* MarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F44D1B36EF4100C4F56C /* MarkdownParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */; };
 		F5A4F4541B36EF4100C4F56C /* MarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */; };
@@ -70,6 +73,7 @@
 		CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "TSMarkdownParserTests-Info.plist"; sourceTree = "<group>"; };
 		CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownParser.m; sourceTree = "<group>"; };
 		CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-Prefix.pch"; sourceTree = "<group>"; };
+		CF40360C1BA06F0600C67594 /* markdown_test_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markdown_test_image.png; sourceTree = "<group>"; };
 		F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A4F4451B36EF4100C4F56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkdownParser.h; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				CC3C7FCE4FEE7203986A0468 /* Supporting Files */,
 				CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests.m */,
 				CC3C715C2DB22E3B57578ABE /* markdown.png */,
+				CF40360C1BA06F0600C67594 /* markdown_test_image.png */,
 				CC3C729D5C0DBD73FCA4990E /* UIImage+Tests.m */,
 				CC3C762E16C5BA064858D55B /* UIImage+Tests.h */,
 			);
@@ -353,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C74E1CB1870F6AB393F4B /* InfoPlist.strings in Resources */,
+				CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */,
 				CC3C78DD2D0DF48F7FF83FD7 /* markdown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF40360E1BA06F0600C67594 /* markdown_test_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF40360F1BA06F0600C67594 /* markdown_test_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
