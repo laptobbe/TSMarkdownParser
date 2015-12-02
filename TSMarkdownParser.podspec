@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TSMarkdownParser"
-  s.version      = "1.0.19"
+  s.version      = "1.1.0"
   s.summary      = "A markdown to NSAttributedString parser for iOS"
 
   s.description  = <<-DESC
