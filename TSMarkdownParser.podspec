@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TSMarkdownParser"
-  s.version      = "1.0.18"
+  s.version      = "1.0.19"
   s.summary      = "A markdown to NSAttributedString parser for iOS"
 
   s.description  = <<-DESC
@@ -13,8 +13,10 @@ Pod::Spec.new do |s|
   s.license      = "MIT" 
   s.author             = { "Tobias Sundstrand" => "tobias.sundstrand@gmail.com" }
   s.social_media_url   = "http://twitter.com/laptobbe"
-  s.platform     = :ios, 6.0
+  s.ios.deployment_target = "6.0"
+  s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/laptobbe/TSMarkdownParser.git", :tag => s.version.to_s }
   s.source_files  = "TSMarkdownParser/**/*.{h,m}"
   s.requires_arc = true
+  s.framework = 'UIKit'
 end

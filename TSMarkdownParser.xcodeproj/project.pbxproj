@@ -20,8 +20,6 @@
 		CC3C7DB793F3604B20BACFA2 /* TSMarkdownParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; };
 		CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
 		F5A4F4471B36EF4100C4F56C /* MarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5A4F44D1B36EF4100C4F56C /* MarkdownParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */; };
-		F5A4F4541B36EF4100C4F56C /* MarkdownParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */; };
 		F5A4F45B1B36EF4A00C4F56C /* TSMarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F45C1B36EF4A00C4F56C /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
 /* End PBXBuildFile section */
@@ -33,13 +31,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = CC3C704FF16FF7C75C832F3A;
 			remoteInfo = TSMarkdownParser;
-		};
-		F5A4F44E1B36EF4100C4F56C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CC3C7B67247952ADD508A0B9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5A4F4411B36EF4100C4F56C;
-			remoteInfo = MarkdownParser;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -75,9 +66,6 @@
 		F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A4F4451B36EF4100C4F56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5A4F4461B36EF4100C4F56C /* MarkdownParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkdownParser.h; sourceTree = "<group>"; };
-		F5A4F44C1B36EF4100C4F56C /* MarkdownParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkdownParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5A4F4521B36EF4100C4F56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkdownParserTests.m; sourceTree = "<group>"; };
 		F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = TSMarkdownParser.podspec; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -108,14 +96,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F5A4F4491B36EF4100C4F56C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5A4F44D1B36EF4100C4F56C /* MarkdownParser.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -123,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				F5A4F4431B36EF4100C4F56C /* MarkdownParser */,
-				F5A4F4501B36EF4100C4F56C /* MarkdownParserTests */,
 				CC3C75D2B9DE7B5A7C239205 /* Products */,
 				CC3C7D316168D5FD2480BED2 /* Frameworks */,
 				CC3C733B469527BABC08D90D /* TSMarkdownParser */,
@@ -169,7 +148,6 @@
 				CC3C74BE954D029A3495AAD5 /* libTSMarkdownParser.a */,
 				CC3C71DDC9984C6E95E98E36 /* TSMarkdownParserTests.xctest */,
 				F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */,
-				F5A4F44C1B36EF4100C4F56C /* MarkdownParserTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,23 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				F5A4F4451B36EF4100C4F56C /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F5A4F4501B36EF4100C4F56C /* MarkdownParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				F5A4F4531B36EF4100C4F56C /* MarkdownParserTests.m */,
-				F5A4F4511B36EF4100C4F56C /* Supporting Files */,
-			);
-			path = MarkdownParserTests;
-			sourceTree = "<group>";
-		};
-		F5A4F4511B36EF4100C4F56C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F5A4F4521B36EF4100C4F56C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -296,24 +257,6 @@
 			productReference = F5A4F4421B36EF4100C4F56C /* MarkdownParser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F5A4F44B1B36EF4100C4F56C /* MarkdownParserTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F5A4F45A1B36EF4100C4F56C /* Build configuration list for PBXNativeTarget "MarkdownParserTests" */;
-			buildPhases = (
-				F5A4F4481B36EF4100C4F56C /* Sources */,
-				F5A4F4491B36EF4100C4F56C /* Frameworks */,
-				F5A4F44A1B36EF4100C4F56C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F5A4F44F1B36EF4100C4F56C /* PBXTargetDependency */,
-			);
-			name = MarkdownParserTests;
-			productName = MarkdownParserTests;
-			productReference = F5A4F44C1B36EF4100C4F56C /* MarkdownParserTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -323,9 +266,6 @@
 				ORGANIZATIONNAME = "Computertalk Sweden";
 				TargetAttributes = {
 					F5A4F4411B36EF4100C4F56C = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
-					F5A4F44B1B36EF4100C4F56C = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -345,7 +285,6 @@
 				CC3C704FF16FF7C75C832F3A /* TSMarkdownParser */,
 				CC3C7DE1CDD4D3F7BEBA4C42 /* TSMarkdownParserTests */,
 				F5A4F4411B36EF4100C4F56C /* MarkdownParser */,
-				F5A4F44B1B36EF4100C4F56C /* MarkdownParserTests */,
 			);
 		};
 /* End PBXProject section */
@@ -362,13 +301,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F5A4F4401B36EF4100C4F56C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5A4F44A1B36EF4100C4F56C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -420,14 +352,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F5A4F4481B36EF4100C4F56C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5A4F4541B36EF4100C4F56C /* MarkdownParserTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -435,11 +359,6 @@
 			isa = PBXTargetDependency;
 			target = CC3C704FF16FF7C75C832F3A /* TSMarkdownParser */;
 			targetProxy = CC3C780E83E061BBF1B60607 /* PBXContainerItemProxy */;
-		};
-		F5A4F44F1B36EF4100C4F56C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F5A4F4411B36EF4100C4F56C /* MarkdownParser */;
-			targetProxy = F5A4F44E1B36EF4100C4F56C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -473,7 +392,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
 				INFOPLIST_FILE = "TSMarkdownParserTests/TSMarkdownParserTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -513,6 +431,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
 				SDKROOT = iphoneos;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -557,6 +476,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
 				SDKROOT = iphoneos;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -570,7 +490,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMarkdownParser/TSMarkdownParser-Prefix.pch";
 				INFOPLIST_FILE = "TSMarkdownParserTests/TSMarkdownParserTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -597,7 +516,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -624,49 +542,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F5A4F4571B36EF4100C4F56C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MarkdownParserTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F5A4F4581B36EF4100C4F56C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = MarkdownParserTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -705,15 +585,6 @@
 			buildConfigurations = (
 				F5A4F4551B36EF4100C4F56C /* Debug */,
 				F5A4F4561B36EF4100C4F56C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5A4F45A1B36EF4100C4F56C /* Build configuration list for PBXNativeTarget "MarkdownParserTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F5A4F4571B36EF4100C4F56C /* Debug */,
-				F5A4F4581B36EF4100C4F56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
