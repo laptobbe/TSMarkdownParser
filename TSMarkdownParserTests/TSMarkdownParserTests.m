@@ -291,20 +291,8 @@
 - (void)testDefaultLinkParsingEnclosedInParenthesis {
     NSString *expectedRawString = @"Hello\n Men att (Pär) är här\nmen inte Pia";
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att ([Pär](https://www.example.net/)) är här\nmen inte Pia"];
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
-                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
-                                          NSURL *link = attributes[NSLinkAttributeName];
-                                          if ( link ) {
-                                              XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
-
-                                              NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
-                                              XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));
-
-                                              UIColor *linkColor = attributes[NSForegroundColorAttributeName];
-                                              XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
-                                          }
-                                      }];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:18 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
 
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
@@ -340,21 +328,19 @@
 - (void)testDefaultLinkParsingWithPipe {
     NSString *expectedRawString = @"Hello (link). Bye";
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello ([link](https://www.example.net/|)). Bye"];
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
-                                         options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
-                                          NSURL *link = attributes[NSLinkAttributeName];
-                                          if ( link ) {
-                                              XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
-                                              
-                                              NSNumber *underlineStyle = attributes[NSUnderlineStyleAttributeName];
-                                              XCTAssertEqualObjects(underlineStyle, @(NSUnderlineStyleSingle));
-                                              
-                                              UIColor *linkColor = attributes[NSForegroundColorAttributeName];
-                                              XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
-                                          }
-                                      }];
-    
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
+
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+// https://github.com/laptobbe/TSMarkdownParser/issues/30
+- (void)testDefaultLinkParsingWithSharp {
+    NSString *expectedRawString = @"Hello (link). Bye";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello ([link](https://www.example.net/#)). Bye"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/#"]);
+
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
