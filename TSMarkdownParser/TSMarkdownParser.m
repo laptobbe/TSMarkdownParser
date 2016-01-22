@@ -320,7 +320,7 @@ static NSString *const TSMarkdownEmRegex        = @"([\\*|_]{1}).+?\\1";
             }
         }
     }
-    return mutableAttributedString;
+    return [mutableAttributedString copy];
 }
 
 @end
