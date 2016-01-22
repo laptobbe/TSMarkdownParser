@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Computertalk Sweden. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "TSMarkdownParser.h"
 
 @interface TSExpressionBlockPair : NSObject
