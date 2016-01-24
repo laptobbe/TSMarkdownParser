@@ -77,7 +77,7 @@
 
 - (void)testStandardFont {
     UIFont *font = [UIFont systemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.paragraphFont, font);
+    XCTAssertEqualObjects(self.parser.defaultAttributes[NSFontAttributeName], font);
 }
 
 - (void)testBoldFont {

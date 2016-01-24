@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */; };
+		C81B78D21C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
+		C81B78D31C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
+		C81B78D41C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D51C54B25300A1DE36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
 		C81B78DE1C54B4B800A1DE36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78DD1C54B4B800A1DE36 /* main.m */; };
 		C81B78E11C54B4B800A1DE36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78E01C54B4B800A1DE36 /* AppDelegate.m */; };
@@ -16,6 +20,7 @@
 		C81B78EC1C54B4B800A1DE36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C81B78EA1C54B4B800A1DE36 /* LaunchScreen.storyboard */; };
 		C81B78F11C54B9E500A1DE36 /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
 		C81B78F21C54C05600A1DE36 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
+		C8D72E9C1C54DABC00F0E18A /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		CC3C74E1CB1870F6AB393F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC3C7F901E1BE8D3F784B45E /* InfoPlist.strings */; };
 		CC3C74E52F377E0874E9D105 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C70A3CF901EEE211573EB /* Foundation.framework */; };
 		CC3C763E30B93EB6BA959C47 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C7991CED6A71640007C6A /* XCTest.framework */; };
@@ -56,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBaseParser.h; sourceTree = "<group>"; };
+		C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseParser.m; sourceTree = "<group>"; };
 		C81B78DA1C54B4B800A1DE36 /* TSMarkdownParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSMarkdownParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81B78DD1C54B4B800A1DE36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C81B78DF1C54B4B800A1DE36 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -175,6 +182,8 @@
 				CC3C72A1BA2FA83330E38DEB /* Supporting Files */,
 				CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */,
 				CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */,
+				C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */,
+				C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */,
 			);
 			path = TSMarkdownParser;
 			sourceTree = "<group>";
@@ -245,6 +254,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */,
 				F5A4F45B1B36EF4A00C4F56C /* TSMarkdownParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D72E9C1C54DABC00F0E18A /* TSBaseParser.m in Sources */,
 				C81B78F11C54B9E500A1DE36 /* TSMarkdownParser.m in Sources */,
 				C81B78E41C54B4B800A1DE36 /* ViewController.m in Sources */,
 				C81B78E11C54B4B800A1DE36 /* AppDelegate.m in Sources */,
@@ -425,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */,
+				C81B78D31C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81B78D21C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				CC3C78BB152404965D77F4DA /* TSMarkdownParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81B78D41C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				F5A4F45C1B36EF4A00C4F56C /* TSMarkdownParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
