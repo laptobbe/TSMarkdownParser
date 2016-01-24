@@ -30,7 +30,7 @@
 }
 
 + (UIImage *)imageNamed:(NSString *)imageName extension:(NSString *)extension {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"se.computertalk.TSMarkdownParserTests"];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"se.computertalk.TSMarkdownParser"];
     NSString *imagePath = [bundle pathForResource:imageName ofType:extension];
     return [UIImage imageWithContentsOfFile:imagePath];
 }
