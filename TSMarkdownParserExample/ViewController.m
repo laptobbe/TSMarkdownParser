@@ -24,7 +24,15 @@
     [super viewDidLoad];
     
     self.parser = [TSMarkdownParser standardParser];
+    
+    // updating output
     [self textViewDidChange:self.markdownInput];
+    
+    // accessory view
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.markdownInput action:@selector(resignFirstResponder)];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    toolbar.items = [NSArray arrayWithObject:barButton];
+    self.markdownInput.inputAccessoryView = toolbar;
 }
 
 - (void)textViewDidChange:(UITextView *)textView

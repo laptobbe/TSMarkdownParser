@@ -37,7 +37,7 @@
 * list
 + list
 - list
-__bold__ **bold** _emphasis_ *emphasis* `test`
+__bold__ **bold** _emphasis_ *emphasis* `monospace`
 [link](http://example.com)
 ![image](markdown)</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
