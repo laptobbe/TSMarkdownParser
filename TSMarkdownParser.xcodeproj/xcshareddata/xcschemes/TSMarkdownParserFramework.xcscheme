@@ -11,12 +11,13 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            hideIssues = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CC3C704FF16FF7C75C832F3A"
-               BuildableName = "libTSMarkdownParser.a"
-               BlueprintName = "TSMarkdownParser"
+               BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
+               BuildableName = "TSMarkdownParser.framework"
+               BlueprintName = "TSMarkdownParserFramework"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +30,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
+            BuildableName = "TSMarkdownParser.framework"
+            BlueprintName = "TSMarkdownParserFramework"
+            ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,9 +55,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CC3C704FF16FF7C75C832F3A"
-            BuildableName = "libTSMarkdownParser.a"
-            BlueprintName = "TSMarkdownParser"
+            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
+            BuildableName = "TSMarkdownParser.framework"
+            BlueprintName = "TSMarkdownParserFramework"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +73,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CC3C704FF16FF7C75C832F3A"
-            BuildableName = "libTSMarkdownParser.a"
-            BlueprintName = "TSMarkdownParser"
+            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
+            BuildableName = "TSMarkdownParser.framework"
+            BlueprintName = "TSMarkdownParserFramework"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
