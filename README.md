@@ -14,18 +14,30 @@ TSMarkdownParser is a markdown to NSAttributedString parser for iOS implemented 
 Below is a list of tags supported by the parser out of the box, to add your own tags see "Adding custom parsing"
 
 ````
+Escaping
+\`
+`code`
+``code``
+
 Headings
 # H1
 ## H2
 ### H3
 #### H4
 ##### H5
-###### H5
+###### H6
 
 Lists
 * item
+** item
 + item
+++ item
 - item
+-- item
+
+Quotes
+> text
+>> text
 
 Images
 ![Alternative text](image.png)
@@ -33,15 +45,19 @@ Images
 URL
 [Link text](https://www.example.net)
 
+Autodetection
+https://www.example.net
+
 Emphasis
-`code`
 *Em*
 _Em_
 **Strong**
 __Strong__
 
-
 ````
+
+#Requirements
+TSMarkdownParser 2.x requires Xcode 7 or newer.
 
 #Installation
 TSMarkdownParser is distributed via CocoaPods
@@ -66,17 +82,15 @@ NSAttributedString *string = [[TSMarkdownParser standardParser] attributedString
 You can configure how the markdown is to be displayed by changing the different properties on a TSMarkdownParser instance. Alternatively you could implement the parsing yourself and add custom attributes to the attributed string. You can also alter the attributed string returned from the parser. 
 
 #Adding custom parsing
-Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:withBlock: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
+Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:block: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
 
 ````
-NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*|_){2}.*(\\*|_){2}" options:NSRegularExpressionCaseInsensitive error:nil];
+NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*\\*|__)(.+?)(\\1)" options:kNilOptions error:nil];
 __weak TSMarkdownParser *weakSelf = self;
-[self addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
-	[attributedString addAttribute:NSFontAttributeName
-                             value:weakSelf.strongFont
-                             range:match.range];
-    [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
-    [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-4, 2)];
+[self addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+    [attributedString deleteCharactersInRange:[match rangeAtIndex:3]];
+    [attributedString addAttributes:weakSelf.strongAttributes range:[match rangeAtIndex:2];
+    [attributedString deleteCharactersInRange:[match rangeAtIndex:1]];
 }];
 ````
 

@@ -151,6 +151,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
     NSRegularExpression *escapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEscapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
     [self addParsingRuleWithRegularExpression:escapingParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = NSMakeRange(match.range.location + 1, 1);
+        // escaping one character
         NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
         NSString *escapedString = [NSString stringWithFormat:@"%04x", [matchString characterAtIndex:0]];
         [attributedString replaceCharactersInRange:range withString:escapedString];
@@ -161,7 +162,6 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
     NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownMonospaceRegex options:kNilOptions error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = [match rangeAtIndex:2];
-        
         // escaping all characters
         NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
         NSUInteger i = 0;
@@ -183,7 +183,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
         // formatting string (may alter the length)
         if (formattingBlock)
             formattingBlock(attributedString, [match rangeAtIndex:2], level);
-        // deleting leading markdown
+        // formatting leading markdown (may alter the length)
         leadFormattingBlock(attributedString, NSMakeRange([match rangeAtIndex:1].location, [match rangeAtIndex:2].location - [match rangeAtIndex:1].location), level);
     }];
 }
@@ -222,24 +222,22 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
         NSString *imagePath = [attributedString.string substringWithRange:NSMakeRange(linkRange.location + 1, linkRange.length - 1)];
         UIImage *image = [UIImage imageNamed:imagePath];
         if (image) {
-            [attributedString deleteCharactersInRange:match.range];
             NSTextAttachment *imageAttachment = [NSTextAttachment new];
             imageAttachment.image = image;
             imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
             NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
-            NSRange imageRange = NSMakeRange(match.range.location, 1);
-            [attributedString insertAttributedString:imgStr atIndex:match.range.location];
+            [attributedString replaceCharactersInRange:match.range withAttributedString:imgStr];
             if (formattingBlock) {
-                formattingBlock(attributedString, imageRange);
+                formattingBlock(attributedString, NSMakeRange(match.range.location, imgStr.length));
             }
         } else {
             NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:kNilOptions range:match.range].location;
             NSRange linkTextRange = NSMakeRange(match.range.location + 2, linkTextEndLocation - match.range.location - 2);
             NSString *alternativeText = [attributedString.string substringWithRange:linkTextRange];
-            if (alternativeFormattingBlock) {
-                alternativeFormattingBlock(attributedString, match.range);
-            }
             [attributedString replaceCharactersInRange:match.range withString:alternativeText];
+            if (alternativeFormattingBlock) {
+                alternativeFormattingBlock(attributedString, NSMakeRange(match.range.location, alternativeText.length));
+            }
         }
     }];
 }
@@ -255,18 +253,19 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
                                                              [linkURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
         NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:kNilOptions range:match.range].location;
-        NSRange linkTextRange = NSMakeRange(match.range.location, linkTextEndLocation - match.range.location - 1);
+        NSRange linkTextRange = NSMakeRange(match.range.location + 1, linkTextEndLocation - match.range.location - 1);
         
-        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
-        [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location - 2, linkRange.length + 2)];
-        
+        // deleting trailing markdown
+        [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location - 1, linkRange.length + 2)];
+        // formatting link (may alter the length)
         if (url) {
             [attributedString addAttribute:NSLinkAttributeName
                                      value:url
                                      range:linkTextRange];
         }
-        
         formattingBlock(attributedString, linkTextRange);
+        // deleting leading markdown
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
     }];
 }
 
@@ -312,19 +311,23 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 #pragma mark unescaping parsing
 
++ (NSString *)stringWithHexaString:(NSString *)hexaString atIndex:(NSUInteger)i {
+    char byte_chars[5] = {'\0','\0','\0','\0','\0'};
+    byte_chars[0] = [hexaString characterAtIndex:i];
+    byte_chars[1] = [hexaString characterAtIndex:i + 1];
+    byte_chars[2] = [hexaString characterAtIndex:i + 2];
+    byte_chars[3] = [hexaString characterAtIndex:i + 3];
+    unichar whole_char = strtol(byte_chars, NULL, 16);
+    return [NSString stringWithCharacters:&whole_char length:1];
+}
+
 - (void)addCodeUnescapingParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
     [self addMonospacedParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         NSUInteger i = 0;
         NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
         NSMutableString *unescapedString = [NSMutableString string];
         while (i < range.length) {
-            char byte_chars[5] = {'\0','\0','\0','\0','\0'};
-            byte_chars[0] = [matchString characterAtIndex:i];
-            byte_chars[1] = [matchString characterAtIndex:i + 1];
-            byte_chars[2] = [matchString characterAtIndex:i + 2];
-            byte_chars[3] = [matchString characterAtIndex:i + 3];
-            unichar whole_char = strtol(byte_chars, NULL, 16);
-            [unescapedString appendString:[NSString stringWithCharacters:&whole_char length:1]];
+            [unescapedString appendString:[TSMarkdownParser stringWithHexaString:matchString atIndex:i]];
             i += 4;
         }
         [attributedString replaceCharactersInRange:range withString:unescapedString];
@@ -339,13 +342,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
     [self addParsingRuleWithRegularExpression:unescapingParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = NSMakeRange(match.range.location + 1, 4);
         NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
-        char byte_chars[5] = {'\0','\0','\0','\0','\0'};
-        byte_chars[0] = [matchString characterAtIndex:0];
-        byte_chars[1] = [matchString characterAtIndex:1];
-        byte_chars[2] = [matchString characterAtIndex:2];
-        byte_chars[3] = [matchString characterAtIndex:3];
-        unichar whole_char = strtol(byte_chars, NULL, 16);
-        NSString *unescapedString = [NSString stringWithCharacters:&whole_char length:1];
+        NSString *unescapedString = [TSMarkdownParser stringWithHexaString:matchString atIndex:0];
         [attributedString replaceCharactersInRange:match.range withString:unescapedString];
     }];
 }
