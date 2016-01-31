@@ -31,13 +31,7 @@ typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutabl
 /*
  Adds a custom parsing rule to parser. Use `[TSMarkdownParser new]` for an empty parser.
  */
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression withBlock:(TSMarkdownParserMatchBlock)block;
-
-/* adds escaping parsing support to parser */
-@property (nonatomic, assign) BOOL escapingSupport;
-
-/* adds links autodetection support to parser */
-@property (nonatomic, assign) BOOL linkDetection;
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block;
 
 @end
 

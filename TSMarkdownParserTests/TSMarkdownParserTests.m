@@ -41,7 +41,7 @@
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
     NSError *error;
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{2}.*\\*{2}" options:NSRegularExpressionCaseInsensitive error:&error];
-    [self.parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+    [self.parser addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         [attributedString addAttribute:NSFontAttributeName
                                  value:font
@@ -60,7 +60,7 @@
     UIFont *font = [UIFont italicSystemFontOfSize:12];
     NSError *error;
     NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"\\*{1}.*\\*{1}" options:NSRegularExpressionCaseInsensitive error:&error];
-    [self.parser addParsingRuleWithRegularExpression:boldParsing withBlock:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+    [self.parser addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
 
         [attributedString addAttribute:NSFontAttributeName
                                  value:font
@@ -82,12 +82,12 @@
 
 - (void)testBoldFont {
     UIFont *font = [UIFont boldSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.strongFont, font);
+    XCTAssertEqualObjects(self.parser.strongAttributes[NSFontAttributeName], font);
 }
 
 - (void)testItalicFont {
     UIFont *font = [UIFont italicSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.emphasisFont, font);
+    XCTAssertEqualObjects(self.parser.emphasisAttributes[NSFontAttributeName], font);
 }
 
 - (void)testDefaultBoldParsing {
@@ -99,7 +99,7 @@
 
 - (void)testDefaultMonospaceFontParsing {
     TSMarkdownParser *parser = [TSMarkdownParser standardParser];
-    UIFont *font = [parser monospaceFont];
+    UIFont *font = parser.monospaceAttributes[NSFontAttributeName];
     NSAttributedString *attributedString = [parser attributedStringFromMarkdown:@"Hello\nMen att `Pär är här` men inte Pia"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här men inte Pia");
@@ -140,9 +140,9 @@
 }
 
 - (void)testDefaultStrongAndEmAndMonospaceInSameInputParsing {
-    UIFont *strongFont = self.parser.strongFont;
-    UIFont *emphasisFont = self.parser.emphasisFont;
-    UIFont *monospaceFont = self.parser.monospaceFont;
+    UIFont *strongFont = self.parser.strongAttributes[NSFontAttributeName];
+    UIFont *emphasisFont = self.parser.emphasisAttributes[NSFontAttributeName];
+    UIFont *monospaceFont = self.parser.monospaceAttributes[NSFontAttributeName];
 
     NSMutableArray *emphasizedSnippets = @[@"under", @"From", @"progress"].mutableCopy;
     NSUInteger expectedNumberOfEmphasisBlocks = emphasizedSnippets.count;
@@ -162,7 +162,7 @@
     };
 
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your `seat`.\n\n**Worn Grass** See the *progress* of the `tournament`."];
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
                                           UIFont *font = attributes[NSFontAttributeName];
@@ -187,22 +187,22 @@
     XCTAssertEqual(monospaceSnippets.count, 0);
 }
 
-- (void)testDefaultListWithAstricsParsing {
+- (void)testDefaultListWithAsteriskParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tMen att Pär är här\nmen inte Pia");
 }
 
-- (void)testDefaultListWithAstricsParsingMultiple {
+- (void)testDefaultListWithAsteriskParsingMultiple {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n* Men att Pär är här\n* Men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\n•\t Men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tMen att Pär är här\n•\tMen inte Pia");
 }
 
 - (void)testCustomListWithAsterisksParsingWithStrongText {
     UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
 
-    [self.parser addListParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+    [self.parser addListParsingWithMaxLevel:1 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         [attributedString replaceCharactersInRange:range withString:@"    • "];
-    }];
+    } textFormattingBlock:nil];
     [self.parser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttribute:NSFontAttributeName
                                  value:strongFont
@@ -213,9 +213,9 @@
     __block NSUInteger actualNumberOfStrongBlocks = 0;
     NSMutableArray *strongSnippets = @[@"Strong Text:"].mutableCopy;
 
-    NSString *expectedRawString = @"Strong Text: Some Subtitle.\n\n    •  List Item One\n    •  List Item Two";
+    NSString *expectedRawString = @"Strong Text: Some Subtitle.\n\n    • List Item One\n    • List Item Two";
     NSAttributedString *attributedString = [self.parser attributedStringFromMarkdown:@"**Strong Text:** Some Subtitle.\n\n* List Item One\n* List Item Two"];
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.string.length)
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
                                           UIFont *font = attributes[NSFontAttributeName];
@@ -235,22 +235,22 @@
 
 - (void)testDefaultListWithPlusParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultListWithDashParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n- Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\nmen inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testDefaultListWithPlusParsingMultiple {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ Men att Pär är här\n+ Men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t Men att Pär är här\n•\t Men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tMen att Pär är här\n•\tMen inte Pia");
 }
 
 - (void)testThatDefaultListWorksWithMultipleDifferentListOptions {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ item1\n- item2\n* item3"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\t item1\n•\t item2\n•\t item3");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n•\titem1\n•\titem2\n•\titem3");
 }
 
 
@@ -353,7 +353,7 @@
 - (void)testDefaultH1 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h1Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[0][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 23.f);
@@ -364,7 +364,7 @@
 - (void)testThatH1IsParsedCorrectly {
     NSString *header = @"header";
     NSString *input = [NSString stringWithFormat:@"first line\n# %@\nsecond line", header];
-    UIFont *h1Font = self.standardParser.h1Font;
+    UIFont *h1Font = self.standardParser.headerAttributes[0][NSFontAttributeName];
     
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:input];
     NSString *string = attributedString.string;
@@ -382,7 +382,7 @@
 - (void)testThatHeaderIsNotParsedWithoutSpaceInBetween {
     NSString *header = @"header";
     NSString *notValidHeader = [NSString stringWithFormat:@"#%@", header];
-    UIFont *h1Font = self.standardParser.h1Font;
+    UIFont *h1Font = self.standardParser.headerAttributes[0][NSFontAttributeName];
     
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:notValidHeader];
     NSRange headerRange = [attributedString.string rangeOfString:header];
@@ -406,7 +406,7 @@
 - (void)testDefaultH2 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h2Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[1][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
@@ -416,7 +416,7 @@
 - (void)testDefaultH3 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h3Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[2][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 19.f);
@@ -427,7 +427,7 @@
 - (void)testDefaultH4 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n#### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h4Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[3][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 17.f);
@@ -438,7 +438,7 @@
 - (void)testDefaultH5 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n##### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h5Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[4][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 15.f);
@@ -449,7 +449,7 @@
 - (void)testDefaultH6 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
-    UIFont *expectedFont = self.standardParser.h6Font;
+    UIFont *expectedFont = self.standardParser.headerAttributes[5][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
     XCTAssertEqual(font.pointSize, 13.f);
@@ -469,7 +469,7 @@
 
 - (void)testMultipleMatches {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"## Hello\nMen att *Pär* är här\n+ men inte Pia"];
-    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\t men inte Pia");
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\tmen inte Pia");
 }
 
 - (void)testDefaultImage {
@@ -538,7 +538,7 @@
 
 - (void)testDefaultBoldParsingCustomFont {
     UIFont *customFont = [UIFont boldSystemFontOfSize:19];
-    self.standardParser.strongFont = customFont;
+    self.standardParser.strongAttributes = @{ NSFontAttributeName: customFont };
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
     XCTAssertEqual([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] pointSize], 19.f);
 }
