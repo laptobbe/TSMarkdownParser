@@ -59,7 +59,7 @@
 }
 
 + (instancetype)standardParser {
-    TSMarkdownParser *defaultParser = [TSMarkdownParser new];
+    TSMarkdownParser *defaultParser = [self new];
     
     __weak TSMarkdownParser *weakParser = defaultParser;
     
