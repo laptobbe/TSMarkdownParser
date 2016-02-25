@@ -138,7 +138,7 @@ static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].
 
 // inline bracket regex
 static NSString *const TSMarkdownImageRegex         = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownLinkRegex          = @"\\[.*?\\]\\([^\\)]*\\)";
+static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\n]*?\\]\\([^\\)]*\\)";
 
 // inline enclosed regex
 static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
