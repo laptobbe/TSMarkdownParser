@@ -252,9 +252,8 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
         NSURL *url = [NSURL URLWithString:linkURLString] ?: [NSURL URLWithString:
                                                              [linkURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-        NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:kNilOptions range:match.range].location;
-        NSRange linkTextRange = NSMakeRange(match.range.location + 1, linkTextEndLocation - match.range.location - 1);
-        
+        NSRange linkTextRange = NSMakeRange(match.range.location + 1, linkStartInResult - match.range.location - 2);
+      
         // deleting trailing markdown
         [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location - 1, linkRange.length + 2)];
         // formatting link (may alter the length)
