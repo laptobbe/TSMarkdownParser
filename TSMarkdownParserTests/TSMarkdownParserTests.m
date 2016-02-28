@@ -273,78 +273,98 @@
 
 
 - (void)testDefaultLinkParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/) är här\nmen inte Pia"];
-    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/) to test Wi-Fi\nat home"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
-    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
-    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertTrue([attributedString.string rangeOfString:@"link"].location != NSNotFound);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
-    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
     
-    NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:18 effectiveRange:NULL];
+    NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertNil(linkAtTheNextCharacter);
 }
 
 - (void)testDefaultAutoLinkParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att https://www.example.net/ är här\nmen inte Pia"];
-    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a link https://www.example.net/ to test Wi-Fi\nat home"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:24 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
-    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:24 effectiveRange:NULL];
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
-    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:24 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
 }
 
 - (void)testDefaultLinkParsingOnEndOfStrings {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/)"];
-    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/)"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
-    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
-    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
+    XCTAssertTrue([attributedString.string rangeOfString:@"link"].location != NSNotFound);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
-    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
     
 }
 
 - (void)testDefaultLinkParsingEnclosedInParenthesis {
-    NSString *expectedRawString = @"Hello\n Men att (Pär) är här\nmen inte Pia";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att ([Pär](https://www.example.net/)) är här\nmen inte Pia"];
-    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:18 effectiveRange:NULL];
+    NSString *expectedRawString = @"Hello\n This is a (link) to test Wi-Fi\nat home";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
 
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
-- (void)testDefaultLinkParsingMultipleLinks {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär](https://www.example.net/) är här. men inte [Pia](https://www.example.net/) "];
+// https://github.com/laptobbe/TSMarkdownParser/pull/39
+- (void)testDefaultLinkParsingWithBracketsInside {
+    NSString *expectedRawString = @"Hello\n a link [with brackets inside]";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n [a link \\[with brackets inside]](https://example.net/)"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:35 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
+    
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
 
-    //Pär link
+// https://github.com/laptobbe/TSMarkdownParser/pull/39
+- (void)testDefaultLinkParsingWithBracketsOutside {
+    NSString *expectedRawString = @"Hello\n [This is not a link] but this is a link to test [the difference]";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:44 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
+    
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+- (void)testDefaultLinkParsingMultipleLinks {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/) and this is [a link](https://www.example.com/) too"];
+
+    //first link
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
-    XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
+    XCTAssertTrue([attributedString.string rangeOfString:@"link"].location != NSNotFound);
     NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
     UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
     
-    //Pia link
-    NSURL *piaLink = [attributedString attribute:NSLinkAttributeName atIndex:37 effectiveRange:NULL];
-    XCTAssertEqualObjects(piaLink, [NSURL URLWithString:@"https://www.example.net/"]);
-    XCTAssertTrue([attributedString.string rangeOfString:@"Pia"].location != NSNotFound);
-    NSNumber *piaUnderline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(piaUnderline, @(NSUnderlineStyleSingle));
-    UIColor *piasLinkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:17 effectiveRange:NULL];
-    XCTAssertEqualObjects(piasLinkColor, [UIColor blueColor]);
+    //second link
+    NSURL *link2 = [attributedString attribute:NSLinkAttributeName atIndex:37 effectiveRange:NULL];
+    XCTAssertEqualObjects(link2, [NSURL URLWithString:@"https://www.example.com/"]);
+    XCTAssertTrue([attributedString.string rangeOfString:@"a link"].location != NSNotFound);
+    NSNumber *underline2 = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:37 effectiveRange:NULL];
+    XCTAssertEqualObjects(underline2, @(NSUnderlineStyleSingle));
+    UIColor *linkColor2 = [attributedString attribute:NSForegroundColorAttributeName atIndex:37 effectiveRange:NULL];
+    XCTAssertEqualObjects(linkColor2, [UIColor blueColor]);
 
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);

@@ -137,8 +137,8 @@ static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].*)$";
 
 // inline bracket regex
-static NSString *const TSMarkdownImageRegex         = @"\\!\\[.*?\\]\\(\\S*\\)";
-static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\n]*?\\]\\([^\\)]*\\)";
+static NSString *const TSMarkdownImageRegex         = @"\\!\\[[^\\[]*?\\]\\(\\S*\\)";
+static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*\\)";
 
 // inline enclosed regex
 static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
@@ -159,7 +159,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 }
 
 - (void)addCodeEscapingParsing {
-    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownMonospaceRegex options:kNilOptions error:nil];
+    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownMonospaceRegex options:(NSRegularExpressionOptions)0 error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = [match rangeAtIndex:2];
         // escaping all characters
@@ -217,7 +217,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 - (void)addImageParsingWithImageFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock alternativeTextFormattingBlock:(TSMarkdownParserFormattingBlock)alternativeFormattingBlock {
     NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:TSMarkdownImageRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
     [self addParsingRuleWithRegularExpression:headerExpression block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
-        NSUInteger imagePathStart = [attributedString.string rangeOfString:@"(" options:kNilOptions range:match.range].location;
+        NSUInteger imagePathStart = [attributedString.string rangeOfString:@"(" options:(NSStringCompareOptions)0 range:match.range].location;
         NSRange linkRange = NSMakeRange(imagePathStart, match.range.length + match.range.location - imagePathStart - 1);
         NSString *imagePath = [attributedString.string substringWithRange:NSMakeRange(linkRange.location + 1, linkRange.length - 1)];
         UIImage *image = [UIImage imageNamed:imagePath];
@@ -231,7 +231,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
                 formattingBlock(attributedString, NSMakeRange(match.range.location, imgStr.length));
             }
         } else {
-            NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:kNilOptions range:match.range].location;
+            NSUInteger linkTextEndLocation = [attributedString.string rangeOfString:@"]" options:(NSStringCompareOptions)0 range:match.range].location;
             NSRange linkTextRange = NSMakeRange(match.range.location + 2, linkTextEndLocation - match.range.location - 2);
             NSString *alternativeText = [attributedString.string substringWithRange:linkTextRange];
             [attributedString replaceCharactersInRange:match.range withString:alternativeText];
@@ -272,7 +272,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 // pattern matching should be three parts: (leadingMD)(string)(trailingMD)
 - (void)addEnclosedParsingWithPattern:(NSString *)pattern formattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
-    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:nil];
+    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         // deleting trailing markdown
         [attributedString deleteCharactersInRange:[match rangeAtIndex:3]];
