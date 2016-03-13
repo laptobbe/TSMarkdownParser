@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */; };
+		C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C81B78D21C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D31C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D41C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
