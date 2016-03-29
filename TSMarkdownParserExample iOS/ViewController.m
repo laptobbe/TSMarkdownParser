@@ -9,13 +9,15 @@
 #import "ViewController.h"
 #import "TSMarkdownParser.h"
 
-@interface ViewController ()
+
+@interface ViewController () <UITextViewDelegate>
 
 @property (strong, nonatomic) TSMarkdownParser *parser;
 @property (weak, nonatomic) IBOutlet UITextView *markdownInput;
 @property (weak, nonatomic) IBOutlet UILabel *markdownOutput;
 
 @end
+
 
 @implementation ViewController
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITextViewDelegate>
+
+@interface ViewController : UIViewController
 
 @end
 

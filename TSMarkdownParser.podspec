@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "TSMarkdownParser"
-  s.version      = "2.0.0"
-  s.summary      = "A markdown to NSAttributedString parser for iOS"
+  s.version      = "2.0.2"
+  s.summary      = "A markdown to NSAttributedString parser for iOS and OSX"
 
   s.description  = <<-DESC
-		TSMarkdownParser is a markdown to NSAttributedString parser for iOS implemented using NSRegularExpressions. 
+		TSMarkdownParser is a markdown to NSAttributedString parser for iOS, TVOS and OSX implemented using NSRegularExpressions. 
 		It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). 
 		It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
                 DESC
@@ -15,8 +15,10 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/laptobbe"
   s.ios.deployment_target = "6.0"
   s.tvos.deployment_target = "9.0"
+  s.osx.deployment_target = "10.7"
   s.source       = { :git => "https://github.com/laptobbe/TSMarkdownParser.git", :tag => s.version.to_s }
   s.source_files  = "TSMarkdownParser/**/*.{h,m}"
   s.requires_arc = true
-  s.framework = 'UIKit'
+  s.ios.framework = 'UIKit'
+  s.tvos.framework = 'UIKit'
 end

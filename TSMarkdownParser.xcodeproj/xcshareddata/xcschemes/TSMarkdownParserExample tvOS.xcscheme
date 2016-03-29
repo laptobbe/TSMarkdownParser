@@ -11,13 +11,12 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES"
-            hideIssues = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-               BuildableName = "TSMarkdownParser.app"
-               BlueprintName = "TSMarkdownParserExample"
+               BlueprintIdentifier = "3700F57F1CAA637C0034AE2D"
+               BuildableName = "TSMarkdownParserExample tvOS.app"
+               BlueprintName = "TSMarkdownParserExample tvOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
-            BlueprintName = "TSMarkdownParserExample"
+            BlueprintIdentifier = "3700F57F1CAA637C0034AE2D"
+            BuildableName = "TSMarkdownParserExample tvOS.app"
+            BlueprintName = "TSMarkdownParserExample tvOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
-            BlueprintName = "TSMarkdownParserExample"
+            BlueprintIdentifier = "3700F57F1CAA637C0034AE2D"
+            BuildableName = "TSMarkdownParserExample tvOS.app"
+            BlueprintName = "TSMarkdownParserExample tvOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
-            BlueprintName = "TSMarkdownParserExample"
+            BlueprintIdentifier = "3700F57F1CAA637C0034AE2D"
+            BuildableName = "TSMarkdownParserExample tvOS.app"
+            BlueprintName = "TSMarkdownParserExample tvOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

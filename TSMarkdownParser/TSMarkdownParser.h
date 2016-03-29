@@ -6,7 +6,12 @@
 //  Copyright (c) 2014 Computertalk Sweden. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
 #import "TSBaseParser.h"
 
 NS_ASSUME_NONNULL_BEGIN

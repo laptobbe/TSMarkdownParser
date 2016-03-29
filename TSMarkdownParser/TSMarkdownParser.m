@@ -7,7 +7,11 @@
 //
 
 #import "TSMarkdownParser.h"
-
+#if !TARGET_OS_IPHONE
+typedef NSColor UIColor;
+typedef NSImage UIImage;
+typedef NSFont UIFont;
+#endif
 
 @implementation TSMarkdownParser
 
@@ -34,7 +38,12 @@
     _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12],
                               NSForegroundColorAttributeName: [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongAttributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:12] };
+    
+#if TARGET_OS_IPHONE
     _emphasisAttributes = @{ NSFontAttributeName: [UIFont italicSystemFontOfSize:12] };
+#else
+    _emphasisAttributes = @{ NSFontAttributeName: [[NSFontManager sharedFontManager] convertFont:[UIFont systemFontOfSize:12] toHaveTrait:NSItalicFontMask] };
+#endif
     
     return self;
 }

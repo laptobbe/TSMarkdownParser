@@ -7,9 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3700F5841CAA637C0034AE2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F5831CAA637C0034AE2D /* main.m */; };
+		3700F5871CAA637C0034AE2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F5861CAA637C0034AE2D /* AppDelegate.m */; };
+		3700F58A1CAA637C0034AE2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F5891CAA637C0034AE2D /* ViewController.m */; };
+		3700F58D1CAA637C0034AE2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3700F58B1CAA637C0034AE2D /* Main.storyboard */; };
+		3700F58F1CAA637C0034AE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3700F58E1CAA637C0034AE2D /* Assets.xcassets */; };
+		3700F59C1CAA63F90034AE2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F59B1CAA63F90034AE2D /* AppDelegate.m */; };
+		3700F59F1CAA63F90034AE2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F59E1CAA63F90034AE2D /* main.m */; };
+		3700F5A21CAA63F90034AE2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3700F5A11CAA63F90034AE2D /* ViewController.m */; };
+		3700F5A41CAA63F90034AE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3700F5A31CAA63F90034AE2D /* Assets.xcassets */; };
+		3700F5A71CAA63F90034AE2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3700F5A51CAA63F90034AE2D /* Main.storyboard */; };
+		3700F5AC1CAA645D0034AE2D /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
+		3700F5AD1CAA645E0034AE2D /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
+		3700F5AE1CAA64690034AE2D /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
+		3700F5AF1CAA646A0034AE2D /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C81B78D21C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
-		C81B78D31C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D41C5483DF00A1DE36 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */; };
 		C81B78D51C54B25300A1DE36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
 		C81B78DE1C54B4B800A1DE36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C81B78DD1C54B4B800A1DE36 /* main.m */; };
@@ -61,6 +74,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3700F5801CAA637C0034AE2D /* TSMarkdownParserExample tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TSMarkdownParserExample tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3700F5831CAA637C0034AE2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3700F5851CAA637C0034AE2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3700F5861CAA637C0034AE2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3700F5881CAA637C0034AE2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3700F5891CAA637C0034AE2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3700F58C1CAA637C0034AE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3700F58E1CAA637C0034AE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3700F5901CAA637C0034AE2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3700F5981CAA63F90034AE2D /* TSMarkdownParserExample OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TSMarkdownParserExample OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3700F59A1CAA63F90034AE2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3700F59B1CAA63F90034AE2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3700F59E1CAA63F90034AE2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3700F5A01CAA63F90034AE2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3700F5A11CAA63F90034AE2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3700F5A31CAA63F90034AE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3700F5A61CAA63F90034AE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3700F5A81CAA63F90034AE2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBaseParser.h; sourceTree = "<group>"; };
 		C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseParser.m; sourceTree = "<group>"; };
 		C81B78DA1C54B4B800A1DE36 /* TSMarkdownParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSMarkdownParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +125,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3700F57D1CAA637C0034AE2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3700F5951CAA63F90034AE2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C81B78D71C54B4B800A1DE36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,7 +176,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C81B78DB1C54B4B800A1DE36 /* TSMarkdownParserExample */ = {
+		3700F5811CAA637C0034AE2D /* TSMarkdownParserExample tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				3700F5851CAA637C0034AE2D /* AppDelegate.h */,
+				3700F5861CAA637C0034AE2D /* AppDelegate.m */,
+				3700F5881CAA637C0034AE2D /* ViewController.h */,
+				3700F5891CAA637C0034AE2D /* ViewController.m */,
+				3700F58B1CAA637C0034AE2D /* Main.storyboard */,
+				3700F58E1CAA637C0034AE2D /* Assets.xcassets */,
+				3700F5901CAA637C0034AE2D /* Info.plist */,
+				3700F5821CAA637C0034AE2D /* Supporting Files */,
+			);
+			path = "TSMarkdownParserExample tvOS";
+			sourceTree = "<group>";
+		};
+		3700F5821CAA637C0034AE2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3700F5831CAA637C0034AE2D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3700F5991CAA63F90034AE2D /* TSMarkdownParserExample OSX */ = {
+			isa = PBXGroup;
+			children = (
+				3700F59A1CAA63F90034AE2D /* AppDelegate.h */,
+				3700F59B1CAA63F90034AE2D /* AppDelegate.m */,
+				3700F5A01CAA63F90034AE2D /* ViewController.h */,
+				3700F5A11CAA63F90034AE2D /* ViewController.m */,
+				3700F5A31CAA63F90034AE2D /* Assets.xcassets */,
+				3700F5A51CAA63F90034AE2D /* Main.storyboard */,
+				3700F5A81CAA63F90034AE2D /* Info.plist */,
+				3700F59D1CAA63F90034AE2D /* Supporting Files */,
+			);
+			path = "TSMarkdownParserExample OSX";
+			sourceTree = "<group>";
+		};
+		3700F59D1CAA63F90034AE2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3700F59E1CAA63F90034AE2D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C81B78DB1C54B4B800A1DE36 /* TSMarkdownParserExample iOS */ = {
 			isa = PBXGroup;
 			children = (
 				C81B78DF1C54B4B800A1DE36 /* AppDelegate.h */,
@@ -144,7 +235,7 @@
 				C81B78ED1C54B4B800A1DE36 /* Info.plist */,
 				C81B78DC1C54B4B800A1DE36 /* Supporting Files */,
 			);
-			path = TSMarkdownParserExample;
+			path = "TSMarkdownParserExample iOS";
 			sourceTree = "<group>";
 		};
 		C81B78DC1C54B4B800A1DE36 /* Supporting Files */ = {
@@ -159,7 +250,9 @@
 			isa = PBXGroup;
 			children = (
 				F5A4F4431B36EF4100C4F56C /* TSMarkdownParserFramework */,
-				C81B78DB1C54B4B800A1DE36 /* TSMarkdownParserExample */,
+				C81B78DB1C54B4B800A1DE36 /* TSMarkdownParserExample iOS */,
+				3700F5811CAA637C0034AE2D /* TSMarkdownParserExample tvOS */,
+				3700F5991CAA63F90034AE2D /* TSMarkdownParserExample OSX */,
 				CC3C75D2B9DE7B5A7C239205 /* Products */,
 				CC3C7D316168D5FD2480BED2 /* Frameworks */,
 				CC3C733B469527BABC08D90D /* TSMarkdownParser */,
@@ -208,6 +301,8 @@
 				CC3C71DDC9984C6E95E98E36 /* TSMarkdownParser.xctest */,
 				F5A4F4421B36EF4100C4F56C /* TSMarkdownParser.framework */,
 				C81B78DA1C54B4B800A1DE36 /* TSMarkdownParser.app */,
+				3700F5801CAA637C0034AE2D /* TSMarkdownParserExample tvOS.app */,
+				3700F5981CAA63F90034AE2D /* TSMarkdownParserExample OSX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,9 +357,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C81B78D91C54B4B800A1DE36 /* TSMarkdownParserExample */ = {
+		3700F57F1CAA637C0034AE2D /* TSMarkdownParserExample tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C81B78EE1C54B4B800A1DE36 /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample" */;
+			buildConfigurationList = 3700F5911CAA637C0034AE2D /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample tvOS" */;
+			buildPhases = (
+				3700F57C1CAA637C0034AE2D /* Sources */,
+				3700F57D1CAA637C0034AE2D /* Frameworks */,
+				3700F57E1CAA637C0034AE2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TSMarkdownParserExample tvOS";
+			productName = "TSMarkdownParser tvOS";
+			productReference = 3700F5801CAA637C0034AE2D /* TSMarkdownParserExample tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3700F5971CAA63F90034AE2D /* TSMarkdownParserExample OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3700F5A91CAA63F90034AE2D /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample OSX" */;
+			buildPhases = (
+				3700F5941CAA63F90034AE2D /* Sources */,
+				3700F5951CAA63F90034AE2D /* Frameworks */,
+				3700F5961CAA63F90034AE2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TSMarkdownParserExample OSX";
+			productName = "TSMarkdownParserExample OSX";
+			productReference = 3700F5981CAA63F90034AE2D /* TSMarkdownParserExample OSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C81B78D91C54B4B800A1DE36 /* TSMarkdownParserExample iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C81B78EE1C54B4B800A1DE36 /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample iOS" */;
 			buildPhases = (
 				C81B78D61C54B4B800A1DE36 /* Sources */,
 				C81B78D71C54B4B800A1DE36 /* Frameworks */,
@@ -274,7 +403,7 @@
 			);
 			dependencies = (
 			);
-			name = TSMarkdownParserExample;
+			name = "TSMarkdownParserExample iOS";
 			productName = TSMarkdownParser;
 			productReference = C81B78DA1C54B4B800A1DE36 /* TSMarkdownParser.app */;
 			productType = "com.apple.product-type.application";
@@ -341,6 +470,12 @@
 			attributes = {
 				ORGANIZATIONNAME = "Computertalk Sweden";
 				TargetAttributes = {
+					3700F57F1CAA637C0034AE2D = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					3700F5971CAA63F90034AE2D = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					C81B78D91C54B4B800A1DE36 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -365,12 +500,32 @@
 				CC3C704FF16FF7C75C832F3A /* TSMarkdownParserLib */,
 				CC3C7DE1CDD4D3F7BEBA4C42 /* TSMarkdownParserTests */,
 				F5A4F4411B36EF4100C4F56C /* TSMarkdownParserFramework */,
-				C81B78D91C54B4B800A1DE36 /* TSMarkdownParserExample */,
+				C81B78D91C54B4B800A1DE36 /* TSMarkdownParserExample iOS */,
+				3700F57F1CAA637C0034AE2D /* TSMarkdownParserExample tvOS */,
+				3700F5971CAA63F90034AE2D /* TSMarkdownParserExample OSX */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3700F57E1CAA637C0034AE2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700F58F1CAA637C0034AE2D /* Assets.xcassets in Resources */,
+				3700F58D1CAA637C0034AE2D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3700F5961CAA63F90034AE2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700F5A41CAA63F90034AE2D /* Assets.xcassets in Resources */,
+				3700F5A71CAA63F90034AE2D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C81B78D81C54B4B800A1DE36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,6 +574,30 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3700F57C1CAA637C0034AE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700F5AE1CAA64690034AE2D /* TSBaseParser.m in Sources */,
+				3700F5AC1CAA645D0034AE2D /* TSMarkdownParser.m in Sources */,
+				3700F58A1CAA637C0034AE2D /* ViewController.m in Sources */,
+				3700F5871CAA637C0034AE2D /* AppDelegate.m in Sources */,
+				3700F5841CAA637C0034AE2D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3700F5941CAA63F90034AE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700F5AF1CAA646A0034AE2D /* TSBaseParser.m in Sources */,
+				3700F5AD1CAA645E0034AE2D /* TSMarkdownParser.m in Sources */,
+				3700F5A21CAA63F90034AE2D /* ViewController.m in Sources */,
+				3700F59F1CAA63F90034AE2D /* main.m in Sources */,
+				3700F59C1CAA63F90034AE2D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C81B78D61C54B4B800A1DE36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,7 +615,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C797C733EECEBC569C218 /* TSMarkdownParserTests.m in Sources */,
-				C81B78D31C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				CC3C7D016BD3BAD6F43D40B3 /* UIImage+Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +648,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3700F58B1CAA637C0034AE2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3700F58C1CAA637C0034AE2D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3700F5A51CAA63F90034AE2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3700F5A61CAA63F90034AE2D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		C81B78E51C54B4B800A1DE36 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -497,6 +691,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3700F5921CAA637C0034AE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "TSMarkdownParserExample tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserExample-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		3700F5931CAA637C0034AE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "TSMarkdownParserExample tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserExample-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		3700F5AA1CAA63F90034AE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "TSMarkdownParserExample OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserExample-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3700F5AB1CAA63F90034AE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "TSMarkdownParserExample OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserExample-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		C81B78EF1C54B4B800A1DE36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -506,7 +786,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = TSMarkdownParserExample/Info.plist;
+				INFOPLIST_FILE = "TSMarkdownParserExample iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -526,7 +806,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = TSMarkdownParserExample/Info.plist;
+				INFOPLIST_FILE = "TSMarkdownParserExample iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -715,7 +995,23 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C81B78EE1C54B4B800A1DE36 /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample" */ = {
+		3700F5911CAA637C0034AE2D /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3700F5921CAA637C0034AE2D /* Debug */,
+				3700F5931CAA637C0034AE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3700F5A91CAA63F90034AE2D /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3700F5AA1CAA63F90034AE2D /* Debug */,
+				3700F5AB1CAA63F90034AE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C81B78EE1C54B4B800A1DE36 /* Build configuration list for PBXNativeTarget "TSMarkdownParserExample iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C81B78EF1C54B4B800A1DE36 /* Debug */,
