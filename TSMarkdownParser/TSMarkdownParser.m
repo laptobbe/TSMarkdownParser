@@ -7,7 +7,10 @@
 //
 
 #import "TSMarkdownParser.h"
-#if !TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
 typedef NSColor UIColor;
 typedef NSImage UIImage;
 typedef NSFont UIFont;
@@ -55,14 +58,14 @@ typedef NSFont UIFont;
     
     /* escaping parsing */
     
-    [defaultParser addEscapingParsing];
-    
     [defaultParser addCodeEscapingParsing];
+    
+    [defaultParser addEscapingParsing];
     
     /* block parsing */
     
     [defaultParser addHeaderParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
-        [attributedString replaceCharactersInRange:range withString:@""];
+        [attributedString deleteCharactersInRange:range];
     } textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         [TSMarkdownParser addAttributes:weakParser.headerAttributes atIndex:level - 1 toString:attributedString range:range];
     }];
@@ -134,6 +137,7 @@ typedef NSFont UIFont;
 }
 
 // inline escaping regex
+static NSString *const TSMarkdownCodeEscapingRegex  = @"(?<!\\\\)(?:\\\\\\\\)*+(`+)(.*?[^`].*?)(\\1)(?!`)";
 static NSString *const TSMarkdownEscapingRegex      = @"\\\\.";
 static NSString *const TSMarkdownUnescapingRegex    = @"\\\\[0-9a-z]{4}";
 
@@ -156,19 +160,8 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 #pragma mark escaping parsing
 
-- (void)addEscapingParsing {
-    NSRegularExpression *escapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEscapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
-    [self addParsingRuleWithRegularExpression:escapingParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
-        NSRange range = NSMakeRange(match.range.location + 1, 1);
-        // escaping one character
-        NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
-        NSString *escapedString = [NSString stringWithFormat:@"%04x", [matchString characterAtIndex:0]];
-        [attributedString replaceCharactersInRange:range withString:escapedString];
-    }];
-}
-
 - (void)addCodeEscapingParsing {
-    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownMonospaceRegex options:(NSRegularExpressionOptions)0 error:nil];
+    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownCodeEscapingRegex options:(NSRegularExpressionOptions)0 error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = [match rangeAtIndex:2];
         // escaping all characters
@@ -177,6 +170,17 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
         NSMutableString *escapedString = [NSMutableString string];
         while (i < range.length)
             [escapedString appendFormat:@"%04x", [matchString characterAtIndex:i++]];
+        [attributedString replaceCharactersInRange:range withString:escapedString];
+    }];
+}
+
+- (void)addEscapingParsing {
+    NSRegularExpression *escapingParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownEscapingRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    [self addParsingRuleWithRegularExpression:escapingParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSRange range = NSMakeRange(match.range.location + 1, 1);
+        // escaping one character
+        NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
+        NSString *escapedString = [NSString stringWithFormat:@"%04x", [matchString characterAtIndex:0]];
         [attributedString replaceCharactersInRange:range withString:escapedString];
     }];
 }
@@ -330,7 +334,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 }
 
 - (void)addCodeUnescapingParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
-    [self addMonospacedParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+    [self addEnclosedParsingWithPattern:TSMarkdownCodeEscapingRegex formattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         NSUInteger i = 0;
         NSString *matchString = [attributedString attributedSubstringFromRange:range].string;
         NSMutableString *unescapedString = [NSMutableString string];

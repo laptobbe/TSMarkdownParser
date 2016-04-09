@@ -6,12 +6,6 @@
 //  Copyright (c) 2014 Computertalk Sweden. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
 #import "TSBaseParser.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -55,10 +49,10 @@ typedef void (^TSMarkdownParserLevelFormattingBlock)(NSMutableAttributedString *
 
 /* 1. examples escaping parsing */
 
-// accepts "\."; ALWAYS use together with `addUnescapingParsing`
-- (void)addEscapingParsing;
 // accepts "`code`", "``code``", ...; ALWAYS use together with `addCodeUnescapingParsingWithFormattingBlock:`
 - (void)addCodeEscapingParsing;
+// accepts "\."; ALWAYS use together with `addUnescapingParsing`
+- (void)addEscapingParsing;
 
 /* 2. examples regular block parsing: headers, lists and quotes */
 
@@ -108,10 +102,10 @@ typedef void (^TSMarkdownParserLevelFormattingBlock)(NSMutableAttributedString *
 /* 7. examples unescaping parsing */
 /* to use together with `addEscapingParsing` or `addCodeEscapingParsing` */
 
-// accepts "\hexa"; to use with `addEscapingParsing`
-- (void)addUnescapingParsing;
 // accepts "`hexa`", "``hexa``", ...; to use with `addCodeEscapingParsing`
 - (void)addCodeUnescapingParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+// accepts "\hexa"; to use with `addEscapingParsing`
+- (void)addUnescapingParsing;
 
 @end
 
