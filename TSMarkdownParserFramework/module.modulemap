@@ -1,0 +1,4 @@
+framework module TSMarkdownParser {
+    export *
+    module * { export * }
+}

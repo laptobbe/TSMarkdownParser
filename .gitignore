@@ -22,6 +22,10 @@ Artifacts/
 #
 .idea/
 
+# Carthage
+#
+#Carthage/
+
 # CocoaPods
 #
 #Pods/

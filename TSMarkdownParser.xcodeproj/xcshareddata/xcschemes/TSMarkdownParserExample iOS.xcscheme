@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-               BuildableName = "TSMarkdownParser.app"
+               BuildableName = "TSMarkdownParserExample iOS.app"
                BlueprintName = "TSMarkdownParserExample iOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
+            BuildableName = "TSMarkdownParserExample iOS.app"
             BlueprintName = "TSMarkdownParserExample iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
+            BuildableName = "TSMarkdownParserExample iOS.app"
             BlueprintName = "TSMarkdownParserExample iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C81B78D91C54B4B800A1DE36"
-            BuildableName = "TSMarkdownParser.app"
+            BuildableName = "TSMarkdownParserExample iOS.app"
             BlueprintName = "TSMarkdownParserExample iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>

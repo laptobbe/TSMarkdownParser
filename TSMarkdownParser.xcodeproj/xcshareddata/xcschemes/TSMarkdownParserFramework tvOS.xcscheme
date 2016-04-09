@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8414BB71CB113A1000C7921"
-               BuildableName = "TSMarkdownParserFramework tvOS.framework"
+               BuildableName = "TSMarkdownParserFramework_tvOS.framework"
                BlueprintName = "TSMarkdownParserFramework tvOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8414BB71CB113A1000C7921"
-            BuildableName = "TSMarkdownParserFramework tvOS.framework"
+            BuildableName = "TSMarkdownParserFramework_tvOS.framework"
             BlueprintName = "TSMarkdownParserFramework tvOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8414BB71CB113A1000C7921"
-            BuildableName = "TSMarkdownParserFramework tvOS.framework"
+            BuildableName = "TSMarkdownParserFramework_tvOS.framework"
             BlueprintName = "TSMarkdownParserFramework tvOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>

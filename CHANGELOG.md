@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.3](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.0.3) (2016/04/09)
+Released on 2016/04/09. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.0.3+is%3Aclosed).
+
+#### Added
+* Added Carthage support for tvOS and OS X
+
+#### Fixed
+* Fixed CodeEscaping [#46](https://github.com/laptobbe/TSMarkdownParser/issues/46)
+
 ## [2.0.2](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.0.2) (2016/03/29)
 Released on 2016/03/29. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.0.2+is%3Aclosed).
 
