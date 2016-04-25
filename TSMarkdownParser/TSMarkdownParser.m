@@ -32,7 +32,7 @@ typedef NSFont UIFont;
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:15] },
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:13] } ];
     _listAttributes = @[];
-    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"Georgia-Italic" size:12]}];
+    _quoteAttributes = @[];
     
     _imageAttributes = @{};
     _linkAttributes = @{ NSForegroundColorAttributeName: [UIColor blueColor],
@@ -146,7 +146,7 @@ static NSString *const TSMarkdownHeaderRegex        = @"^(#{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortHeaderRegex   = @"^(#{1,%@})\\s*([^#].*)$";
 static NSString *const TSMarkdownListRegex          = @"^([\\*\\+\\-]{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortListRegex     = @"^([\\*\\+\\-]{1,%@})\\s*([^\\*\\+\\-].*)$";
-static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})(.+)$";
+static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].*)$";
 
 // inline bracket regex
