@@ -80,7 +80,8 @@
 
 - (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString {
     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-    
+    // TODO: evaluate performances of `beginEditing`/`endEditing`
+    //[mutableAttributedString beginEditing];
     @synchronized (self) {
         for (TSExpressionBlockPair *expressionBlockPair in self.parsingPairs) {
             NSTextCheckingResult *match;
@@ -93,6 +94,7 @@
             }
         }
     }
+    //[mutableAttributedString endEditing];
     return mutableAttributedString;
 }
 

@@ -14,12 +14,18 @@
 
 @property (strong, nonatomic) TSMarkdownParser *parser;
 @property (weak, nonatomic) IBOutlet UITextView *markdownInput;
-@property (weak, nonatomic) IBOutlet UILabel *markdownOutput;
+@property (weak, nonatomic) IBOutlet UILabel *markdownOutputLabel;
+@property (weak, nonatomic) IBOutlet UITextView *markdownOutputTextView;
 
 @end
 
 
 @implementation ViewController
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 - (void)viewDidLoad
 {
@@ -39,7 +45,19 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    self.markdownOutput.attributedText = [self.parser attributedStringFromMarkdown:textView.text];
+    NSAttributedString *result = [self.parser attributedStringFromMarkdown:textView.text];
+    self.markdownOutputLabel.attributedText = result;
+    self.markdownOutputTextView.attributedText = result;
+}
+
+- (IBAction)switchOutput:(UISegmentedControl *)segmentedControl {
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        self.markdownOutputLabel.hidden = NO;
+        self.markdownOutputTextView.hidden = YES;
+    } else {
+        self.markdownOutputLabel.hidden = YES;
+        self.markdownOutputTextView.hidden = NO;
+    }
 }
 
 @end

@@ -64,7 +64,7 @@ typedef NSFont UIFont;
     
     /* block parsing */
     
-    [defaultParser addHeaderParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+    [defaultParser addHeaderParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
         [attributedString deleteCharactersInRange:range];
     } textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         [TSMarkdownParser addAttributes:weakParser.headerAttributes atIndex:level - 1 toString:attributedString range:range];
@@ -91,19 +91,49 @@ typedef NSFont UIFont;
     
     /* bracket parsing */
     
-    [defaultParser addImageParsingWithImageFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        // no additional formatting
-    }                       alternativeTextFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
-        [attributedString addAttributes:weakParser.imageAttributes range:range];
+    [defaultParser addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+        UIImage *image = [UIImage imageNamed:link];
+        if (image) {
+            NSTextAttachment *imageAttachment = [NSTextAttachment new];
+            imageAttachment.image = image;
+            imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
+            NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+            [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
+        } else {
+            if (!weakParser.skipLinkAttribute) {
+                NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
+                                                            [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                if (url.scheme) {
+                    [attributedString addAttribute:NSLinkAttributeName
+                                             value:url
+                                             range:range];
+                }
+            }
+            [attributedString addAttributes:weakParser.imageAttributes range:range];
+        }
     }];
     
-    [defaultParser addLinkParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+    [defaultParser addLinkParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+        if (!weakParser.skipLinkAttribute) {
+            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
+                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            if (url) {
+                [attributedString addAttribute:NSLinkAttributeName
+                                         value:url
+                                         range:range];
+            }
+        }
         [attributedString addAttributes:weakParser.linkAttributes range:range];
     }];
     
     /* autodetection */
     
-    [defaultParser addLinkDetectionWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+    [defaultParser addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+        if (!weakParser.skipLinkAttribute) {
+            [attributedString addAttribute:NSLinkAttributeName
+                                     value:[NSURL URLWithString:link]
+                                     range:range];
+        }
         [attributedString addAttributes:weakParser.linkAttributes range:range];
     }];
     
@@ -255,7 +285,26 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
     }];
 }
 
-- (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
+- (void)addImageParsingWithLinkFormattingBlock:(TSMarkdownParserLinkFormattingBlock)formattingBlock {
+    NSRegularExpression *headerExpression = [NSRegularExpression regularExpressionWithPattern:TSMarkdownImageRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    [self addParsingRuleWithRegularExpression:headerExpression block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSUInteger imagePathStart = [attributedString.string rangeOfString:@"(" options:(NSStringCompareOptions)0 range:match.range].location;
+        NSRange linkRange = NSMakeRange(imagePathStart, match.range.length + match.range.location - imagePathStart - 1);
+        NSString *imagePath = [attributedString.string substringWithRange:NSMakeRange(linkRange.location + 1, linkRange.length - 1)];
+        
+        // deleting trailing markdown
+        // needs to be called before formattingBlock to support modification of length
+        [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location - 1, linkRange.length + 2)];
+        // deleting leading markdown
+        // needs to be called before formattingBlock to provide a stable range
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 2)];
+        // formatting link
+        // needs to be called last (may alter the length and needs range to be stable)
+        formattingBlock(attributedString, NSMakeRange(match.range.location, imagePathStart - match.range.location - 3), imagePath);
+    }];
+}
+
+- (void)addLinkParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock __attribute__((deprecated("use addLinkParsingWithLinkFormattingBlock: instead"))) {
     NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
     
     [self addParsingRuleWithRegularExpression:linkParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
@@ -278,6 +327,26 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
         formattingBlock(attributedString, linkTextRange);
         // deleting leading markdown
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+    }];
+}
+
+- (void)addLinkParsingWithLinkFormattingBlock:(TSMarkdownParserLinkFormattingBlock)formattingBlock {
+    NSRegularExpression *linkParsing = [NSRegularExpression regularExpressionWithPattern:TSMarkdownLinkRegex options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    
+    [self addParsingRuleWithRegularExpression:linkParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSUInteger linkStartInResult = [attributedString.string rangeOfString:@"(" options:NSBackwardsSearch range:match.range].location;
+        NSRange linkRange = NSMakeRange(linkStartInResult, match.range.length + match.range.location - linkStartInResult - 1);
+        NSString *linkURLString = [attributedString.string substringWithRange:NSMakeRange(linkRange.location + 1, linkRange.length - 1)];
+        
+        // deleting trailing markdown
+        // needs to be called before formattingBlock to support modification of length
+        [attributedString deleteCharactersInRange:NSMakeRange(linkRange.location - 1, linkRange.length + 2)];
+        // deleting leading markdown
+        // needs to be called before formattingBlock to provide a stable range
+        [attributedString deleteCharactersInRange:NSMakeRange(match.range.location, 1)];
+        // formatting link
+        // needs to be called last (may alter the length and needs range to be stable)
+        formattingBlock(attributedString, NSMakeRange(match.range.location, linkStartInResult - match.range.location - 2), linkURLString);
     }];
 }
 
@@ -310,7 +379,7 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 #pragma mark link detection
 
-- (void)addLinkDetectionWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
+- (void)addLinkDetectionWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock __attribute__((deprecated("use addLinkDetectionWithLinkFormattingBlock: instead"))) {
     NSDataDetector *linkDataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
     [self addParsingRuleWithRegularExpression:linkDataDetector block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSString *linkURLString = [attributedString.string substringWithRange:match.range];
@@ -318,6 +387,14 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
                                         value:[NSURL URLWithString:linkURLString]
                                         range:match.range];
         formattingBlock(attributedString, match.range);
+    }];
+}
+
+- (void)addLinkDetectionWithLinkFormattingBlock:(TSMarkdownParserLinkFormattingBlock)formattingBlock {
+    NSDataDetector *linkDataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    [self addParsingRuleWithRegularExpression:linkDataDetector block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSString *linkURLString = [attributedString.string substringWithRange:match.range];
+        formattingBlock(attributedString, match.range, linkURLString);
     }];
 }
 
