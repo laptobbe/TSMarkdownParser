@@ -37,6 +37,16 @@
 		C824BD071CB8B59000E9E299 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
 		C824BD081CB8D58100E9E299 /* TSMarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C824BD091CB8D58E00E9E299 /* TSMarkdownParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C824BD101CB919FF00E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD111CB91A1300E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD121CB91A1400E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD131CB91A1500E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD141CB91A1500E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD151CB91A1600E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD161CB91A1700E9E299 /* TSStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */; };
+		C824BD171CB91A1F00E9E299 /* TSStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C824BD0E1CB919FF00E9E299 /* TSStandardParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C824BD181CB91A2000E9E299 /* TSStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C824BD0E1CB919FF00E9E299 /* TSStandardParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C824BD191CB91A2100E9E299 /* TSStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C824BD0E1CB919FF00E9E299 /* TSStandardParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8414BB11CB0C4EB000C7921 /* TSBaseParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */; };
 		C8414BCD1CB11508000C7921 /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
 		C8414BCE1CB11509000C7921 /* TSMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */; };
@@ -118,6 +128,8 @@
 		C81B78ED1C54B4B800A1DE36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C824BD0A1CB8DD1B00E9E299 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C824BD0C1CB8EE6100E9E299 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
+		C824BD0E1CB919FF00E9E299 /* TSStandardParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSStandardParser.h; sourceTree = "<group>"; };
+		C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSStandardParser.m; sourceTree = "<group>"; };
 		C8414BB81CB113A1000C7921 /* TSMarkdownParserFramework_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8414BC51CB114BC000C7921 /* TSMarkdownParserFramework_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3C70A3CF901EEE211573EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -304,6 +316,8 @@
 				C824BD0C1CB8EE6100E9E299 /* CHANGELOG.md */,
 				F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */,
 				CC3C72A1BA2FA83330E38DEB /* Supporting Files */,
+				C824BD0E1CB919FF00E9E299 /* TSStandardParser.h */,
+				C824BD0F1CB919FF00E9E299 /* TSStandardParser.m */,
 				CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */,
 				CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */,
 				C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */,
@@ -376,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C824BD081CB8D58100E9E299 /* TSMarkdownParser.h in Headers */,
+				C824BD181CB91A2000E9E299 /* TSStandardParser.h in Headers */,
 				C8414BD31CB1151D000C7921 /* TSBaseParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C824BD091CB8D58E00E9E299 /* TSMarkdownParser.h in Headers */,
+				C824BD191CB91A2100E9E299 /* TSStandardParser.h in Headers */,
 				C8414BD41CB1151E000C7921 /* TSBaseParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C81B78D11C5483DF00A1DE36 /* TSBaseParser.h in Headers */,
+				C824BD171CB91A1F00E9E299 /* TSStandardParser.h in Headers */,
 				F5A4F45B1B36EF4A00C4F56C /* TSMarkdownParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,6 +701,7 @@
 			files = (
 				3700F5AE1CAA64690034AE2D /* TSBaseParser.m in Sources */,
 				3700F5AC1CAA645D0034AE2D /* TSMarkdownParser.m in Sources */,
+				C824BD151CB91A1600E9E299 /* TSStandardParser.m in Sources */,
 				3700F58A1CAA637C0034AE2D /* ViewController.m in Sources */,
 				3700F5871CAA637C0034AE2D /* AppDelegate.m in Sources */,
 				3700F5841CAA637C0034AE2D /* main.m in Sources */,
@@ -696,6 +714,7 @@
 			files = (
 				3700F5AF1CAA646A0034AE2D /* TSBaseParser.m in Sources */,
 				3700F5AD1CAA645E0034AE2D /* TSMarkdownParser.m in Sources */,
+				C824BD161CB91A1700E9E299 /* TSStandardParser.m in Sources */,
 				3700F5A21CAA63F90034AE2D /* ViewController.m in Sources */,
 				3700F59F1CAA63F90034AE2D /* main.m in Sources */,
 				3700F59C1CAA63F90034AE2D /* AppDelegate.m in Sources */,
@@ -708,6 +727,7 @@
 			files = (
 				C8D72E9C1C54DABC00F0E18A /* TSBaseParser.m in Sources */,
 				C81B78F11C54B9E500A1DE36 /* TSMarkdownParser.m in Sources */,
+				C824BD141CB91A1500E9E299 /* TSStandardParser.m in Sources */,
 				C81B78E41C54B4B800A1DE36 /* ViewController.m in Sources */,
 				C81B78E11C54B4B800A1DE36 /* AppDelegate.m in Sources */,
 				C81B78DE1C54B4B800A1DE36 /* main.m in Sources */,
@@ -720,6 +740,7 @@
 			files = (
 				C8414BCF1CB1150E000C7921 /* TSBaseParser.m in Sources */,
 				C8414BCD1CB11508000C7921 /* TSMarkdownParser.m in Sources */,
+				C824BD121CB91A1400E9E299 /* TSStandardParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +750,7 @@
 			files = (
 				C8414BD01CB1150E000C7921 /* TSBaseParser.m in Sources */,
 				C8414BCE1CB11509000C7921 /* TSMarkdownParser.m in Sources */,
+				C824BD131CB91A1500E9E299 /* TSStandardParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,6 +769,7 @@
 			files = (
 				C81B78D21C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				CC3C78BB152404965D77F4DA /* TSMarkdownParser.m in Sources */,
+				C824BD101CB919FF00E9E299 /* TSStandardParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +779,7 @@
 			files = (
 				C81B78D41C5483DF00A1DE36 /* TSBaseParser.m in Sources */,
 				F5A4F45C1B36EF4A00C4F56C /* TSMarkdownParser.m in Sources */,
+				C824BD111CB91A1300E9E299 /* TSStandardParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

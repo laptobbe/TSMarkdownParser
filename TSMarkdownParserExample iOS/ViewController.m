@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "TSMarkdownParser.h"
+#import "TSStandardParser.h"
 
 
 @interface ViewController () <UITextViewDelegate>
@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     
-    self.parser = [TSMarkdownParser standardParser];
+    self.parser = [TSStandardParser new];
     
     // updating output
     [self textViewDidChange:self.markdownInput];

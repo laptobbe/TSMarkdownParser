@@ -8,14 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
-#import "TSMarkdownParser.h"
+#import "TSStandardParser.h"
 
 @interface TSMarkdownParserTests : XCTestCase
 
 /// [TSMarkdownParser new] version
 @property (nonatomic) TSMarkdownParser *parser;
-/// [TSMarkdownParser standardParser] version
-@property (nonatomic) TSMarkdownParser *standardParser;
+/// [TSStandardParser new] version
+@property (nonatomic) TSStandardParser *standardParser;
 
 @end
 
@@ -24,16 +24,16 @@
 - (void)setUp
 {
     [super setUp];
-
+    
     self.parser = [TSMarkdownParser new];
-    self.standardParser = [TSMarkdownParser standardParser];
+    self.standardParser = [TSStandardParser new];
 }
 
 - (void)tearDown
 {
     self.parser = nil;
     self.standardParser = nil;
-
+    
     [super tearDown];
 }
 
@@ -73,24 +73,31 @@
     XCTAssertTrue([attributedString.string rangeOfString:@"*"].location == NSNotFound);
 }
 
-- (void)testStandardFont {
+- (void)testStandardDefaultFont {
     UIFont *font = [UIFont systemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.defaultAttributes[NSFontAttributeName], font);
+    XCTAssertEqualObjects(self.standardParser.defaultAttributes[NSFontAttributeName], font);
 }
 
-- (void)testBoldFont {
+- (void)testStandardBoldFont {
     UIFont *font = [UIFont boldSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.strongAttributes[NSFontAttributeName], font);
+    XCTAssertEqualObjects(self.standardParser.strongAttributes[NSFontAttributeName], font);
 }
 
-- (void)testItalicFont {
+- (void)testStandardItalicFont {
     UIFont *font = [UIFont italicSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.parser.emphasisAttributes[NSFontAttributeName], font);
+    XCTAssertEqualObjects(self.standardParser.emphasisAttributes[NSFontAttributeName], font);
 }
 
-- (void)testDefaultBoldParsing {
+- (void)testStandardDefaultFontParsing {
+    UIFont *font = [UIFont systemFontOfSize:12];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in a café everyday"];
+    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL], font);
+    XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
+}
+
+- (void)testStandardBoldParsing {
     UIFont *font = [UIFont boldSystemFontOfSize:12];
-    NSAttributedString *attributedString = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:@"Hello\nI drink in **a café** everyday"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in **a café** everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
@@ -142,10 +149,10 @@
     XCTAssertNotEqualObjects([attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL], font);
 }
 
-- (void)testDefaultStrongAndEmAndMonospaceInSameInputParsing {
-    UIFont *strongFont = self.parser.strongAttributes[NSFontAttributeName];
-    UIFont *emphasisFont = self.parser.emphasisAttributes[NSFontAttributeName];
-    UIFont *monospaceFont = self.parser.monospaceAttributes[NSFontAttributeName];
+- (void)testStandardStrongAndEmAndMonospaceInSameInputParsing {
+    UIFont *strongFont = self.standardParser.strongAttributes[NSFontAttributeName];
+    UIFont *emphasisFont = self.standardParser.emphasisAttributes[NSFontAttributeName];
+    UIFont *monospaceFont = self.standardParser.monospaceAttributes[NSFontAttributeName];
 
     NSMutableArray *emphasizedSnippets = @[@"under", @"From", @"progress"].mutableCopy;
     NSUInteger expectedNumberOfEmphasisBlocks = emphasizedSnippets.count;
@@ -167,13 +174,13 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your `seat`.\n\n**Worn Grass** See the *progress* of the `tournament`."];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, __unused BOOL *stop) {
                                           UIFont *font = attributes[NSFontAttributeName];
                                           NSString *snippet = [attributedString.string substringWithRange:range];
 
-                                          if ( [emphasisFont isEqual:font] ) {
+                                          if ([emphasisFont isEqual:font]) {
                                               IncreaseCountAndRemoveSnippet(&actualNumberOfEmphasisBlocks, snippet, emphasizedSnippets);
-                                          } else if ( [strongFont isEqual:font] ) {
+                                          } else if ([strongFont isEqual:font]) {
                                               IncreaseCountAndRemoveSnippet(&actualNumberOfStrongBlocks, snippet, strongSnippets);
                                           } else if ([monospaceFont isEqual:font]) {
                                               IncreaseCountAndRemoveSnippet(&actualNumberOfMonospaceBlocks, snippet, monospaceSnippets);
@@ -218,7 +225,7 @@
 - (void)testCustomListWithAsterisksParsingWithStrongText {
     UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
 
-    [self.parser addListParsingWithMaxLevel:1 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+    [self.parser addListParsingWithMaxLevel:1 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
         [attributedString replaceCharactersInRange:range withString:@"    • "];
     } textFormattingBlock:nil];
     [self.parser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -235,9 +242,9 @@
     NSAttributedString *attributedString = [self.parser attributedStringFromMarkdown:@"**Strong Text:** Some Subtitle.\n\n* List Item One\n* List Item Two"];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
-                                      usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+                                      usingBlock:^(NSDictionary *attributes, NSRange range, __unused BOOL *stop) {
                                           UIFont *font = attributes[NSFontAttributeName];
-                                          if ( [strongFont isEqual:font] ) {
+                                          if ([strongFont isEqual:font]) {
                                               actualNumberOfStrongBlocks++;
 
                                               NSString *snippet = [attributedString.string substringWithRange:range];
@@ -392,12 +399,6 @@
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
-- (void)testDefaultFont {
-    UIFont *font = [UIFont systemFontOfSize:12];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att Pär är här\nmen inte Pia"];
-    XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL], font);
-}
-
 - (void)testStandardH1 {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
@@ -419,7 +420,7 @@
     NSRange headerRange = [string rangeOfString:header];
     XCTAssertTrue(headerRange.location != NSNotFound);
     
-    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, __unused NSRange range, __unused BOOL *stop) {
         UIFont *font = attributes[NSFontAttributeName];
         XCTAssertNotNil(font);
         XCTAssertEqual(font, h1Font);
@@ -434,7 +435,7 @@
     
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:notValidHeader];
     NSRange headerRange = [attributedString.string rangeOfString:header];
-    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+    [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, __unused NSRange range, __unused BOOL *stop) {
         UIFont *font = attributes[NSFontAttributeName];
         XCTAssertNotEqual(font, h1Font);
     }];
