@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-               BuildableName = "TSMarkdownParserFramework_iOS.framework"
+               BuildableName = "TSMarkdownParser.framework"
                BlueprintName = "TSMarkdownParserFramework iOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParserFramework_iOS.framework"
+            BuildableName = "TSMarkdownParser.framework"
             BlueprintName = "TSMarkdownParserFramework iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParserFramework_iOS.framework"
+            BuildableName = "TSMarkdownParser.framework"
             BlueprintName = "TSMarkdownParserFramework iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -73,7 +73,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParserFramework_iOS.framework"
+            BuildableName = "TSMarkdownParser.framework"
             BlueprintName = "TSMarkdownParserFramework iOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
