@@ -1,5 +1,5 @@
 //
-//  TSStandardParser.h
+//  TSMarkdownStandardParser.h
 //  TSMarkdownParser
 //
 //  Created by Antoine Cœur on 03/04/2016.
@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Provides the following default parsing rules from below examples:
+ Provides the following default parsing rules:
  * Escaping parsing
  * Code escaping parsing using monospaceAttributes/monospaceTraits
  * Header using headerAttributes/headerTraits
@@ -25,9 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface TSMarkdownStandardParser : TSMarkdownParser
 
-/*
- Properties used by standardParser.
- */
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *headerAttributes;
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *listAttributes;
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *quoteAttributes;
@@ -36,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary<NSString *, id> *monospaceAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *strongAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *emphasisAttributes;
+
+// NSFontAttributeName and symbolic traits are mutually exclusive, avoid using both
 
 @property (nonatomic, strong) NSArray<NSNumber *> *headerTraits;
 @property (nonatomic, strong) NSArray<NSNumber *> *listTraits;
