@@ -44,7 +44,7 @@ We will embrace Swift 3.0 when available (probably after WWDC2016).
 
 ## Grammar and Lexer parsing
 
-Maybe or maybe not...
+Maybe one day...
 
 
 #Third parties
