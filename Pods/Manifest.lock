@@ -1,0 +1,16 @@
+PODS:
+  - TSMarkdownParser (3.0.0-beta)
+
+DEPENDENCIES:
+  - TSMarkdownParser (from `.`)
+
+EXTERNAL SOURCES:
+  TSMarkdownParser:
+    :path: "."
+
+SPEC CHECKSUMS:
+  TSMarkdownParser: 25390929e03ef851cfb5611385ed8c519004b05f
+
+PODFILE CHECKSUM: 4fd60440615ca883eaf2893191fb175fc280ef68
+
+COCOAPODS: 1.0.0.rc.2

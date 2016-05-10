@@ -8,14 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
-#import "TSStandardParser.h"
+#import "TSMarkdownStandardParser.h"
 
 @interface TSMarkdownParserTests : XCTestCase
 
 /// [TSMarkdownParser new] version
 @property (nonatomic) TSMarkdownParser *parser;
-/// [TSStandardParser new] version
-@property (nonatomic) TSStandardParser *standardParser;
+/// [TSMarkdownStandardParser new] version
+@property (nonatomic) TSMarkdownStandardParser *standardParser;
 
 @end
 
@@ -26,7 +26,7 @@
     [super setUp];
     
     self.parser = [TSMarkdownParser new];
-    self.standardParser = [TSStandardParser new];
+    self.standardParser = [TSMarkdownStandardParser new];
 }
 
 - (void)tearDown
@@ -79,13 +79,11 @@
 }
 
 - (void)testStandardBoldFont {
-    UIFont *font = [UIFont boldSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.standardParser.strongAttributes[NSFontAttributeName], font);
+    XCTAssertEqual(self.standardParser.strongTraits, (TSFontTraitMask)TSFontMaskBold);
 }
 
 - (void)testStandardItalicFont {
-    UIFont *font = [UIFont italicSystemFontOfSize:12];
-    XCTAssertEqualObjects(self.standardParser.emphasisAttributes[NSFontAttributeName], font);
+    XCTAssertEqual(self.standardParser.emphasisTraits, (TSFontTraitMask)TSFontMaskItalic);
 }
 
 - (void)testStandardDefaultFontParsing {
@@ -110,14 +108,14 @@
 }
 
 - (void)testStandardBoldParsingUnderscores {
-    UIFont *font = self.standardParser.strongAttributes[NSFontAttributeName];
+    UIFont *font = [UIFont boldSystemFontOfSize:12];
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in __a café__ everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardEmParsingUnderscores {
-    UIFont *font = self.standardParser.emphasisAttributes[NSFontAttributeName];
+    UIFont *font = [UIFont italicSystemFontOfSize:12];
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in _a café_ everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
@@ -150,8 +148,8 @@
 }
 
 - (void)testStandardStrongAndEmAndMonospaceInSameInputParsing {
-    UIFont *strongFont = self.standardParser.strongAttributes[NSFontAttributeName];
-    UIFont *emphasisFont = self.standardParser.emphasisAttributes[NSFontAttributeName];
+    UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
+    UIFont *emphasisFont = [UIFont italicSystemFontOfSize:12];
     UIFont *monospaceFont = self.standardParser.monospaceAttributes[NSFontAttributeName];
 
     NSMutableArray *emphasizedSnippets = @[@"under", @"From", @"progress"].mutableCopy;

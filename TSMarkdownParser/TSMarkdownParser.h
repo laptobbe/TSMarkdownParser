@@ -7,6 +7,7 @@
 //
 
 #import "TSBaseParser.h"
+#import "TSFontTraitMask.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,11 @@ typedef void (^TSMarkdownParserFormattingBlock)(NSMutableAttributedString *attri
 typedef void (^TSMarkdownParserLevelFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level);
 typedef void (^TSMarkdownParserLinkFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range,  NSString * _Nullable link);
 
+/**
+ * Recommended starting class for creating your own parser.
+ *
+ * Subclasses generally have Attributes and Traits properties
+ */
 @interface TSMarkdownParser : TSBaseParser
 
 /**

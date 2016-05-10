@@ -7,14 +7,7 @@
 //
 
 #import "TSMarkdownParser.h"
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-typedef NSColor UIColor;
-typedef NSImage UIImage;
-typedef NSFont UIFont;
-#endif
+
 
 @implementation TSMarkdownParser
 
@@ -29,8 +22,8 @@ static NSString *const TSMarkdownLeadRegex          = @"^((?:%@){1,%@})\\s+(.+?)
 // TODO: compare perf with @"^([%@]{1,%@})\\s*([^%@].*)$"
 static NSString *const TSMarkdownShortLeadRegex     = @"^([%@]{1,%@})\\s*([^%@].*?)$";
 
-// trail regex (with a min level)
-//static NSString *const TSMarkdownTrailRegex         = @"^(.*)$(%@{%@,})([^%@].*)";
+// subtext regex (with a min level)
+static NSString *const TSMarkdownSubtextRegex       = @"^(.*)$(%@{%@,})(?!%@)";
 
 // inline bracket regex
 static NSString *const TSMarkdownImageRegex         = @"\\!\\[[^\\[]*?\\]\\(\\S*\\)";
@@ -42,12 +35,6 @@ static NSString *const TSMarkdownVariableEnclosedRegex  = @"(%@+)(.*?[^%@].*?)(\
 static inline NSString *TSMarkdownVariableEnclosedRegexWithSymbol(NSString *symbol) {
     return [NSString stringWithFormat:TSMarkdownVariableEnclosedRegex, symbol, symbol, symbol];
 }
-
-/*
-static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
-static NSString *const TSMarkdownStrongRegex        = @"(\\*\\*|__)(.+?)(\\1)";
-static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
-*/
 
 #pragma mark escaping parsing
 
@@ -127,6 +114,30 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 - (void)addShortQuoteParsingWithMaxLevel:(unsigned int)maxLevel leadFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)leadFormattingBlock textFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)textFormattingBlock {
     [self addShortLeadParsingWithSymbol:@"\\>" maxLevel:maxLevel leadFormattingBlock:leadFormattingBlock textFormattingBlock:textFormattingBlock];
 }
+
+/*
+- (void)addSubtextParsingWithSymbol:(NSString *)symbol minLevel:(unsigned int)minLevel subtextFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)subtextFormattingBlock textFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)textFormattingBlock {
+    [self addTrailingParsingWithPattern:[NSString stringWithFormat:TSMarkdownSubtextRegex, symbol, minLevel ? @(minLevel) : @"", symbol] trailingFormattingBlock:subtextFormattingBlock textFormattingBlock:textFormattingBlock];
+}
+
+// pattern matching should be two parts: (string)spaces(trailingMD)
+- (void)addTrailingParsingWithPattern:(NSString *)pattern trailingFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)trailingFormattingBlock textFormattingBlock:(nullable TSMarkdownParserLevelFormattingBlock)textFormattingBlock {
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionAnchorsMatchLines error:nil];
+    [self addParsingRuleWithRegularExpression:expression block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
+        NSUInteger level = [match rangeAtIndex:1].length;
+        // formatting trailing markdown (may alter the length)
+        NSRange trailingRange = NSMakeRange([match rangeAtIndex:1].location, [match rangeAtIndex:2].location - [match rangeAtIndex:1].location);
+        if (trailingFormattingBlock)
+            trailingFormattingBlock(attributedString, trailingRange, level);
+        else
+            // deleting leading markdown
+            [attributedString deleteCharactersInRange:trailingRange];
+        // formatting string (may alter the length)
+        if (textFormattingBlock)
+            textFormattingBlock(attributedString, [match rangeAtIndex:2], level);
+    }];
+}
+*/
 
 #pragma mark bracket parsing
 

@@ -10,20 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*
+/**
  Provides the following default parsing rules from below examples:
  * Escaping parsing
- * Code escaping parsing using monospaceAttributes
- * Header using headerAttributes
- * List using listAttributes
- * Quote using quoteAttributes
- * Image using imageAttributes
- * Link using linkAttributes
- * LinkDetection using linkAttributes
- * Strong using strongAttributes
- * Emphasis using emphasisAttributes
+ * Code escaping parsing using monospaceAttributes/monospaceTraits
+ * Header using headerAttributes/headerTraits
+ * List using listAttributes/listTraits
+ * Quote using quoteAttributes/quoteTraits
+ * Image using imageAttributes/imageTraits
+ * Link using linkAttributes/linkTraits
+ * LinkDetection using linkAttributes/linkTraits
+ * Strong using strongAttributes/strongTraits
+ * Emphasis using emphasisAttributes/emphasisTraits
  */
-@interface TSStandardParser : TSMarkdownParser
+@interface TSMarkdownStandardParser : TSMarkdownParser
 
 /*
  Properties used by standardParser.
@@ -36,6 +36,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary<NSString *, id> *monospaceAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *strongAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *emphasisAttributes;
+
+@property (nonatomic, strong) NSArray<NSNumber *> *headerTraits;
+@property (nonatomic, strong) NSArray<NSNumber *> *listTraits;
+@property (nonatomic, strong) NSArray<NSNumber *> *quoteTraits;
+@property (nonatomic, assign) TSFontTraitMask imageTraits;
+@property (nonatomic, assign) TSFontTraitMask linkTraits;
+@property (nonatomic, assign) TSFontTraitMask monospaceTraits;
+@property (nonatomic, assign) TSFontTraitMask strongTraits;
+@property (nonatomic, assign) TSFontTraitMask emphasisTraits;
 
 @end
 

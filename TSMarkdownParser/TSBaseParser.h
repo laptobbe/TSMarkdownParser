@@ -6,12 +6,17 @@
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
 
+/**
+ * Basic class for parsing.
+ *
+ * It is discouraged to subclass directly from TSBaseParser. Subclass TSMarkdownParser instead.
+ */
 @interface TSBaseParser : NSObject
 
 /**

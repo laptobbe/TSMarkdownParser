@@ -8,14 +8,18 @@ TSMarkdownParser
 [![Licence](https://img.shields.io/cocoapods/l/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
 
 
-TSMarkdownParser is a markdown to NSAttributedString parser for iOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
+TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and OSX implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
+
+#Supported parsers
+
+StandardParser is currently the only pre-defined parser.
 
 #Supported tags
 Below is a list of tags supported by the parser out of the box, to add your own tags see "Adding custom parsing"
 
 ````
 Escaping
-\`
+\`\`
 `code`
 ``code``
 
@@ -57,7 +61,7 @@ __Strong__
 ````
 
 #Requirements
-TSMarkdownParser 2.x requires Xcode 7 or newer.
+TSMarkdownParser requires Xcode 7 or newer.
 
 #Installation
 TSMarkdownParser is distributed via CocoaPods
@@ -67,7 +71,9 @@ pod 'TSMarkdownParser'
 
 ````
 
-alternativly you can clone the project and build the static library setup in the project, or drag the source files into you project.
+Alternatively you can use Carthage.
+
+Alternatively you can clone the project and build one of the static library setups in the project (iOS, OSX, tvOS or watchOS).
 
 
 #Usage

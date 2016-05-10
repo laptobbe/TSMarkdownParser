@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "TSMarkdownParser.h"
+#import "TSMarkdownStandardParser.h"
 
 
 @interface ViewController () <NSTextViewDelegate>
@@ -38,7 +38,7 @@
 http://example.net\n\
 ![image](markdown)";
     
-    self.parser = [TSMarkdownParser standardParser];
+    self.parser = [TSMarkdownStandardParser new];
     
     // updating output
     [self textViewDidChange:self.markdownInput];

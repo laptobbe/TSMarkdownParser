@@ -7,11 +7,10 @@
 //
 
 #import "TSBaseParser.h"
-#import <Foundation/Foundation.h>
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
+@import UIKit;
 #else
-#import <AppKit/AppKit.h>
+@import AppKit;
 #endif
 
 
