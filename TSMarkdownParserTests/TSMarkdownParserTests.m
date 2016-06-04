@@ -617,4 +617,9 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\\.\n");
 }
 
+- (void)testStandardMultilineCodeEscapeParsing {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello``\n*.*\n``"];
+    XCTAssertEqualObjects(attributedString.string, @"Hello\n*.*\n");
+}
+
 @end

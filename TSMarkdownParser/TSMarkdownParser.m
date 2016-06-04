@@ -39,7 +39,7 @@ static inline NSString *TSMarkdownVariableEnclosedRegexWithSymbol(NSString *symb
 #pragma mark escaping parsing
 
 - (void)addCodeEscapingParsing {
-    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:[TSMarkdownNonEscapedRegex stringByAppendingString:TSMarkdownVariableEnclosedRegexWithSymbol(@"`")] options:(NSRegularExpressionOptions)0 error:nil];
+    NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:[TSMarkdownNonEscapedRegex stringByAppendingString:TSMarkdownVariableEnclosedRegexWithSymbol(@"`")] options:NSRegularExpressionDotMatchesLineSeparators error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         NSRange range = [match rangeAtIndex:2];
         // escaping all characters

@@ -178,8 +178,8 @@
 		C824BD0C1CB8EE6100E9E299 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		C824BD0E1CB919FF00E9E299 /* TSMarkdownStandardParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMarkdownStandardParser.h; sourceTree = "<group>"; };
 		C824BD0F1CB919FF00E9E299 /* TSMarkdownStandardParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownStandardParser.m; sourceTree = "<group>"; };
-		C8414BB81CB113A1000C7921 /* TSMarkdownParserFramework_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8414BC51CB114BC000C7921 /* TSMarkdownParserFramework_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8414BB81CB113A1000C7921 /* TSMarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8414BC51CB114BC000C7921 /* TSMarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85CDCB11CD7B079005DC2C0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		C85CDCB61CD84011005DC2C0 /* TSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSHelper.h; sourceTree = "<group>"; };
 		C85CDCB71CD84011005DC2C0 /* TSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSHelper.m; sourceTree = "<group>"; };
@@ -194,7 +194,6 @@
 		C8E66E781CDE3E4D0089A60D /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
 		C8E66E7A1CDE3E4D0089A60D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8E66E7C1CDE3E4D0089A60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8E66E961CDF00870089A60D /* TSMarkdownParserFramework_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E66E9E1CDFABF10089A60D /* ROADMAP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ROADMAP.md; sourceTree = SOURCE_ROOT; };
 		C8E66E9F1CE0C4940089A60D /* NSMutableAttributedString+Traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Traits.h"; sourceTree = "<group>"; };
 		C8E66EA01CE0C4940089A60D /* NSMutableAttributedString+Traits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Traits.m"; sourceTree = "<group>"; };
@@ -214,7 +213,7 @@
 		CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-Prefix.pch"; sourceTree = "<group>"; };
 		CF40360C1BA06F0600C67594 /* markdown_test_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markdown_test_image.png; sourceTree = "<group>"; };
 		DE2FB1B8A1FE1BD2C8204FE5 /* Pods-TSMarkdownParserExample iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserExample iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserExample iOS/Pods-TSMarkdownParserExample iOS.release.xcconfig"; sourceTree = "<group>"; };
-		F5A4F4421B36EF4100C4F56C /* TSMarkdownParserFramework_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParserFramework_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5A4F4421B36EF4100C4F56C /* TSMarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A4F4451B36EF4100C4F56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = TSMarkdownParser.podspec; sourceTree = SOURCE_ROOT; };
 		FE55BA28186B9543271A8D34 /* Pods-TSMarkdownParserExample watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserExample watchOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserExample watchOS/Pods-TSMarkdownParserExample watchOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -485,15 +484,14 @@
 			isa = PBXGroup;
 			children = (
 				CC3C71DDC9984C6E95E98E36 /* TSMarkdownParser.xctest */,
-				F5A4F4421B36EF4100C4F56C /* TSMarkdownParserFramework_iOS.framework */,
+				F5A4F4421B36EF4100C4F56C /* TSMarkdownParser.framework */,
 				C81B78DA1C54B4B800A1DE36 /* TSMarkdownParserExample iOS.app */,
 				3700F5801CAA637C0034AE2D /* TSMarkdownParserExample tvOS.app */,
 				3700F5981CAA63F90034AE2D /* TSMarkdownParserExample OSX.app */,
-				C8414BB81CB113A1000C7921 /* TSMarkdownParserFramework_tvOS.framework */,
-				C8414BC51CB114BC000C7921 /* TSMarkdownParserFramework_OSX.framework */,
 				C8E66E631CDE3E4D0089A60D /* TSMarkdownParserExample watchOS.app */,
 				C8E66E6F1CDE3E4D0089A60D /* TSMarkdownParserExample watchOS Extension.appex */,
-				C8E66E961CDF00870089A60D /* TSMarkdownParserFramework_watchOS.framework */,
+				C8414BB81CB113A1000C7921 /* TSMarkdownParser.framework */,
+				C8414BC51CB114BC000C7921 /* TSMarkdownParser.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -662,7 +660,7 @@
 			);
 			name = "TSMarkdownParserFramework tvOS";
 			productName = TSMarkdownParser;
-			productReference = C8414BB81CB113A1000C7921 /* TSMarkdownParserFramework_tvOS.framework */;
+			productReference = C8414BB81CB113A1000C7921 /* TSMarkdownParser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C8414BC41CB114BC000C7921 /* TSMarkdownParserFramework OSX */ = {
@@ -680,7 +678,7 @@
 			);
 			name = "TSMarkdownParserFramework OSX";
 			productName = TSMarkdownParser;
-			productReference = C8414BC51CB114BC000C7921 /* TSMarkdownParserFramework_OSX.framework */;
+			productReference = C8414BC51CB114BC000C7921 /* TSMarkdownParser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C8E66E621CDE3E4D0089A60D /* TSMarkdownParserExample watchOS */ = {
@@ -735,7 +733,6 @@
 			);
 			name = "TSMarkdownParserFramework watchOS";
 			productName = "TSMarkdownParserFramework watchOS";
-			productReference = C8E66E961CDF00870089A60D /* TSMarkdownParserFramework_watchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CC3C7DE1CDD4D3F7BEBA4C42 /* TSMarkdownParserTests */ = {
@@ -766,7 +763,6 @@
 				F5A4F43E1B36EF4100C4F56C /* Frameworks */,
 				F5A4F43F1B36EF4100C4F56C /* Headers */,
 				F5A4F4401B36EF4100C4F56C /* Resources */,
-				F5A4F45D1B36F00400C4F56C /* Copy Artifacts */,
 			);
 			buildRules = (
 			);
@@ -774,7 +770,7 @@
 			);
 			name = "TSMarkdownParserFramework iOS";
 			productName = MarkdownParser;
-			productReference = F5A4F4421B36EF4100C4F56C /* TSMarkdownParserFramework_iOS.framework */;
+			productReference = F5A4F4421B36EF4100C4F56C /* TSMarkdownParser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1141,20 +1137,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F5A4F45D1B36F00400C4F56C /* Copy Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Artifacts";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "ARTIFACTS=\"Artifacts\"\nBASE_DIR=$SRCROOT/$ARTIFACTS\nif [ -d \"${BASE_DIR}\" ];\nthen\nrm -rf $BASE_DIR\nfi\nmkdir -p $BASE_DIR\ncp -R $DWARF_DSYM_FOLDER_PATH/* $BASE_DIR";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1470,7 +1452,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-tvOS";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1499,7 +1482,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-tvOS";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1531,7 +1515,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-OSX";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1562,7 +1547,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-OSX";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1675,7 +1661,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1705,7 +1691,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = TSMarkdownParser;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1842,7 +1828,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-iOS";
+				PRODUCT_NAME = TSMarkdownParser;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1870,7 +1857,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = TSMarkdownParserFramework/module.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.computertalk.TSMarkdownParserFramework-iOS";
+				PRODUCT_NAME = TSMarkdownParser;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

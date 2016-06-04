@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8E66E951CDF00870089A60D"
-               BuildableName = "TSMarkdownParserFramework_watchOS.framework"
+               BuildableName = "TSMarkdownParserFramework watchOS"
                BlueprintName = "TSMarkdownParserFramework watchOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8E66E951CDF00870089A60D"
-            BuildableName = "TSMarkdownParserFramework_watchOS.framework"
+            BuildableName = "TSMarkdownParserFramework watchOS"
             BlueprintName = "TSMarkdownParserFramework watchOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8E66E951CDF00870089A60D"
-            BuildableName = "TSMarkdownParserFramework_watchOS.framework"
+            BuildableName = "TSMarkdownParserFramework watchOS"
             BlueprintName = "TSMarkdownParserFramework watchOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>

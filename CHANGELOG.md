@@ -16,6 +16,14 @@ Unreleased. All issues associated with this milestone can be found using this [f
 * making regex more generic, so they are independent from the symbols used
 
 ---
+## [2.1.1](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.1) (2016/06/04)
+Released on 2016/06/04. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.1.1+is%3Aclosed).
+
+#### Fixed
+* Fixed Multiline CodeEscaping [#51](https://github.com/laptobbe/TSMarkdownParser/issues/51)
+* Fixed Font compatibility for tvOS [#52](https://github.com/laptobbe/TSMarkdownParser/issues/52)
+
+
 ## [2.1.0](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.0) (2016/05/01)
 Released on 2016/05/01. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.1.0+is%3Aclosed).
 

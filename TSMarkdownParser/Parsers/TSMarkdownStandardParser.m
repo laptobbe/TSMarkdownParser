@@ -28,13 +28,14 @@
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:15] },
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:13] } ];
     _listAttributes = @[];
-    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"Georgia-Italic" size:12]}];
+    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Italic" size:12]}];
     
     _imageAttributes = @{};
     _linkAttributes = @{ NSForegroundColorAttributeName: [UIColor blueColor],
                          NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) };
     
-    _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12],
+    // Courier New and Courier are the only monospace fonts compatible with watchOS 2
+    _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:12],
                               NSForegroundColorAttributeName: [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongTraits = (TSFontTraitMask)TSFontMaskBold;
     _emphasisTraits = (TSFontTraitMask)TSFontMaskItalic;
