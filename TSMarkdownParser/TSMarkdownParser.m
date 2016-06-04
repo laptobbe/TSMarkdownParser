@@ -32,7 +32,7 @@ typedef NSFont UIFont;
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:15] },
                            @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:13] } ];
     _listAttributes = @[];
-    _quoteAttributes = @[@{NSFontAttributeName: [UIFont italicSystemFontOfSize:12]}];
+    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Italic" size:12]}];
     
     _imageAttributes = @{};
     _linkAttributes = @{ NSForegroundColorAttributeName: [UIColor blueColor],
