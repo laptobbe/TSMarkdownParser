@@ -426,19 +426,18 @@
     }];
 }
 
-// '#header' is not a valid header per markdown syntax and shouldn't be parsed as one
-- (void)testStandardHeaderIsNotParsedWithoutSpaceInBetween {
+- (void)testStandardHeaderIsParsedWithoutSpaceInBetween {
     NSString *header = @"header";
-    NSString *notValidHeader = [NSString stringWithFormat:@"#%@", header];
+    NSString *validHeader = [NSString stringWithFormat:@"#%@", header];
     UIFont *h1Font = self.standardParser.headerAttributes[0][NSFontAttributeName];
     
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:notValidHeader];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:validHeader];
     NSRange headerRange = [attributedString.string rangeOfString:header];
     [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
         UIFont *font = attributes[NSFontAttributeName];
-        XCTAssertNotEqual(font, h1Font);
+        XCTAssertEqual(font, h1Font);
     }];
-    XCTAssertEqualObjects(attributedString.string, notValidHeader);
+    XCTAssertEqualObjects(attributedString.string, header);
 }
 
 - (void)testStandardHeaderIsNotParsedAtNotBeginningOfTheLine {
