@@ -39,6 +39,14 @@ typedef void (^TSMarkdownParserLinkFormattingBlock)(NSMutableAttributedString *a
  */
 @property (nonatomic, assign) BOOL skipLinkAttribute;
 
+/**
+ * bundle for markdown resources
+ * 
+ * for iOS8+ only
+ * default is mainBundle
+ */
+@property (nonatomic, strong) NSBundle *resourceBundle NS_AVAILABLE(10_7, 8_0);
+
 /*
  It is recommended to use `[TSMarkdownParser new]` for an empty markdown parser.
  If you reuse some examples below, it is adviced to use them in the given order.

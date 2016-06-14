@@ -84,7 +84,18 @@
     
     [self addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
 #if !TARGET_OS_WATCH
-        UIImage *image = [UIImage imageNamed:link];
+        UIImage *image;
+        NSBundle *resourceBundle = self.resourceBundle;
+#if TARGET_OS_IPHONE
+        if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+            image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
+#else
+        if (resourceBundle) {
+            image = [resourceBundle imageForResource:link];
+#endif
+        } else {
+            image = [UIImage imageNamed:link];
+        }
         if (image) {
             NSTextAttachment *imageAttachment = [NSTextAttachment new];
             imageAttachment.image = image;

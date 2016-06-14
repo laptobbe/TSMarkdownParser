@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-               BuildableName = "TSMarkdownParser.framework"
-               BlueprintName = "TSMarkdownParserFramework iOS"
+               BlueprintIdentifier = "3700F5971CAA63F90034AE2D"
+               BuildableName = "TSMarkdownParserExample macOS.app"
+               BlueprintName = "TSMarkdownParserExample macOS"
                ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParser.framework"
-            BlueprintName = "TSMarkdownParserFramework iOS"
+            BlueprintIdentifier = "3700F5971CAA63F90034AE2D"
+            BuildableName = "TSMarkdownParserExample macOS.app"
+            BlueprintName = "TSMarkdownParserExample macOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParser.framework"
-            BlueprintName = "TSMarkdownParserFramework iOS"
+            BlueprintIdentifier = "3700F5971CAA63F90034AE2D"
+            BuildableName = "TSMarkdownParserExample macOS.app"
+            BlueprintName = "TSMarkdownParserExample macOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -69,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5A4F4411B36EF4100C4F56C"
-            BuildableName = "TSMarkdownParser.framework"
-            BlueprintName = "TSMarkdownParserFramework iOS"
+            BlueprintIdentifier = "3700F5971CAA63F90034AE2D"
+            BuildableName = "TSMarkdownParserExample macOS.app"
+            BlueprintName = "TSMarkdownParserExample macOS"
             ReferencedContainer = "container:TSMarkdownParser.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

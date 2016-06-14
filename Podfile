@@ -2,7 +2,15 @@ def default_pods
     pod 'TSMarkdownParser', :path => '.'
 end
 
-target 'TSMarkdownParserTests' do
+target 'TSMarkdownParserTests iOS’ do
+    default_pods
+end
+
+target 'TSMarkdownParserTests tvOS’ do
+    default_pods
+end
+
+target 'TSMarkdownParserTests macOS’ do
     default_pods
 end
 
@@ -11,7 +19,7 @@ target 'TSMarkdownParserExample iOS' do
     default_pods
 end
 
-target 'TSMarkdownParserExample watchOS' do
+target 'TSMarkdownParserExample watchOS Extension' do
     #platform :watchos
     default_pods
 end
@@ -21,7 +29,7 @@ target 'TSMarkdownParserExample tvOS' do
     default_pods
 end
 
-target 'TSMarkdownParserExample OSX' do
+target 'TSMarkdownParserExample macOS' do
     #platform :osx
     default_pods
 end
