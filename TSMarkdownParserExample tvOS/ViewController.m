@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import <TSMarkdownStandardParser.h>
+#import "UIScrollView+Scrollable.h"
+
 
 @interface ViewController ()
 
@@ -15,8 +17,12 @@
 @property (weak, nonatomic) IBOutlet UITextView *markdownInput;
 @property (weak, nonatomic) IBOutlet UILabel *markdownOutputLabel;
 @property (weak, nonatomic) IBOutlet UITextView *markdownOutputTextView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *markdownOutputLabelScrollView;
 
 @end
+
 
 @implementation ViewController
 
@@ -25,6 +31,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.parser = [TSMarkdownStandardParser new];
+    
+    _markdownOutputTextView.leftRightPreferredFocusedView = _segmentedControl;
+    _markdownOutputLabelScrollView.leftRightPreferredFocusedView = _segmentedControl;
     
     // updating output
     [self textViewDidChange:self.markdownInput];
@@ -35,14 +44,15 @@
     NSAttributedString *result = [self.parser attributedStringFromMarkdown:textView.text];
     self.markdownOutputLabel.attributedText = result;
     self.markdownOutputTextView.attributedText = result;
+    self.markdownOutputLabelScrollView.contentSize = self.markdownOutputLabel.intrinsicContentSize;
 }
 
 - (IBAction)switchOutput:(UISegmentedControl *)segmentedControl {
     if (segmentedControl.selectedSegmentIndex == 0) {
-        self.markdownOutputLabel.hidden = NO;
+        self.markdownOutputLabelScrollView.hidden = NO;
         self.markdownOutputTextView.hidden = YES;
     } else {
-        self.markdownOutputLabel.hidden = YES;
+        self.markdownOutputLabelScrollView.hidden = YES;
         self.markdownOutputTextView.hidden = NO;
     }
 }

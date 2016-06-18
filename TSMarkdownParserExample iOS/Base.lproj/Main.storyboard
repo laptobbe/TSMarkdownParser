@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
+        <development version="7000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -17,22 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Markdown Input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZU-l0-rSz">
-                                <rect key="frame" x="0.0" y="0.0" width="124" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="v1s-M3-Yoi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZMY-ui-FQm">
-                                <rect key="frame" x="0.0" y="21" width="600" height="275"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="saF-I0-2UD"/>
-                                </constraints>
-                                <string key="text"># header
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fi6-aj-2IP" userLabel="Input">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Markdown Input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZU-l0-rSz">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="Asr-oU-fZp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZMY-ui-FQm">
+                                        <rect key="frame" x="0.0" y="29" width="600" height="211"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="211" id="saF-I0-2UD"/>
+                                        </constraints>
+                                        <string key="text"># header
 ###### header
 * list, _emphasis_, *emphasis*
 ++ list, __bold__, **bold**
@@ -43,84 +47,106 @@
 [link](http://example.net)
 http://example.net
 ![image](markdown)</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="d3k-vG-hIi"/>
-                                </connections>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Markdown Output" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-8r-mGd">
-                                <rect key="frame" x="0.0" y="304" width="138" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="881-OL-fzM">
-                                <rect key="frame" x="138" y="296" width="165" height="29"/>
-                                <segments>
-                                    <segment title="UILabel"/>
-                                    <segment title="UITextView"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchOutput:" destination="BYZ-38-t0r" eventType="valueChanged" id="uMr-r9-Cig"/>
-                                </connections>
-                            </segmentedControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rc3-ww-Zbe">
-                                <rect key="frame" x="0.0" y="325" width="600" height="275"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="d3k-vG-hIi"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ZZU-l0-rSz" firstAttribute="leading" secondItem="ZMY-ui-FQm" secondAttribute="leading" id="5PT-BF-8Kr"/>
+                                    <constraint firstItem="ZZU-l0-rSz" firstAttribute="top" secondItem="fi6-aj-2IP" secondAttribute="top" id="C86-OR-8eX"/>
+                                    <constraint firstItem="ZMY-ui-FQm" firstAttribute="top" secondItem="ZZU-l0-rSz" secondAttribute="bottom" id="K1A-cN-Val"/>
+                                    <constraint firstItem="ZZU-l0-rSz" firstAttribute="leading" secondItem="fi6-aj-2IP" secondAttribute="leading" id="ORp-Wk-xa6"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZMY-ui-FQm" secondAttribute="bottom" id="b4n-ea-lzO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZMY-ui-FQm" secondAttribute="trailing" id="bYJ-rS-RzD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRg-Wh-sMM" userLabel="Output">
+                                <rect key="frame" x="0.0" y="240" width="600" height="360"/>
                                 <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-9Z-sK0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Markdown Output" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-8r-mGd">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="881-OL-fzM">
+                                        <rect key="frame" x="155" y="0.0" width="165" height="29"/>
+                                        <segments>
+                                            <segment title="UILabel"/>
+                                            <segment title="UITextView"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="switchOutput:" destination="BYZ-38-t0r" eventType="valueChanged" id="uMr-r9-Cig"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rc3-ww-Zbe">
+                                        <rect key="frame" x="0.0" y="48" width="600" height="312"/>
+                                        <subviews>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN2-9Z-sK0">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="xN2-9Z-sK0" secondAttribute="bottom" id="BhK-DF-n4x"/>
+                                            <constraint firstItem="xN2-9Z-sK0" firstAttribute="leading" secondItem="Rc3-ww-Zbe" secondAttribute="leading" id="SUr-Xa-TCe"/>
+                                            <constraint firstAttribute="trailing" secondItem="xN2-9Z-sK0" secondAttribute="trailing" id="X5T-dF-n9X"/>
+                                            <constraint firstItem="xN2-9Z-sK0" firstAttribute="top" secondItem="Rc3-ww-Zbe" secondAttribute="top" id="j7t-dj-hWL"/>
+                                        </constraints>
+                                    </scrollView>
+                                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="beI-kg-e92">
+                                        <rect key="frame" x="0.0" y="48" width="600" height="312"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textView>
                                 </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="xN2-9Z-sK0" firstAttribute="top" secondItem="Rc3-ww-Zbe" secondAttribute="top" id="DGd-eD-fGT"/>
-                                    <constraint firstAttribute="trailing" secondItem="xN2-9Z-sK0" secondAttribute="trailing" id="RxR-HX-QtY"/>
-                                    <constraint firstItem="xN2-9Z-sK0" firstAttribute="leading" secondItem="Rc3-ww-Zbe" secondAttribute="leading" id="Uv7-KN-GLI"/>
-                                    <constraint firstAttribute="bottom" secondItem="xN2-9Z-sK0" secondAttribute="bottom" id="wPw-P5-fAk"/>
+                                    <constraint firstItem="beI-kg-e92" firstAttribute="top" secondItem="Rc3-ww-Zbe" secondAttribute="top" id="1ru-3J-Heq"/>
+                                    <constraint firstItem="beI-kg-e92" firstAttribute="bottom" secondItem="Rc3-ww-Zbe" secondAttribute="bottom" id="2Y1-AY-i3z"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rc3-ww-Zbe" secondAttribute="trailing" id="Dyc-7y-xmt"/>
+                                    <constraint firstItem="2dn-8r-mGd" firstAttribute="leading" secondItem="FRg-Wh-sMM" secondAttribute="leading" id="F1g-MD-3MU"/>
+                                    <constraint firstItem="Rc3-ww-Zbe" firstAttribute="leading" secondItem="beI-kg-e92" secondAttribute="leading" id="F3m-LV-L1C"/>
+                                    <constraint firstItem="881-OL-fzM" firstAttribute="leading" secondItem="2dn-8r-mGd" secondAttribute="trailing" constant="17" id="IV9-0G-gCa"/>
+                                    <constraint firstItem="2dn-8r-mGd" firstAttribute="top" secondItem="881-OL-fzM" secondAttribute="top" id="K4g-S1-6dG"/>
+                                    <constraint firstItem="2dn-8r-mGd" firstAttribute="top" secondItem="FRg-Wh-sMM" secondAttribute="top" id="PeT-BA-Mvh"/>
+                                    <constraint firstItem="beI-kg-e92" firstAttribute="top" secondItem="2dn-8r-mGd" secondAttribute="bottom" constant="20" id="YZJ-it-QNC"/>
+                                    <constraint firstItem="2dn-8r-mGd" firstAttribute="centerY" secondItem="881-OL-fzM" secondAttribute="centerY" id="alw-Ac-XWb"/>
+                                    <constraint firstItem="2dn-8r-mGd" firstAttribute="leading" secondItem="beI-kg-e92" secondAttribute="leading" id="mj2-sN-0C2"/>
+                                    <constraint firstItem="Rc3-ww-Zbe" firstAttribute="trailing" secondItem="beI-kg-e92" secondAttribute="trailing" id="oUA-b5-4K2"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rc3-ww-Zbe" secondAttribute="bottom" id="uBr-U6-ezc"/>
                                 </constraints>
-                            </scrollView>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="beI-kg-e92">
-                                <rect key="frame" x="0.0" y="325" width="600" height="275"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="leading" secondItem="2dn-8r-mGd" secondAttribute="leading" id="17R-dw-pPW"/>
-                            <constraint firstItem="2dn-8r-mGd" firstAttribute="top" secondItem="ZMY-ui-FQm" secondAttribute="bottom" constant="8" symbolic="YES" id="1Dx-WG-Ew9"/>
-                            <constraint firstItem="ZMY-ui-FQm" firstAttribute="top" secondItem="ZZU-l0-rSz" secondAttribute="bottom" id="1Sc-iO-4mA"/>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="top" secondItem="881-OL-fzM" secondAttribute="bottom" constant="1" id="2lM-Fw-vii"/>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="trailing" secondItem="ZMY-ui-FQm" secondAttribute="trailing" id="5Ea-5O-ZBo"/>
-                            <constraint firstItem="881-OL-fzM" firstAttribute="leading" secondItem="2dn-8r-mGd" secondAttribute="trailing" id="A4C-KW-6dX"/>
-                            <constraint firstItem="Rc3-ww-Zbe" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="ALg-Lo-9K8"/>
-                            <constraint firstItem="ZZU-l0-rSz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cla-ng-Imm"/>
-                            <constraint firstItem="ZMY-ui-FQm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DUh-a7-Nhb"/>
-                            <constraint firstItem="Rc3-ww-Zbe" firstAttribute="trailing" secondItem="beI-kg-e92" secondAttribute="trailing" id="HWY-sv-JhM"/>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="top" secondItem="2dn-8r-mGd" secondAttribute="bottom" id="WEW-rj-4yg"/>
-                            <constraint firstItem="ZMY-ui-FQm" firstAttribute="leading" secondItem="2dn-8r-mGd" secondAttribute="leading" id="Xsg-7i-0tX"/>
-                            <constraint firstItem="ZZU-l0-rSz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nXq-SM-giY"/>
-                            <constraint firstAttribute="trailing" secondItem="ZMY-ui-FQm" secondAttribute="trailing" id="oB0-pZ-ox2"/>
-                            <constraint firstItem="Rc3-ww-Zbe" firstAttribute="leading" secondItem="beI-kg-e92" secondAttribute="leading" id="shN-pd-93L"/>
-                            <constraint firstItem="881-OL-fzM" firstAttribute="top" secondItem="ZMY-ui-FQm" secondAttribute="bottom" id="teL-bU-x3I"/>
-                            <constraint firstItem="ZZU-l0-rSz" firstAttribute="leading" secondItem="ZMY-ui-FQm" secondAttribute="leading" id="vIw-Sg-vj7"/>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="top" secondItem="Rc3-ww-Zbe" secondAttribute="top" id="vYJ-w9-60E"/>
-                            <constraint firstItem="beI-kg-e92" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="zN4-oB-QzJ"/>
+                            <constraint firstItem="fi6-aj-2IP" firstAttribute="trailing" secondItem="FRg-Wh-sMM" secondAttribute="trailing" id="4fd-u1-NsI"/>
+                            <constraint firstItem="fi6-aj-2IP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Jg-6V-Vb7"/>
+                            <constraint firstItem="fi6-aj-2IP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="BLG-yO-yRz"/>
+                            <constraint firstItem="FRg-Wh-sMM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="J9h-de-rsD"/>
+                            <constraint firstItem="FRg-Wh-sMM" firstAttribute="top" secondItem="fi6-aj-2IP" secondAttribute="bottom" id="UXQ-Q4-9dj"/>
+                            <constraint firstItem="FRg-Wh-sMM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="240" id="dcf-tf-pNV"/>
+                            <constraint firstItem="fi6-aj-2IP" firstAttribute="leading" secondItem="FRg-Wh-sMM" secondAttribute="leading" id="xle-Pa-f9C"/>
+                            <constraint firstAttribute="trailing" secondItem="fi6-aj-2IP" secondAttribute="trailing" id="ymC-ac-fJz"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="markdownInput" destination="ZMY-ui-FQm" id="tHa-cq-3a6"/>
                         <outlet property="markdownOutputLabel" destination="xN2-9Z-sK0" id="h56-8E-AWF"/>
+                        <outlet property="markdownOutputLabelScrollView" destination="Rc3-ww-Zbe" id="nMY-FZ-1KG"/>
                         <outlet property="markdownOutputTextView" destination="beI-kg-e92" id="NfX-0g-p3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259" y="337"/>
+            <point key="canvasLocation" x="258.75" y="336.25"/>
         </scene>
     </scenes>
 </document>

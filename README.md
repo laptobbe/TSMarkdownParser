@@ -8,10 +8,15 @@ TSMarkdownParser
 [![Licence](https://img.shields.io/cocoapods/l/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
 
 
-TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and OSX implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
+TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
+
+#Help welcome
+Please make pull requests for:
+* adding a new parser
+* adding an icon
+* ...
 
 #Supported parsers
-
 StandardParser is currently the only pre-defined parser.
 
 #Supported tags
@@ -63,6 +68,13 @@ __Strong__
 #Requirements
 TSMarkdownParser requires Xcode 7 or newer.
 
+#Demo
+Examples of rendering are available for:
+* iOS UILabel and UITextView
+* tvOS UILabel and UITextView
+* macOS NSTextField and NSTextView
+* watchOS WKInterfaceLabel
+
 #Installation
 TSMarkdownParser is distributed via CocoaPods
 
@@ -73,8 +85,7 @@ pod 'TSMarkdownParser'
 
 Alternatively you can use Carthage.
 
-Alternatively you can clone the project and build one of the static library setups in the project (iOS, OSX, tvOS or watchOS).
-
+Alternatively you can clone the project and build one of the static library setups in the project (iOS, macOS, tvOS or watchOS).
 
 #Usage
 The standardParser class method provides a new instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkdownParser and add your own parsing. See "Adding custom parsing" for information on how to do this.

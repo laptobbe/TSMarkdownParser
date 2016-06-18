@@ -7,4 +7,8 @@ language: objective-c
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -project TSMarkdownParser.xcodeproj -scheme Tests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace TSMarkdownParser.xcworkspace -scheme "Tests iOS" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace TSMarkdownParser.xcworkspace -scheme "Tests tvOS" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace TSMarkdownParser.xcworkspace -scheme "Tests macOS" -destination 'platform=OS X,arch=x86_64' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+#- set -o pipefail && xcodebuild build -workspace TSMarkdownParser.xcworkspace -scheme "TSMarkdownParserExample watchOS" -sdk watchsimulator -destination 'platform=iOS Simulator,name=iPhone 6s Plus,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+#- set -o pipefail && xcodebuild build -workspace TSMarkdownParser.xcworkspace -scheme "TSMarkdownParserExample watchOS" -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c

@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  TSMarkdownParserExample OSX
+//  TSMarkdownParserExample macOS
 //
 //  Created by Antoine Cœur on 3/29/16.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
@@ -14,7 +14,11 @@
 
 @property (strong, nonatomic) TSMarkdownParser *parser;
 @property (unsafe_unretained) IBOutlet NSTextView *markdownInput;
-@property (weak) IBOutlet NSTextField *markdownOutput;
+@property (weak) IBOutlet NSTextField *markdownOutputTextField;
+@property (unsafe_unretained) IBOutlet NSTextView *markdownOutputTextView;
+
+@property (weak, nonatomic) IBOutlet NSScrollView *markdownOutputTextFieldScrollView;
+@property (weak, nonatomic) IBOutlet NSScrollView *markdownOutputTextViewScrollView;
 
 @end
 
@@ -52,9 +56,29 @@ http://example.net\n\
 
 #pragma mark -
 
+- (void)textDidChange:(NSNotification *)notification
+{
+    [self textViewDidChange:notification.object];
+}
+
 - (void)textViewDidChange:(NSTextView *)textView
 {
-    self.markdownOutput.attributedStringValue = [self.parser attributedStringFromMarkdown:textView.string];
+    NSAttributedString *output = [self.parser attributedStringFromMarkdown:textView.string];
+    self.markdownOutputTextField.attributedStringValue = output;
+    [self.markdownOutputTextView.textStorage setAttributedString:output];
+}
+
+- (IBAction)switchOutput:(NSSegmentedControl *)segmentedControl {
+    switch (segmentedControl.selectedSegment) {
+        case 0:
+            self.markdownOutputTextViewScrollView.hidden = NO;
+            self.markdownOutputTextFieldScrollView.hidden = YES;
+            break;
+        case 1:
+            self.markdownOutputTextViewScrollView.hidden = YES;
+            self.markdownOutputTextFieldScrollView.hidden = NO;
+            break;
+    }
 }
 
 @end

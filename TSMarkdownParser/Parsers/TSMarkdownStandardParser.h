@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ StandardParser is inspired by [Daring Fireball](http://daringfireball.net/projects/markdown/syntax).
  Provides the following default parsing rules:
  * Escaping parsing
  * Code escaping parsing using monospaceAttributes/monospaceTraits

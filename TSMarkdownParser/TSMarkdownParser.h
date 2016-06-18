@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Computertalk Sweden. All rights reserved.
 //
 
+#import "TSFoundation.h"
 #import "TSBaseParser.h"
 #import "TSFontTraitMask.h"
 

@@ -1,6 +1,6 @@
 //
-//  TSMarkdownParserTests_OSX.m
-//  TSMarkdownParserTests OSX
+//  TSMarkdownParserTests_macOS.m
+//  TSMarkdownParserTests macOS
 //
 //  Created by Xin Ye on 6/4/16.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface TSMarkdownParserTests_OSX : XCTestCase
+@interface TSMarkdownParserTests_macOS : XCTestCase
 
 @end
 
-@implementation TSMarkdownParserTests_OSX
+@implementation TSMarkdownParserTests_macOS
 
 - (void)setUp {
     [super setUp];

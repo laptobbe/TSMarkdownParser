@@ -102,14 +102,16 @@
 #if !TARGET_OS_WATCH
         UIImage *image;
         NSBundle *resourceBundle = self.resourceBundle;
-#if TARGET_OS_IPHONE
-        if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
-            image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
-#else
+#if !TARGET_OS_IPHONE
         if (resourceBundle) {
             image = [resourceBundle imageForResource:link];
+        } else
+#elif __has_include(<UIKit/UITraitCollection.h>)
+        if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+            image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
+        } else
 #endif
-        } else {
+        {
             image = [UIImage imageNamed:link];
         }
         if (image) {

@@ -20,6 +20,9 @@
 		3700F5A41CAA63F90034AE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3700F5A31CAA63F90034AE2D /* Assets.xcassets */; };
 		3700F5A71CAA63F90034AE2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3700F5A51CAA63F90034AE2D /* Main.storyboard */; };
 		370256D0D6CEF96401563174 /* libPods-TSMarkdownParserTests iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC881E31B8C02C14A774E4 /* libPods-TSMarkdownParserTests iOS.a */; };
+		376002541D13085700557C98 /* ScrollableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376002531D13085700557C98 /* ScrollableScrollView.m */; };
+		376002571D13086E00557C98 /* ScrollableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376002561D13086E00557C98 /* ScrollableTextView.m */; };
+		376002661D134B2700557C98 /* UIScrollView+Scrollable.m in Sources */ = {isa = PBXBuildFile; fileRef = 376002651D134B2700557C98 /* UIScrollView+Scrollable.m */; };
 		3760CB0C1D0DFA830058E478 /* TSMarkdownParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests_iOS.m */; };
 		3760CB0D1D0DFA840058E478 /* TSMarkdownParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownParserTests_iOS.m */; };
 		37E0F8D11D058F2600C45348 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
@@ -162,6 +165,13 @@
 		3700F5A31CAA63F90034AE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3700F5A61CAA63F90034AE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3700F5A81CAA63F90034AE2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		376002521D13085700557C98 /* ScrollableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableScrollView.h; sourceTree = "<group>"; };
+		376002531D13085700557C98 /* ScrollableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableScrollView.m; sourceTree = "<group>"; };
+		376002551D13086E00557C98 /* ScrollableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableTextView.h; sourceTree = "<group>"; };
+		376002561D13086E00557C98 /* ScrollableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableTextView.m; sourceTree = "<group>"; };
+		376002631D13139F00557C98 /* TSFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSFoundation.h; sourceTree = "<group>"; };
+		376002641D134B2700557C98 /* UIScrollView+Scrollable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Scrollable.h"; sourceTree = "<group>"; };
+		376002651D134B2700557C98 /* UIScrollView+Scrollable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Scrollable.m"; sourceTree = "<group>"; };
 		3CEB5949B57526714EE259C2 /* Pods-TSMarkdownParserExample watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserExample watchOS Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserExample watchOS Extension/Pods-TSMarkdownParserExample watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 		4E01129E250B941094FF8987 /* Pods-TSMarkdownParserTests iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserTests iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserTests iOS/Pods-TSMarkdownParserTests iOS.release.xcconfig"; sourceTree = "<group>"; };
 		67A0194DF7407968A6DAEA2B /* Pods-TSMarkdownParserExample tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserExample tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserExample tvOS/Pods-TSMarkdownParserExample tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -339,6 +349,12 @@
 				3700F5861CAA637C0034AE2D /* AppDelegate.m */,
 				3700F5881CAA637C0034AE2D /* ViewController.h */,
 				3700F5891CAA637C0034AE2D /* ViewController.m */,
+				376002551D13086E00557C98 /* ScrollableTextView.h */,
+				376002561D13086E00557C98 /* ScrollableTextView.m */,
+				376002521D13085700557C98 /* ScrollableScrollView.h */,
+				376002531D13085700557C98 /* ScrollableScrollView.m */,
+				376002641D134B2700557C98 /* UIScrollView+Scrollable.h */,
+				376002651D134B2700557C98 /* UIScrollView+Scrollable.m */,
 				3700F58B1CAA637C0034AE2D /* Main.storyboard */,
 				3700F58E1CAA637C0034AE2D /* Assets.xcassets */,
 				3700F5901CAA637C0034AE2D /* Info.plist */,
@@ -377,6 +393,17 @@
 				3700F59E1CAA63F90034AE2D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		376002621D1312F100557C98 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C8E66E9F1CE0C4940089A60D /* NSMutableAttributedString+Traits.h */,
+				C8E66EA01CE0C4940089A60D /* NSMutableAttributedString+Traits.m */,
+				C85CDCB61CD84011005DC2C0 /* TSHelper.h */,
+				C85CDCB71CD84011005DC2C0 /* TSHelper.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		6E8DC33B1D031ACB00AD7172 /* TSMarkdownParserTests tvOS */ = {
@@ -490,13 +517,11 @@
 				F6F149C11A7CFB4200A24213 /* TSMarkdownParser.podspec */,
 				CC3C72A1BA2FA83330E38DEB /* Supporting Files */,
 				C85CDCB01CD7B03E005DC2C0 /* Parsers */,
-				C8E66E9F1CE0C4940089A60D /* NSMutableAttributedString+Traits.h */,
-				C8E66EA01CE0C4940089A60D /* NSMutableAttributedString+Traits.m */,
+				376002621D1312F100557C98 /* Helpers */,
+				376002631D13139F00557C98 /* TSFoundation.h */,
+				C8E66EB41CE0F1AA0089A60D /* TSFontTraitMask.h */,
 				C81B78CF1C5483DF00A1DE36 /* TSBaseParser.h */,
 				C81B78D01C5483DF00A1DE36 /* TSBaseParser.m */,
-				C8E66EB41CE0F1AA0089A60D /* TSFontTraitMask.h */,
-				C85CDCB61CD84011005DC2C0 /* TSHelper.h */,
-				C85CDCB71CD84011005DC2C0 /* TSHelper.m */,
 				CC3C79659073897FDCACEC17 /* TSMarkdownParser.h */,
 				CC3C7B7AEA9B50B9BF782FC5 /* TSMarkdownParser.m */,
 			);
@@ -1376,7 +1401,10 @@
 			files = (
 				3700F58A1CAA637C0034AE2D /* ViewController.m in Sources */,
 				3700F5871CAA637C0034AE2D /* AppDelegate.m in Sources */,
+				376002661D134B2700557C98 /* UIScrollView+Scrollable.m in Sources */,
+				376002571D13086E00557C98 /* ScrollableTextView.m in Sources */,
 				3700F5841CAA637C0034AE2D /* main.m in Sources */,
+				376002541D13085700557C98 /* ScrollableScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

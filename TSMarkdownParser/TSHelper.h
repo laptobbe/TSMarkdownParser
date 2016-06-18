@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+#import "TSFoundation.h"
 #import "TSFontTraitMask.h"
 
 NS_ASSUME_NONNULL_BEGIN
