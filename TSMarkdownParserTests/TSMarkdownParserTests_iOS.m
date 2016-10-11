@@ -8,15 +8,25 @@
 
 #import <XCTest/XCTest.h>
 #import <TSMarkdownStandardParser.h>
+#import <TSMarkupParser+FormatExamples.h>
+
+
+#if TARGET_OS_TV
+#define defaultSize 29
+#else
+#define defaultSize 12
+#endif
+
 
 @interface TSMarkdownParserTests : XCTestCase
 
-/// [TSMarkdownParser new] version
-@property (nonatomic) TSMarkdownParser *parser;
+/// [TSMarkupParser new] version
+@property (nonatomic) TSMarkupParser *parser;
 /// [TSMarkdownStandardParser new] version
 @property (nonatomic) TSMarkdownStandardParser *standardParser;
 
 @end
+
 
 @implementation TSMarkdownParserTests
 
@@ -24,7 +34,7 @@
 {
     [super setUp];
     
-    self.parser = [TSMarkdownParser new];
+    self.parser = [TSMarkupParser new];
     self.parser.resourceBundle = [NSBundle bundleForClass:[self class]];
     self.standardParser = [TSMarkdownStandardParser new];
     self.standardParser.resourceBundle = [NSBundle bundleForClass:[self class]];
@@ -51,7 +61,7 @@
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location + match.range.length-4, 2)];
     }];
 
-    NSAttributedString *attributedString = [self.parser attributedStringFromMarkdown:@"Hello\nI go to **café** everyday"];
+    NSAttributedString *attributedString = [self.parser attributedStringFromMarkup:@"Hello\nI go to **café** everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:15 effectiveRange:NULL], font);
     XCTAssertTrue([attributedString.string rangeOfString:@"*"].location == NSNotFound);
 }
@@ -73,13 +83,13 @@
         [attributedString deleteCharactersInRange:NSMakeRange(match.range.location+match.range.length-2, 1)];
     }];
 
-    NSAttributedString *attributedString = [self.parser attributedStringFromMarkdown:@"Hello\nI go to *café* everyday"];
+    NSAttributedString *attributedString = [self.parser attributedStringFromMarkup:@"Hello\nI go to *café* everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:15 effectiveRange:NULL], font);
     XCTAssertTrue([attributedString.string rangeOfString:@"*"].location == NSNotFound);
 }
 
 - (void)testStandardDefaultFont {
-    UIFont *font = [UIFont systemFontOfSize:12];
+    UIFont *font = [UIFont systemFontOfSize:defaultSize];
     XCTAssertEqualObjects(self.standardParser.defaultAttributes[NSFontAttributeName], font);
 }
 
@@ -92,78 +102,78 @@
 }
 
 - (void)testStandardDefaultFontParsing {
-    UIFont *font = [UIFont systemFontOfSize:12];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in a café everyday"];
+    UIFont *font = [UIFont systemFontOfSize:defaultSize];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in a café everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:6 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardBoldParsing {
-    UIFont *font = [UIFont boldSystemFontOfSize:12];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in **a café** everyday"];
+    UIFont *font = [UIFont boldSystemFontOfSize:defaultSize];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in **a café** everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardEmParsing {
 #if TARGET_OS_IPHONE
-    UIFont *font = [UIFont italicSystemFontOfSize:12];
+    UIFont *font = [UIFont italicSystemFontOfSize:defaultSize];
 #else
     UIFont *font = [UIFont fontWithName:@".AppleSystemUIFontItalic" size:12];
 #endif
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in *a café* everyday"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in *a café* everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardBoldParsingUnderscores {
-    UIFont *font = [UIFont boldSystemFontOfSize:12];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in __a café__ everyday"];
+    UIFont *font = [UIFont boldSystemFontOfSize:defaultSize];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in __a café__ everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardEmParsingUnderscores {
 #if TARGET_OS_IPHONE
-    UIFont *font = [UIFont italicSystemFontOfSize:12];
+    UIFont *font = [UIFont italicSystemFontOfSize:defaultSize];
 #else
     UIFont *font = [UIFont fontWithName:@".AppleSystemUIFontItalic" size:12];
 #endif
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in _a café_ everyday"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in _a café_ everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardMonospaceParsing {
     UIFont *font = self.standardParser.monospaceAttributes[NSFontAttributeName];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in `a café` everyday"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nI drink in `a café` everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
 }
 
 - (void)testStandardBoldParsingOneCharacter {
     UIFont *font = self.standardParser.strongAttributes[NSFontAttributeName];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"This is **a** nice **boy**"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"This is **a** nice **boy**"];
     XCTAssertNotEqualObjects([attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL], font);
 }
 
 //https://github.com/laptobbe/TSMarkdownParser/issues/24
 - (void)testStandardEmParsingOneCharacter {
     UIFont *font = self.standardParser.emphasisAttributes[NSFontAttributeName];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"This is *a* nice *boy*"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"This is *a* nice *boy*"];
     XCTAssertNotEqualObjects([attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL], font);
 }
 
 - (void)testStandardMonospaceParsingOneCharacter {
     UIFont *font = self.standardParser.monospaceAttributes[NSFontAttributeName];
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"This is `a` nice `boy`"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"This is `a` nice `boy`"];
     XCTAssertNotEqualObjects([attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL], font);
 }
 
 - (void)testStandardStrongAndEmAndMonospaceInSameInputParsing {
-    UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
+    UIFont *strongFont = [UIFont boldSystemFontOfSize:defaultSize];
 #if TARGET_OS_IPHONE
-    UIFont *emphasisFont = [UIFont italicSystemFontOfSize:12];
+    UIFont *emphasisFont = [UIFont italicSystemFontOfSize:defaultSize];
 #else
     UIFont *emphasisFont = [UIFont fontWithName:@".AppleSystemUIFontItalic" size:12];
 #endif
@@ -186,7 +196,7 @@
         [snippets removeObject:snippet];
     };
 
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your `seat`.\n\n**Worn Grass** See the *progress* of the `tournament`."];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"**Tennis Court** Stand *under* the spectacular glass-and-steel roof.\n\n__Strawberries and Cream__ _From_ your `seat`.\n\n**Worn Grass** See the *progress* of the `tournament`."];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, __unused BOOL *stop) {
@@ -213,34 +223,34 @@
 }
 
 - (void)testStandardListWithAsteriskParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n* I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n* I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardListWith2AsterisksParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n** I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n** I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\t•\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardQuoteParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n> I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n> I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardQuoteLevel2Parsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n>> I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n>> I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\t\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardListWithAsteriskParsingMultiple {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n* I drink in a café everyday\n* to use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n* I drink in a café everyday\n* to use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tI drink in a café everyday\n•\tto use Wi-Fi");
 }
 
 - (void)testCustomListWithAsterisksParsingWithStrongText {
     UIFont *strongFont = [UIFont boldSystemFontOfSize:12];
 
-    [self.parser addListParsingWithMaxLevel:1 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
+    [self.parser addListParsingWithMaxLevel:1 separator:@" " leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
         [attributedString replaceCharactersInRange:range withString:@"    • "];
     } textFormattingBlock:nil];
     [self.parser addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -254,7 +264,7 @@
     NSMutableArray *strongSnippets = @[@"Strong Text:"].mutableCopy;
 
     NSString *expectedRawString = @"Strong Text: Some Subtitle.\n\n    • List Item One\n    • List Item Two";
-    NSAttributedString *attributedString = [self.parser attributedStringFromMarkdown:@"**Strong Text:** Some Subtitle.\n\n* List Item One\n* List Item Two"];
+    NSAttributedString *attributedString = [self.parser attributedStringFromMarkup:@"**Strong Text:** Some Subtitle.\n\n* List Item One\n* List Item Two"];
     [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length)
                                          options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                       usingBlock:^(NSDictionary *attributes, NSRange range, __unused BOOL *stop) {
@@ -274,28 +284,28 @@
 }
 
 - (void)testStandardListWithPlusParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n+ I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardListWithDashParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n- I drink in a café everyday\nto use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n- I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tI drink in a café everyday\nto use Wi-Fi");
 }
 
 - (void)testStandardListWithPlusParsingMultiple {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ I drink in a café everyday\n+ to use Wi-Fi"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n+ I drink in a café everyday\n+ to use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\tI drink in a café everyday\n•\tto use Wi-Fi");
 }
 
 - (void)testStandardListWorksWithMultipleDifferentListOptions {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n+ item1\n- item2\n* item3"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n+ item1\n- item2\n* item3"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n•\titem1\n•\titem2\n•\titem3");
 }
 
 
 - (void)testStandardLinkParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/) to test Wi-Fi\nat home"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a [link](https://www.example.net/) to test Wi-Fi\nat home"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
@@ -313,7 +323,7 @@
 }
 
 - (void)testStandardAutoLinkParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a link https://www.example.net/ to test Wi-Fi\nat home"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a link https://www.example.net/ to test Wi-Fi\nat home"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:24 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:24 effectiveRange:NULL];
@@ -323,7 +333,7 @@
 }
 
 - (void)testStandardLinkParsingOnEndOfStrings {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a [link](https://www.example.net/)"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
@@ -340,7 +350,7 @@
 
 - (void)testStandardLinkParsingEnclosedInParenthesis {
     NSString *expectedRawString = @"Hello\n This is a (link) to test Wi-Fi\nat home";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
 
@@ -350,7 +360,7 @@
 // https://github.com/laptobbe/TSMarkdownParser/pull/39
 - (void)testStandardLinkParsingWithBracketsInside {
     NSString *expectedRawString = @"Hello\n a link [with brackets inside]";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n [a link \\[with brackets inside]](https://example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [a link \\[with brackets inside]](https://example.net/)"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:35 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
     
@@ -360,7 +370,7 @@
 // https://github.com/laptobbe/TSMarkdownParser/pull/39
 - (void)testStandardLinkParsingWithBracketsOutside {
     NSString *expectedRawString = @"Hello\n [This is not a link] but this is a link to test [the difference]";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:44 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     
@@ -368,7 +378,7 @@
 }
 
 - (void)testStandardLinkParsingMultipleLinks {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/) and this is [a link](https://www.example.com/) too"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a [link](https://www.example.net/) and this is [a link](https://www.example.com/) too"];
 
     //first link
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
@@ -397,7 +407,7 @@
 // https://github.com/laptobbe/TSMarkdownParser/pull/22
 - (void)testStandardLinkParsingWithPipe {
     NSString *expectedRawString = @"Hello (link). Bye";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello ([link](https://www.example.net/|)). Bye"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello ([link](https://www.example.net/|)). Bye"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
 
@@ -407,7 +417,7 @@
 // https://github.com/laptobbe/TSMarkdownParser/issues/30
 - (void)testStandardLinkParsingWithSharp {
     NSString *expectedRawString = @"Hello (link). Bye";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello ([link](https://www.example.net/#)). Bye"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello ([link](https://www.example.net/#)). Bye"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/#"]);
 
@@ -415,12 +425,16 @@
 }
 
 - (void)testStandardH1 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n# Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n# Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[0][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
+#if TARGET_OS_TV
+    XCTAssertEqual(font.pointSize, 76.f);
+#else
     XCTAssertEqual(font.pointSize, 23.f);
+#endif
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
@@ -430,7 +444,7 @@
     NSString *input = [NSString stringWithFormat:@"first line\n# %@\nsecond line", header];
     UIFont *h1Font = self.standardParser.headerAttributes[0][NSFontAttributeName];
     
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:input];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:input];
     NSString *string = attributedString.string;
     NSRange headerRange = [string rangeOfString:header];
     XCTAssertTrue(headerRange.location != NSNotFound);
@@ -448,7 +462,7 @@
     NSString *notValidHeader = [NSString stringWithFormat:@"#%@", header];
     UIFont *h1Font = self.standardParser.headerAttributes[0][NSFontAttributeName];
     
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:notValidHeader];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:notValidHeader];
     NSRange headerRange = [attributedString.string rangeOfString:header];
     [attributedString enumerateAttributesInRange:headerRange options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attributes, __unused NSRange range, __unused BOOL *stop) {
         UIFont *font = attributes[NSFontAttributeName];
@@ -461,14 +475,14 @@
     NSString *hashtag = @"#hashtag";
     NSString *input = [NSString stringWithFormat:@"A sentence %@", hashtag];
     
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:input];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:input];
     XCTAssertEqualObjects(attributedString.string, input);
     NSRange hashTagStillThereRange = [attributedString.string rangeOfString:hashtag];
     XCTAssertTrue(hashTagStillThereRange.location != NSNotFound);
 }
 
 - (void)testStandardH2 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n## Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n## Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[1][NSFontAttributeName];
     XCTAssertNotNil(font);
@@ -478,61 +492,77 @@
 }
 
 - (void)testStandardH3 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n### Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[2][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
+#if TARGET_OS_TV
+    XCTAssertEqual(font.pointSize, 48.f);
+#else
     XCTAssertEqual(font.pointSize, 19.f);
+#endif
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testStandardH4 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n#### Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n#### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[3][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
+#if TARGET_OS_TV
+    XCTAssertEqual(font.pointSize, 40.f);
+#else
     XCTAssertEqual(font.pointSize, 17.f);
+#endif
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testStandardH5 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n##### Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n##### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[4][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
+#if TARGET_OS_TV
+    XCTAssertEqual(font.pointSize, 36.f);
+#else
     XCTAssertEqual(font.pointSize, 15.f);
+#endif
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testStandardH6 {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:10 effectiveRange:NULL];
     UIFont *expectedFont = self.standardParser.headerAttributes[5][NSFontAttributeName];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
+#if TARGET_OS_TV
+    XCTAssertEqual(font.pointSize, 32.f);
+#else
     XCTAssertEqual(font.pointSize, 13.f);
+#endif
     XCTAssertTrue([attributedString.string rangeOfString:@"#"].location == NSNotFound);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testStandardH6NextLine {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n###### Men att Pär är här\nmen inte Pia"];
     UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:30 effectiveRange:NULL];
-    UIFont *expectedFont = [UIFont systemFontOfSize:12];
+    UIFont *expectedFont = [UIFont systemFontOfSize:defaultSize];
     XCTAssertNotNil(font);
     XCTAssertEqualObjects(font, expectedFont);
-    XCTAssertEqual(font.pointSize, 12.f);
+    XCTAssertEqual(font.pointSize, defaultSize);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\nmen inte Pia");
 }
 
 - (void)testStandardMultipleMatches {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"## Hello\nMen att *Pär* är här\n+ men inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"## Hello\nMen att *Pär* är här\n+ men inte Pia"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\nMen att Pär är här\n•\tmen inte Pia");
 }
 
@@ -541,7 +571,7 @@
     UIImage *refImage = [UIImage imageNamed:@"markdown.png" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
     XCTAssertNotNil(refImage);
 #endif
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Men att ![Pär](markdown) är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Men att ![Pär](markdown) är här\nmen inte Pia"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertNil(link);
     NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
@@ -559,7 +589,7 @@
 }
 
 - (void)testStandardImageWithUnderscores {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"A ![AltText](markdown_test_image)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"A ![AltText](markdown_test_image)"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:2 effectiveRange:NULL];
     XCTAssertNil(link);
     NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:2 effectiveRange:NULL];
@@ -571,7 +601,7 @@
 }
 
 - (void)testStandardImageMultiple {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Men att ![Pär](markdown) är här ![Pär](markdown)\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Men att ![Pär](markdown) är här ![Pär](markdown)\nmen inte Pia"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertNil(link);
     NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
@@ -589,7 +619,7 @@
 }
 
 - (void)testStandardImageMissingImage {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Men att ![Pär](markdownas) är här\nmen inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Men att ![Pär](markdownas) är här\nmen inte Pia"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertNil(link);
     NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:8 effectiveRange:NULL];
@@ -607,39 +637,39 @@
 - (void)testStandardBoldParsingCustomFont {
     UIFont *customFont = [UIFont boldSystemFontOfSize:19];
     self.standardParser.strongAttributes = @{ NSFontAttributeName: customFont };
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nMen att **Pär är här** men inte Pia"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\nMen att **Pär är här** men inte Pia"];
     XCTAssertEqual([[attributedString attribute:NSFontAttributeName atIndex:16 effectiveRange:NULL] pointSize], 19.f);
 }
 
 - (void)testStandardURLWithParenthesesInTheTitleText {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n Men att [Pär och (Mia)](https://www.example.net/) är här."];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n Men att [Pär och (Mia)](https://www.example.net/) är här."];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertTrue([attributedString.string rangeOfString:@"Pär"].location != NSNotFound);
 }
 
 - (void)testStandardEscapeParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\\.\n"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\\.\n"];
     XCTAssertEqualObjects(attributedString.string, @"Hello.\n");
 }
 
 - (void)testStandardCodeEscapeParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello`*.*`\n"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello`*.*`\n"];
     XCTAssertEqualObjects(attributedString.string, @"Hello*.*\n");
 }
 
 - (void)testStandardEscapingCodeEscapeParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\\`*.*`\n"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\\`*.*`\n"];
     XCTAssertEqualObjects(attributedString.string, @"Hello`.`\n");
 }
 
 - (void)testStandardCodeEscapingEscapeParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello`\\.`\n"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello`\\.`\n"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\\.\n");
 }
 
 - (void)testStandardMultilineCodeEscapeParsing {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello``\n*.*\n``"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello``\n*.*\n``"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n*.*\n");
 }
 

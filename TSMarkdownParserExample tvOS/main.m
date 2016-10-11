@@ -1,6 +1,6 @@
 //
 //  main.m
-//  TSMarkdownParser tvOS
+//  TSMarkdownParserExample tvOS
 //
 //  Created by Antoine Cœur on 3/29/16.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.

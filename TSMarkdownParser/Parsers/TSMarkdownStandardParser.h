@@ -6,7 +6,7 @@
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
 //
 
-#import "TSMarkdownParser.h"
+#import "TSMarkupParser.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
  * Strong using strongAttributes/strongTraits
  * Emphasis using emphasisAttributes/emphasisTraits
  */
-@interface TSMarkdownStandardParser : TSMarkdownParser
+@interface TSMarkdownStandardParser : TSMarkupParser
+
+/**
+ * strict parsing is the default and requires a space after a lead markup like header/list/quote.
+ */
++ (instancetype)strictParser;
+/**
+ * lenient parsing does not require a space after a lead markup like header/list/quote.
+ */
+#warning // TODO: test
++ (instancetype)lenientParser;
 
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *headerAttributes;
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *listAttributes;

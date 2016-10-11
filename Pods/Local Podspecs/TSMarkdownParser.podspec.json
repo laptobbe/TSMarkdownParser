@@ -1,8 +1,8 @@
 {
   "name": "TSMarkdownParser",
   "version": "3.0.0-beta",
-  "summary": "A markdown to NSAttributedString parser for iOS, watchOS, tvOS and OSX",
-  "description": "TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and OSX implemented using NSRegularExpressions.\nIt supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). \nIt is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.",
+  "summary": "A markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS",
+  "description": "TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS/OSX implemented using NSRegularExpressions.\nIt supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). \nIt is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.",
   "homepage": "https://github.com/laptobbe/TSMarkdownParser",
   "license": "MIT",
   "authors": {

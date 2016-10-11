@@ -12,7 +12,7 @@
 
 @interface InterfaceController()
 
-@property (strong, nonatomic) TSMarkdownParser *parser;
+@property (strong, nonatomic) TSMarkupParser *parser;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *markdownOutputLabel;
 
 @end
@@ -37,7 +37,7 @@
 [link](http://example.net)\n\
 http://example.net\n\
 ![image](markdown)";
-    NSAttributedString *result = [self.parser attributedStringFromMarkdown:input];
+    NSAttributedString *result = [self.parser attributedStringFromMarkup:input];
     self.markdownOutputLabel.attributedText = result;
 }
 

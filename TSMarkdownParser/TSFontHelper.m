@@ -1,14 +1,14 @@
 //
-//  TSHelper.m
+//  TSFontHelper.m
 //  TSMarkdownParser
 //
 //  Created by Antoine Cœur on 03/05/2016.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
 //
 
-#import "TSHelper.h"
+#import "TSFontHelper.h"
 
-@implementation TSHelper
+@implementation TSFontHelper
 
 + (UIFont *)convertFont:(UIFont *)font toHaveTrait:(TSFontTraitMask)traits
 {

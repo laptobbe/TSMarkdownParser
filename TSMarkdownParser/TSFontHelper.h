@@ -1,5 +1,5 @@
 //
-//  TSHelper.h
+//  TSFontHelper.h
 //  TSMarkdownParser
 //
 //  Created by Antoine Cœur on 03/05/2016.
@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 NS_ROOT_CLASS
-@interface TSHelper
+@interface TSFontHelper
 
 + (UIFont *)convertFont:(UIFont *)font toHaveTrait:(TSFontTraitMask)traits;
 + (UIFont *)convertFont:(UIFont *)font toNotHaveTrait:(TSFontTraitMask)traits;

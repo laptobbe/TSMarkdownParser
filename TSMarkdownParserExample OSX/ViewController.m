@@ -12,7 +12,7 @@
 
 @interface ViewController () <NSTextViewDelegate>
 
-@property (strong, nonatomic) TSMarkdownParser *parser;
+@property (strong, nonatomic) TSMarkupParser *parser;
 @property (unsafe_unretained) IBOutlet NSTextView *markdownInput;
 @property (weak) IBOutlet NSTextField *markdownOutputTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *markdownOutputTextView;
@@ -63,7 +63,7 @@ http://example.net\n\
 
 - (void)textViewDidChange:(NSTextView *)textView
 {
-    NSAttributedString *output = [self.parser attributedStringFromMarkdown:textView.string];
+    NSAttributedString *output = [self.parser attributedStringFromMarkup:textView.string];
     self.markdownOutputTextField.attributedStringValue = output;
     [self.markdownOutputTextView.textStorage setAttributedString:output];
 }

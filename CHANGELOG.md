@@ -9,11 +9,17 @@ Unreleased. All issues associated with this milestone can be found using this [f
 #### Added
 * added watchOS compatibility
 * added Font Traits support for mixing markups [#42](https://github.com/laptobbe/TSMarkdownParser/issues/42)
+* added resourceBundle for images not in mainBundle
+* added a lenient version of standardParser
+* added tests for tvOS and macOS
 * added a Roadmap: pull-requests are welcome
 
 #### Modified
 * extracting the standardParser to its own class, so other parsers don't need to have the same default values
 * making regex more generic, so they are independent from the symbols used
+* making formatting more generic, so they support more rules
+* renamed 'markdown' to 'markup' when it is a generic feature
+* renamed OSX to macOS
 
 ---
 ## [2.1.1](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.1) (2016/06/04)

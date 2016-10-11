@@ -10,31 +10,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
+typedef void (^TSBaseParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
 
 /**
  * Basic class for parsing.
  *
- * It is discouraged to subclass directly from TSBaseParser. Subclass TSMarkdownParser instead.
+ * It is discouraged to subclass directly from TSBaseParser. Subclass TSMarkupParser instead.
  */
 @interface TSBaseParser : NSObject
 
 /**
- Default attributes for `attributedStringFromMarkdown:`.
+ Default attributes for `attributedStringFromMarkup:`.
  */
 @property (nonatomic, strong, nullable) NSDictionary<NSString *, id> *defaultAttributes;
 
-/// Applies defaultAttributes then markdown
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown;
+/// Applies defaultAttributes then applies markup
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup;
 
-/// Applies attributes then markdown
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(nullable NSDictionary<NSString *, id> *)attributes;
+/// Applies attributes then applies markup
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
-/// Applies markdown
-- (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString;
+/// Applies markup
+- (NSAttributedString *)attributedStringFromAttributedMarkupString:(NSAttributedString *)attributedString;
 
-/// Adds a custom parsing rule to parser. Use `[TSMarkdownParser new]` for an empty parser.
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block;
+/// Adds a custom parsing rule to parser. Use `[TSMarkupParser new]` for an empty parser.
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSBaseParserMatchBlock)block;
 
 @end
 

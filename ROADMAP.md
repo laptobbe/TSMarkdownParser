@@ -11,7 +11,9 @@ Roadmap of future features. Contributors are welcome.
 
 We may or may not add support for other markup parsers. Help welcome.
 
-Markdown-like languages references:
+Markup-like languages references:
+* https://en.wikipedia.org/wiki/Lightweight_markup_language
+* [Xcode-Markup](https://developer.apple.com/library/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/)
 * [GitHub-flavored](https://guides.github.com/features/mastering-markdown/)
 * [BitbucketServer](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)
 * [StackOverflow](https://stackoverflow.com/editing-help)
@@ -35,17 +37,18 @@ HTML:
 * HTML safe subset
 
 ## NSAttributedString to Markdown
-
-In progress.
+Priority. Maybe TSMarkdown 3.1.
 
 ## Swift
-
-We will embrace Swift 3.0 when available (probably after WWDC2016).
+We will embrace Swift 3.0 for TSMarkdown 4.0.
 
 ## Grammar and Lexer parsing
+Maybe one day with TSMarkdown 5.0.
 
-Maybe one day...
-
+## Will probably not support
+* Full HTML5 support makes no sense
+* complex logic on how to encompass a word, like defined by CommonMark: it is unintuitive as it requires too much lookahead to satisfy. Using character escaping with '\' is a better solution.
+* context dependent list or quote system: it requires too much lookbehind to satisfy. Context independent list/quote system is an easier solution.
 
 #Third parties
 

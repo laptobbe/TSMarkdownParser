@@ -13,7 +13,7 @@
 
 @interface ViewController ()
 
-@property (strong, nonatomic) TSMarkdownParser *parser;
+@property (strong, nonatomic) TSMarkupParser *parser;
 @property (weak, nonatomic) IBOutlet UITextView *markdownInput;
 @property (weak, nonatomic) IBOutlet UILabel *markdownOutputLabel;
 @property (weak, nonatomic) IBOutlet UITextView *markdownOutputTextView;
@@ -41,7 +41,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    NSAttributedString *result = [self.parser attributedStringFromMarkdown:textView.text];
+    NSAttributedString *result = [self.parser attributedStringFromMarkup:textView.text];
     self.markdownOutputLabel.attributedText = result;
     self.markdownOutputTextView.attributedText = result;
     self.markdownOutputLabelScrollView.contentSize = self.markdownOutputLabel.intrinsicContentSize;

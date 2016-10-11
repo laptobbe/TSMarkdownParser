@@ -7,25 +7,21 @@
 //
 
 #import "TSBaseParser.h"
-#if TARGET_OS_IPHONE
-@import UIKit;
-#else
-@import AppKit;
-#endif
 
 
 @interface TSExpressionBlockPair : NSObject
 
 @property (nonatomic, strong) NSRegularExpression *regularExpression;
-@property (nonatomic, strong) TSMarkdownParserMatchBlock block;
+@property (nonatomic, strong) TSBaseParserMatchBlock block;
 
-+ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block;
++ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSBaseParserMatchBlock)block;
 
 @end
 
+
 @implementation TSExpressionBlockPair
 
-+ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block {
++ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSBaseParserMatchBlock)block {
     TSExpressionBlockPair *pair = [TSExpressionBlockPair new];
     pair.regularExpression = regularExpression;
     pair.block = block;
@@ -34,11 +30,13 @@
 
 @end
 
+
 @interface TSBaseParser ()
 
 @property (nonatomic, strong) NSMutableArray *parsingPairs;
 
 @end
+
 
 @implementation TSBaseParser
 
@@ -54,7 +52,7 @@
 
 #pragma mark - parser definition
 
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block {
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSBaseParserMatchBlock)block {
     @synchronized (self) {
         [self.parsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
     }
@@ -62,22 +60,22 @@
 
 #pragma mark parser evaluation
 
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown {
-    return [self attributedStringFromMarkdown:markdown attributes:self.defaultAttributes];
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup {
+    return [self attributedStringFromMarkup:markup attributes:self.defaultAttributes];
 }
 
-- (NSAttributedString *)attributedStringFromMarkdown:(NSString *)markdown attributes:(nullable NSDictionary<NSString *, id> *)attributes {
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     NSAttributedString *attributedString;
     if (! attributes) {
-        attributedString = [[NSAttributedString alloc] initWithString:markdown];
+        attributedString = [[NSAttributedString alloc] initWithString:markup];
     } else {
-        attributedString = [[NSAttributedString alloc] initWithString:markdown attributes:attributes];
+        attributedString = [[NSAttributedString alloc] initWithString:markup attributes:attributes];
     }
     
-    return [self attributedStringFromAttributedMarkdownString:attributedString];
+    return [self attributedStringFromAttributedMarkupString:attributedString];
 }
 
-- (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString {
+- (NSAttributedString *)attributedStringFromAttributedMarkupString:(NSAttributedString *)attributedString {
     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
     // TODO: evaluate performances of `beginEditing`/`endEditing`
     //[mutableAttributedString beginEditing];

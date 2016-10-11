@@ -7,18 +7,47 @@
 //
 
 #import "TSMarkdownStandardParser.h"
-#import "NSMutableAttributedString+Traits.h"
+#import "NSMutableAttributedString+TSTraits.h"
+#import "TSMarkupParser+FormatExamples.h"
 
 
 @implementation TSMarkdownStandardParser
 
++ (instancetype)strictParser
+{
+    return [self new];
+}
+
++ (instancetype)lenientParser
+{
+    return [[self alloc] initLenientParser];
+}
+
 #pragma mark - init
 
 - (instancetype)init {
+    return [self initStrictParser];
+}
+
+- (instancetype)initStrictParser {
     self = [super init];
     if (!self)
         return nil;
-    
+    [self setupAttributesAndTraits];
+    [self setupStrictParsing:YES];
+    return self;
+}
+
+- (instancetype)initLenientParser {
+    self = [super init];
+    if (!self)
+        return nil;
+    [self setupAttributesAndTraits];
+    [self setupStrictParsing:NO];
+    return self;
+}
+
+- (void)setupAttributesAndTraits {
 #if TARGET_OS_TV
     NSUInteger defaultSize = 29;
 #else
@@ -55,9 +84,13 @@
                               NSForegroundColorAttributeName: [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongTraits = (TSFontTraitMask)TSFontMaskBold;
     _emphasisTraits = (TSFontTraitMask)TSFontMaskItalic;
-    
+}
+
+- (void)setupStrictParsing:(BOOL)strictParsing {
     // weak reference for blocks
     __weak typeof(self) weakSelf = self;
+    
+    NSString *separator = strictParsing ? @" " : @"";
     
     /* escaping parsing */
     
@@ -67,13 +100,13 @@
     
     /* block parsing */
     
-    [self addHeaderParsingWithMaxLevel:0 leadFormattingBlock:nil textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+    [self addHeaderParsingWithMaxLevel:6 separator:separator leadFormattingBlock:nil textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         if (weakSelf.headerAttributes)
-            [attributedString addAttributes:weakSelf.headerAttributes atIndex:level - 1 range:range];
-        [attributedString addTraits:weakSelf.headerTraits atIndex:level - 1 range:range];
+            [attributedString ts_addAttributes:weakSelf.headerAttributes atIndex:level - 1 range:range];
+        [attributedString ts_addTraits:weakSelf.headerTraits atIndex:level - 1 range:range];
     }];
     
-    [self addListParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+    [self addListParsingWithMaxLevel:0 separator:separator leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         NSMutableString *listString = [NSMutableString string];
         while (--level)
             [listString appendString:@"\t"];
@@ -81,24 +114,25 @@
         [attributedString replaceCharactersInRange:range withString:listString];
     } textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         if (weakSelf.listAttributes)
-            [attributedString addAttributes:weakSelf.listAttributes atIndex:level - 1 range:range];
-        [attributedString addTraits:weakSelf.listTraits atIndex:level - 1 range:range];
+            [attributedString ts_addAttributes:weakSelf.listAttributes atIndex:level - 1 range:range];
+        [attributedString ts_addTraits:weakSelf.listTraits atIndex:level - 1 range:range];
     }];
     
-    [self addQuoteParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+    [self addQuoteParsingWithMaxLevel:0 separator:separator leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         NSMutableString *quoteString = [NSMutableString string];
         while (level--)
             [quoteString appendString:@"\t"];
         [attributedString replaceCharactersInRange:range withString:quoteString];
     } textFormattingBlock:^(NSMutableAttributedString * attributedString, NSRange range, NSUInteger level) {
         if (weakSelf.quoteAttributes)
-            [attributedString addAttributes:weakSelf.quoteAttributes atIndex:level - 1 range:range];
-        [attributedString addTraits:weakSelf.quoteTraits atIndex:level - 1 range:range];
+            [attributedString ts_addAttributes:weakSelf.quoteAttributes atIndex:level - 1 range:range];
+        [attributedString ts_addTraits:weakSelf.quoteTraits atIndex:level - 1 range:range];
     }];
     
     /* bracket parsing */
     
-    [self addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+    [self addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
+        
 #if !TARGET_OS_WATCH
         UIImage *image;
         NSBundle *resourceBundle = self.resourceBundle;
@@ -134,11 +168,11 @@
             }
             if (weakSelf.imageAttributes)
                 [attributedString addAttributes:weakSelf.imageAttributes range:range];
-            [attributedString addTrait:weakSelf.imageTraits range:range];
+            [attributedString ts_addTrait:weakSelf.imageTraits range:range];
         }
     }];
     
-    [self addLinkParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+    [self addLinkParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
         if (!weakSelf.skipLinkAttribute) {
             NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
                                                         [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -150,12 +184,12 @@
         }
         if (weakSelf.linkAttributes)
             [attributedString addAttributes:weakSelf.linkAttributes range:range];
-        [attributedString addTrait:weakSelf.linkTraits range:range];
+        [attributedString ts_addTrait:weakSelf.linkTraits range:range];
     }];
     
     /* autodetection */
     
-    [self addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
+    [self addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
         if (!weakSelf.skipLinkAttribute) {
             [attributedString addAttribute:NSLinkAttributeName
                                      value:[NSURL URLWithString:link]
@@ -163,7 +197,7 @@
         }
         if (weakSelf.linkAttributes)
             [attributedString addAttributes:weakSelf.linkAttributes range:range];
-        [attributedString addTrait:weakSelf.linkTraits range:range];
+        [attributedString ts_addTrait:weakSelf.linkTraits range:range];
     }];
     
     /* inline parsing */
@@ -171,13 +205,13 @@
     [self addStrongParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         if (weakSelf.strongAttributes)
             [attributedString addAttributes:weakSelf.strongAttributes range:range];
-        [attributedString addTrait:weakSelf.strongTraits range:range];
+        [attributedString ts_addTrait:weakSelf.strongTraits range:range];
     }];
     
     [self addEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         if (weakSelf.emphasisAttributes)
             [attributedString addAttributes:weakSelf.emphasisAttributes range:range];
-        [attributedString addTrait:weakSelf.emphasisTraits range:range];
+        [attributedString ts_addTrait:weakSelf.emphasisTraits range:range];
     }];
     
     /* unescaping parsing */
@@ -185,12 +219,10 @@
     [self addCodeUnescapingParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         if (weakSelf.monospaceAttributes)
             [attributedString addAttributes:weakSelf.monospaceAttributes range:range];
-        [attributedString addTrait:weakSelf.monospaceTraits range:range];
+        [attributedString ts_addTrait:weakSelf.monospaceTraits range:range];
     }];
     
     [self addUnescapingParsing];
-    
-    return self;
 }
 
 @end

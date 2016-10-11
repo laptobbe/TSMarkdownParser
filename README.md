@@ -8,19 +8,14 @@ TSMarkdownParser
 [![Licence](https://img.shields.io/cocoapods/l/TSMarkdownParser.svg)](http://cocoadocs.org/docsets/TSMarkdownParser)
 
 
-TSMarkdownParser is a markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
-
-#Help welcome
-Please make pull requests for:
-* adding a new parser
-* adding an icon
-* ...
+TSMarkdownParser is a markup/markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
 
 #Supported parsers
 StandardParser is currently the only pre-defined parser.
+Help is welcome, so make a pull request for adding a new parser or a new markup. See ROADMAP.md for suggestions.
 
 #Supported tags
-Below is a list of tags supported by the parser out of the box, to add your own tags see "Adding custom parsing"
+Below is a list of tags supported by the standard parser out of the box; to add your own tags see "Adding custom parsing"
 
 ````
 Escaping
@@ -88,10 +83,10 @@ Alternatively you can use Carthage.
 Alternatively you can clone the project and build one of the static library setups in the project (iOS, macOS, tvOS or watchOS).
 
 #Usage
-The standardParser class method provides a new instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkdownParser and add your own parsing. See "Adding custom parsing" for information on how to do this.
+The standardParser class provides an instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkupParser and add your own parsing. See "Adding custom parsing" for information on how to do this.
 
 ````
-NSAttributedString *string = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:markdown];
+NSAttributedString *string = [[TSMarkdownStandardParser new] attributedStringFromMarkup:inputText];
 
 ````
 
