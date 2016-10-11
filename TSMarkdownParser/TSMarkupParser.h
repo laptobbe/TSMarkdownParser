@@ -120,6 +120,9 @@ typedef void (^TSFullFormattingBlock)(NSMutableAttributedString *attributedStrin
 
 - (void)addVariableEnclosedParsingWithSymbol:(NSString *)symbol formattingBlock:(TSSimpleFormattingBlock)formattingBlock;
 
+// pattern matching should be three parts: (leadingMarkup)(string)(trailingMarkup)
+- (void)addEnclosedParsingWithPattern:(NSString *)pattern formattingBlock:(TSSimpleFormattingBlock)formattingBlock;
+
 /* 7. examples unescaping parsing */
 /* to use together with `addEscapingParsing` or `addCodeEscapingParsing` */
 
