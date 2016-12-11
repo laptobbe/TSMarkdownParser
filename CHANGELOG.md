@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.1.2](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.2) (2016/12/11)
+Released on 2016/12/11.
+
+#### Fixed
+* Fixed Unicode links autodetection [#61](https://github.com/laptobbe/TSMarkdownParser/pull/61)
+
+
 ## [2.1.1](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.1) (2016/06/04)
 Released on 2016/06/04. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.1.1+is%3Aclosed).
 

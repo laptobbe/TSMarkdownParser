@@ -300,6 +300,16 @@
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
 }
 
+- (void)testStandardUnicodeAutoLinkParsing {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a link http://槍ヶ岳山荘.jp to test Wi-Fi\nat home"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:24 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:[@"http://槍ヶ岳山荘.jp" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
+    NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:24 effectiveRange:NULL];
+    XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+    UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:24 effectiveRange:NULL];
+    XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+}
+
 - (void)testStandardLinkParsingOnEndOfStrings {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [link](https://www.example.net/)"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
