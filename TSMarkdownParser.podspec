@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/laptobbe/TSMarkdownParser"
   s.license      = "MIT" 
-  s.author             = { "Tobias Sundstrand" => "tobias.sundstrand@gmail.com" }
-  s.social_media_url   = "http://twitter.com/laptobbe"
+  s.authors      = { "Tobias Sundstrand" => "tobias.sundstrand@gmail.com", "Antoine Cœur" => "" }
+  s.social_media_url   = "https://twitter.com/laptobbe"
   s.ios.deployment_target = "6.0"
   s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.7"
