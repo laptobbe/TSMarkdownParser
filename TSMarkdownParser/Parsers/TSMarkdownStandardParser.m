@@ -135,7 +135,7 @@
         
 #if !TARGET_OS_WATCH
         UIImage *image;
-        NSBundle *resourceBundle = self.resourceBundle;
+        NSBundle *resourceBundle = weakSelf.resourceBundle;
 #if !TARGET_OS_IPHONE
         if (resourceBundle) {
             image = [resourceBundle imageForResource:link];
