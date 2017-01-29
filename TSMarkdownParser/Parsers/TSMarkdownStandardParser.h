@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * lenient parsing does not require a space after a lead markup like header/list/quote.
  */
-#warning // TODO: test
 + (instancetype)lenientParser;
 
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *headerAttributes;
