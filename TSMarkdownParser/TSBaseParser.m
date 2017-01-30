@@ -66,7 +66,7 @@
 
 - (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSString *, id> *)attributes {
     NSAttributedString *attributedString;
-    if (! attributes) {
+    if (!attributes) {
         attributedString = [[NSAttributedString alloc] initWithString:markup];
     } else {
         attributedString = [[NSAttributedString alloc] initWithString:markup attributes:attributes];

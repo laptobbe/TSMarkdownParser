@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <TSMarkdownStandardParser.h>
 #import <TSMarkupParser+FormatExamples.h>
+#import "NSMutableAttributedString+TSTraits.h"
 
 
 @interface TSMarkupParserTests : XCTestCase
@@ -109,6 +110,24 @@
     XCTAssertEqual(actualNumberOfStrongBlocks, expectedNumberOfStrongBlocks);
     XCTAssertEqual(strongSnippets.count, 0);
 
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+- (void)testSubLineHeaderParsing {
+    NSArray *headerAttributes = @[ @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:23] },
+                                   @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:21] }];
+    __block NSString *trail = nil;
+    [self.parser addSubLineHeaderParsingWithMinLevel:1 trailFormattingBlock:^(NSMutableAttributedString * _Nonnull attributedString, NSRange range, __unused NSUInteger markupLength) {
+        trail = [attributedString.string substringWithRange:NSMakeRange(range.location + 1, 1)];
+        [attributedString deleteCharactersInRange:range];
+    } textFormattingBlock:^(NSMutableAttributedString * _Nonnull attributedString, NSRange range, __unused NSUInteger markupLength) {
+        if ([trail isEqualToString:@"="])
+            [attributedString ts_addAttributes:headerAttributes atIndex:0 range:range];
+        else if ([trail isEqualToString:@"-"])
+            [attributedString ts_addAttributes:headerAttributes atIndex:1 range:range];
+    }];
+    NSString *expectedRawString = @"Header1\nHeader2";
+    NSAttributedString *attributedString = [self.parser attributedStringFromMarkup:@"Header1\n==\nHeader2\n-"];
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 

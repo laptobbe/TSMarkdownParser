@@ -28,7 +28,7 @@ static NSString *const TSMarkupEndLineMandatorySeparatorRegex = @"%@\\s*(.+?)$";
 static NSString *const TSMarkupEndLineOptionalSpaceRegex      = @"\\s*([^%@].*?)$";
 
 // subline regex (with a min level)
-static NSString *const TSMarkupSubLineRegex       = @"^(.*)$(%@{%@,})(?!%@)";
+static NSString *const TSMarkupSubLineRegex       = @"^(.*)\n((?:%@){%@,})$";
 
 // inline bracket regex
 static NSString *const TSMarkupImageRegex         = @"\\!\\[[^\\[]*?\\]\\(\\S*\\)";

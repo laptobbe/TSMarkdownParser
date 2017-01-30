@@ -49,7 +49,6 @@ static inline TSFullFormattingBlock TSMarkupFullBlockWithLeadAndTextBlocks(TSMar
 static inline TSFullFormattingBlock TSMarkupFullBlockWithTrailAndTextBlocks(TSMarkupLengthFormattingBlock _Nullable trailFormattingBlock, TSMarkupLengthFormattingBlock _Nullable textFormattingBlock) {
     return ^(NSMutableAttributedString * _Nonnull attributedString, NSRange textRange, NSRange trailRange, NSRange fullRange) {
         NSUInteger level = trailRange.length;
-#warning // TODO: test range
         NSRange trailingRange = NSMakeRange(textRange.location + textRange.length, trailRange.location + trailRange.length - textRange.location - textRange.length);
         // formatting trailing markup (may alter the length)
         if (trailFormattingBlock)
