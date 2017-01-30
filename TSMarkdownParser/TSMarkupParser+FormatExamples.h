@@ -36,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
                 textFormattingBlock:(nullable TSMarkupLengthFormattingBlock)formattingBlock;
 
 /// accepts "text\n=", "text\n-", "text\n==", "text\n--", ...
-#warning // TODO: test
 - (void)addSubLineHeaderParsingWithMinLevel:(unsigned int)minLevel
                        trailFormattingBlock:(nullable TSMarkupLengthFormattingBlock)trailFormattingBlock
                         textFormattingBlock:(nullable TSMarkupLengthFormattingBlock)textFormattingBlock;

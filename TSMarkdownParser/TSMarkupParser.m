@@ -113,7 +113,7 @@ static inline NSString *TSMarkupVariableEnclosedRegexWithSymbol(NSString *symbol
                             minLevel:(unsigned int)minLevel
                      formattingBlock:(TSFullFormattingBlock)formattingBlock {
     NSObject *minLevelPattern = minLevel ? @(minLevel) : @"";
-    NSString *markupPattern = [NSString stringWithFormat:TSMarkupSubLineRegex, symbolPattern, minLevelPattern, symbolPattern];
+    NSString *markupPattern = [NSString stringWithFormat:TSMarkupSubLineRegex, symbolPattern, minLevelPattern];
     [self addTrailParsingWithPattern:markupPattern formattingBlock:formattingBlock];
 }
 
