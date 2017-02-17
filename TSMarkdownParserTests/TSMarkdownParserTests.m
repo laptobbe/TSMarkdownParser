@@ -290,6 +290,42 @@
     XCTAssertNil(linkAtTheNextCharacter);
 }
 
+- (void)testStandardLinkParsingAutodetectionConflict {
+  NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [foo@bar.com](https://www.example.net/) to test Wi-Fi\nat home"];
+  NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
+  XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"foo@bar.com"].location != NSNotFound);
+  NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+  UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+
+  NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:28 effectiveRange:NULL];
+  XCTAssertNil(linkAtTheNextCharacter);
+}
+
+- (void)testStandardLinkParsingAutodetectionConflictOverlap {
+  NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a [expanded foo@bar.com test](https://www.example.net/) to test Wi-Fi\nat home"];
+  NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
+  XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@")"].location == NSNotFound);
+  XCTAssertTrue([attributedString.string rangeOfString:@"expanded foo@bar.com test"].location != NSNotFound);
+  NSNumber *underline = [attributedString attribute:NSUnderlineStyleAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
+  UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:20 effectiveRange:NULL];
+  XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
+
+  NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:42 effectiveRange:NULL];
+  XCTAssertNil(linkAtTheNextCharacter);
+}
+
 - (void)testStandardAutoLinkParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n This is a link https://www.example.net/ to test Wi-Fi\nat home"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:24 effectiveRange:NULL];
