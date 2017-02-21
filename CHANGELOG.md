@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.1.3](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.3) (2017/02/21)
+Released on 2017/02/21.
+
+#### Fixed
+* Fixed link autodetection conflicts with link markup [#62](https://github.com/laptobbe/TSMarkdownParser/issues/62)
+
+
 ## [2.1.2](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.2) (2016/12/11)
 Released on 2016/12/11.
 
