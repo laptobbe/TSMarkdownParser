@@ -147,6 +147,21 @@ typedef NSFont UIFont;
     
     [defaultParser addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * _Nullable link) {
         if (!weakParser.skipLinkAttribute) {
+            __block BOOL alreadyLinked = NO;
+            [attributedString enumerateAttribute:NSLinkAttributeName
+                                         inRange:range
+                                         options:0
+                                      usingBlock:^(id _Nullable value, __unused NSRange range, BOOL * _Nonnull stop)
+             {
+                 if (value) {
+                     // this range has a link that overlaps with the autodetect range, so skip
+                     alreadyLinked = YES;
+                     *stop = YES;
+                 }
+             }];
+            if (alreadyLinked) {
+                return;
+            }
             NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
                                                         [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
