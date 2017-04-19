@@ -121,12 +121,23 @@ typedef NSFont UIFont;
                 NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
                                                             [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                 if (url.scheme) {
-                    [attributedString addAttribute:NSLinkAttributeName
-                                             value:url
-                                             range:range];
+                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                    if (image) {
+                        NSTextAttachment *imageAttachment = [NSTextAttachment new];
+                        imageAttachment.image = image;
+                        imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
+                        NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+                        [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
+                    } else {
+                        [attributedString addAttribute:NSLinkAttributeName
+                                          value:url
+                                          range:range];
+                        [attributedString addAttributes:weakParser.imageAttributes range:range];
+                    }
                 }
+            } else {
+              [attributedString addAttributes:weakParser.imageAttributes range:range];
             }
-            [attributedString addAttributes:weakParser.imageAttributes range:range];
         }
     }];
     
@@ -215,7 +226,7 @@ static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].*)$";
 
 // inline bracket regex
-static NSString *const TSMarkdownImageRegex         = @"\\!\\[[^\\[]*?\\]\\(\\S*\\)";
+static NSString *const TSMarkdownImageRegex         = @"\\!\\[[^\\[]*?\\]\\([^\\)]*\\)";
 static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*\\)";
 
 // inline enclosed regex
