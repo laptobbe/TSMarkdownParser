@@ -10,7 +10,7 @@ TSMarkdownParser
 
 TSMarkdownParser is a markdown to NSAttributedString parser for iOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
 
-#Supported tags
+# Supported tags
 Below is a list of tags supported by the parser out of the box, to add your own tags see "Adding custom parsing"
 
 ````
@@ -56,35 +56,33 @@ __Strong__
 
 ````
 
-#Requirements
+# Requirements
 TSMarkdownParser 2.x requires Xcode 7 or newer.
 
-#Installation
+# Installation
 TSMarkdownParser is distributed via CocoaPods
 
-````
+````ruby
 pod 'TSMarkdownParser'
-
 ````
 
 alternativly you can clone the project and build the static library setup in the project, or drag the source files into you project.
 
 
-#Usage
+# Usage
 The standardParser class method provides a new instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkdownParser and add your own parsing. See "Adding custom parsing" for information on how to do this.
 
-````
+````objc
 NSAttributedString *string = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:markdown];
-
 ````
 
-#Customizing appearance
+# Customizing appearance
 You can configure how the markdown is to be displayed by changing the different properties on a TSMarkdownParser instance. Alternatively you could implement the parsing yourself and add custom attributes to the attributed string. You can also alter the attributed string returned from the parser. 
 
-#Adding custom parsing
+# Adding custom parsing
 Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:block: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
 
-````
+````objc
 NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*\\*|__)(.+?)(\\1)" options:kNilOptions error:nil];
 __weak TSMarkdownParser *weakSelf = self;
 [self addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
@@ -94,5 +92,5 @@ __weak TSMarkdownParser *weakSelf = self;
 }];
 ````
 
-#License
+# License
 TSMarkdownParser is distributed under a MIT licence, see the licence file for more info.
