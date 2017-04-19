@@ -48,14 +48,27 @@ typedef NSFont UIFont;
 #endif
     
     _listAttributes = @[];
-    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Italic" size:defaultSize]}];
+    UIFont *quoteFont = [UIFont fontWithName:@"HelveticaNeue-Italic" size:defaultSize];
+    if (quoteFont == nil) {
+        // There was an Apple bug when HelveticaNeue-Italic was missed on some devices:
+        // http://stackoverflow.com/questions/19527962/what-happened-to-helveticaneue-italic-on-ios-7-0-3
+        quoteFont = [UIFont italicSystemFontOfSize:defaultSize];
+    }
+    if (quoteFont == nil) {
+        quoteFont = [UIFont systemFontOfSize:defaultSize];
+    }
+    _quoteAttributes = @[@{NSFontAttributeName: quoteFont}];
     
     _imageAttributes = @{};
     _linkAttributes = @{ NSForegroundColorAttributeName: [UIColor blueColor],
                          NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) };
     
     // Courier New and Courier are the only monospace fonts compatible with watchOS 2
-    _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:defaultSize],
+    UIFont *monospaceFont = [UIFont fontWithName:@"Courier New" size:defaultSize];
+    if (monospaceFont == nil) {
+        monospaceFont = [UIFont systemFontOfSize:defaultSize];
+    }
+    _monospaceAttributes = @{ NSFontAttributeName: monospaceFont,
                               NSForegroundColorAttributeName: [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongAttributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:defaultSize] };
     
