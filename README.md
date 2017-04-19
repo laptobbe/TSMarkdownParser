@@ -62,9 +62,8 @@ TSMarkdownParser 2.x requires Xcode 7 or newer.
 # Installation
 TSMarkdownParser is distributed via CocoaPods
 
-````
+````ruby
 pod 'TSMarkdownParser'
-
 ````
 
 alternativly you can clone the project and build the static library setup in the project, or drag the source files into you project.
@@ -73,9 +72,8 @@ alternativly you can clone the project and build the static library setup in the
 # Usage
 The standardParser class method provides a new instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkdownParser and add your own parsing. See "Adding custom parsing" for information on how to do this.
 
-````
+````objc
 NSAttributedString *string = [[TSMarkdownParser standardParser] attributedStringFromMarkdown:markdown];
-
 ````
 
 # Customizing appearance
@@ -84,7 +82,7 @@ You can configure how the markdown is to be displayed by changing the different 
 # Adding custom parsing
 Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:block: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
 
-````
+````objc
 NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*\\*|__)(.+?)(\\1)" options:kNilOptions error:nil];
 __weak TSMarkdownParser *weakSelf = self;
 [self addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
