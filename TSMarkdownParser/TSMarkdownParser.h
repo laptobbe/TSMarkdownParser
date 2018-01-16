@@ -28,6 +28,7 @@ typedef void (^TSMarkdownParserLinkFormattingBlock)(NSMutableAttributedString *a
 @property (nonatomic, strong) NSDictionary<NSString *, id> *monospaceAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *strongAttributes;
 @property (nonatomic, strong) NSDictionary<NSString *, id> *emphasisAttributes;
+@property (nonatomic, strong) NSDictionary<NSString *, id> *strongAndEmphasisAttributes;
 /**
  * standardParser setting for NSLinkAttributeName
  *
@@ -126,6 +127,8 @@ typedef void (^TSMarkdownParserLinkFormattingBlock)(NSMutableAttributedString *a
 - (void)addStrongParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 /// accepts "*text*", "_text_"
 - (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
+/// accepts "***text***", "___text___"
+- (void)addStrongAndEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock;
 
 /* 7. examples unescaping parsing */
 /* to use together with `addEscapingParsing` or `addCodeEscapingParsing` */
