@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.1.4](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.4) (2018/03/05)
+Released on 2018/03/05.
+
+#### Fixed
+* Fixed crash on missing fonts [#69](https://github.com/laptobbe/TSMarkdownParser/issues/69)
+* Fixed compatibility with macOS 10.7 to 10.10
+
+
 ## [2.1.3](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.3) (2017/02/21)
 Released on 2017/02/21.
 
