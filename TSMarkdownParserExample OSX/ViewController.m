@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view.
     
     self.markdownInput.string = @"# header\n\
@@ -41,7 +41,7 @@ http://example.net\n\
     self.parser = [TSMarkdownParser standardParser];
     
     // updating output
-    [self textViewDidChange:self.markdownInput];
+    [self textDidChange:[NSNotification notificationWithName:@"NSTextDidChangeNotification" object:self.markdownInput]];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -52,9 +52,9 @@ http://example.net\n\
 
 #pragma mark -
 
-- (void)textViewDidChange:(NSTextView *)textView
+- (void)textDidChange:(NSNotification *)aNotification
 {
-    self.markdownOutput.attributedStringValue = [self.parser attributedStringFromMarkdown:textView.string];
+    self.markdownOutput.attributedStringValue = [self.parser attributedStringFromMarkdown:self.markdownInput.string];
 }
 
 @end
