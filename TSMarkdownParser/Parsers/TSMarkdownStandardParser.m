@@ -9,7 +9,16 @@
 #import "TSMarkdownStandardParser.h"
 #import "NSMutableAttributedString+TSTraits.h"
 #import "TSMarkupParser+FormatExamples.h"
+#import "TSFontHelper.h"
 
+#if TARGET_OS_IPHONE
+@implementation UIColor (ts)
+/// code compatibility layer for macOS 10.7 and 10.8
++ (UIColor *)colorWithSRGBRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+@end
+#endif
 
 @implementation TSMarkdownStandardParser
 
@@ -73,15 +82,24 @@
 #endif
     
     _listAttributes = @[];
-    _quoteAttributes = @[@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Italic" size:defaultSize]}];
+    
+    UIFont *quoteFont = [UIFont fontWithName:@"HelveticaNeue-Italic" size:defaultSize];
+    if (quoteFont == nil)
+    // #69: avoiding crash if font is missing
+#if TARGET_OS_IPHONE
+        quoteFont = [UIFont italicSystemFontOfSize:defaultSize];
+#else
+        quoteFont = [[NSFontManager sharedFontManager] convertFont:[UIFont systemFontOfSize:defaultSize] toHaveTrait:NSItalicFontMask];
+#endif
+    _quoteAttributes = @[@{NSFontAttributeName: quoteFont}];
     
     _imageAttributes = @{};
     _linkAttributes = @{ NSForegroundColorAttributeName: [UIColor blueColor],
                          NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) };
     
     // Courier New and Courier are the only monospace fonts compatible with watchOS 2
-    _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:defaultSize],
-                              NSForegroundColorAttributeName: [UIColor colorWithRed:0.95 green:0.54 blue:0.55 alpha:1] };
+    _monospaceAttributes = @{ NSFontAttributeName: [TSFontHelper monospaceFontOfSize:defaultSize],
+                              NSForegroundColorAttributeName: [UIColor colorWithSRGBRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongTraits = (TSFontTraitMask)TSFontMaskBold;
     _emphasisTraits = (TSFontTraitMask)TSFontMaskItalic;
 }
@@ -134,42 +152,55 @@
     [self addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
         
 #if !TARGET_OS_WATCH
-        UIImage *image;
-        NSBundle *resourceBundle = weakSelf.resourceBundle;
 #if !TARGET_OS_IPHONE
-        if (resourceBundle) {
-            image = [resourceBundle imageForResource:link];
-        } else
+#if defined(__MAC_10_13)
+        // macOS 10.11+ test compatible with Xcode 9+
+        // NSTextAttachment works on macOS 10.10 but is tricky for image support
+        if (@available(macOS 10.11, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+        // macOS 10.11+ test compatible with Xcode 8-
+        // NSTextAttachment works on macOS 10.10 but is tricky for image support
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_10_Max) {
+#endif
+#else
+        {
+#endif
+            UIImage *image;
+            NSBundle *resourceBundle = weakSelf.resourceBundle;
+#if !TARGET_OS_IPHONE
+            if (resourceBundle) {
+                image = [resourceBundle imageForResource:link];
+            } else
 #elif __has_include(<UIKit/UITraitCollection.h>)
-        if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
-            image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
-        } else
+                if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+                    image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
+                } else
 #endif
-        {
-            image = [UIImage imageNamed:link];
-        }
-        if (image) {
-            NSTextAttachment *imageAttachment = [NSTextAttachment new];
-            imageAttachment.image = image;
-            imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
-            NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
-            [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
-        } else
-#endif
-        {
-            if (!weakSelf.skipLinkAttribute) {
-                NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
-                                                            [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                if (url.scheme) {
-                    [attributedString addAttribute:NSLinkAttributeName
-                                             value:url
-                                             range:range];
+                {
+                    image = [UIImage imageNamed:link];
                 }
+            if (image) {
+                NSTextAttachment *imageAttachment = [NSTextAttachment new];
+                imageAttachment.image = image;
+                imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
+                NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+                [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
+                return;
             }
-            if (weakSelf.imageAttributes)
-                [attributedString addAttributes:weakSelf.imageAttributes range:range];
-            [attributedString ts_addTrait:weakSelf.imageTraits range:range];
         }
+#endif
+        if (!weakSelf.skipLinkAttribute) {
+            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
+                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            if (url.scheme) {
+                [attributedString addAttribute:NSLinkAttributeName
+                                         value:url
+                                         range:range];
+            }
+        }
+        if (weakSelf.imageAttributes)
+            [attributedString addAttributes:weakSelf.imageAttributes range:range];
+        [attributedString ts_addTrait:weakSelf.imageTraits range:range];
     }];
     
     [self addLinkParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
@@ -189,10 +220,28 @@
     
     /* autodetection */
     
-    [self addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
+    [self addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString *link) {
         if (!weakSelf.skipLinkAttribute) {
+            __block BOOL alreadyLinked = NO;
+            [attributedString enumerateAttribute:NSLinkAttributeName
+                                         inRange:range
+                                         options:0
+                                      usingBlock:^(id _Nullable value, __unused NSRange range, BOOL * _Nonnull stop)
+             {
+                 if (value) {
+                     // #62: this range has a link that overlaps with the autodetect range, so skip
+                     alreadyLinked = YES;
+                     *stop = YES;
+                 }
+             }];
+            if (alreadyLinked) {
+                return;
+            }
+            // #61: fallback for unescaped links
+            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
+                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             [attributedString addAttribute:NSLinkAttributeName
-                                     value:[NSURL URLWithString:link]
+                                     value:url
                                      range:range];
         }
         if (weakSelf.linkAttributes)

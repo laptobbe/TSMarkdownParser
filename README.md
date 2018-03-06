@@ -10,11 +10,11 @@ TSMarkdownParser
 
 TSMarkdownParser is a markup/markdown to NSAttributedString parser for iOS, watchOS, tvOS and macOS implemented using NSRegularExpressions. It supports many of the standard tags layed out by John Gruber on his site [Daring Fireball](http://daringfireball.net/projects/markdown/syntax). It is also very extendable via Regular Expressions making it easy to add your own custom tags or a totally different parsing syntax if you like.
 
-#Supported parsers
+# Supported parsers
 StandardParser is currently the only pre-defined parser.
 Help is welcome, so make a pull request for adding a new parser or a new markup. See ROADMAP.md for suggestions.
 
-#Supported tags
+# Supported tags
 Below is a list of tags supported by the standard parser out of the box; to add your own tags see "Adding custom parsing"
 
 ````
@@ -60,43 +60,41 @@ __Strong__
 
 ````
 
-#Requirements
-TSMarkdownParser requires Xcode 7 or newer.
+# Requirements
+TSMarkdownParser 3.x requires Xcode 7 or newer.
 
-#Demo
+# Demo
 Examples of rendering are available for:
 * iOS UILabel and UITextView
 * tvOS UILabel and UITextView
 * macOS NSTextField and NSTextView
 * watchOS WKInterfaceLabel
 
-#Installation
+# Installation
 TSMarkdownParser is distributed via CocoaPods
 
-````
+````ruby
 pod 'TSMarkdownParser'
-
 ````
 
 Alternatively you can use Carthage.
 
 Alternatively you can clone the project and build one of the static library setups in the project (iOS, macOS, tvOS or watchOS).
 
-#Usage
+# Usage
 The standardParser class provides an instance of the parser configured to parse the tags listed above. You can also just create a new instance of TSMarkupParser and add your own parsing. See "Adding custom parsing" for information on how to do this.
 
-````
+````objc
 NSAttributedString *string = [[TSMarkdownStandardParser new] attributedStringFromMarkup:inputText];
-
 ````
 
-#Customizing appearance
+# Customizing appearance
 You can configure how the markdown is to be displayed by changing the different properties on a TSMarkdownParser instance. Alternatively you could implement the parsing yourself and add custom attributes to the attributed string. You can also alter the attributed string returned from the parser. 
 
-#Adding custom parsing
+# Adding custom parsing
 Below is an example of how parsing of the bold tag is implemented. You can add your own parsing using the same addParsingRuleWithRegularExpression:block: method. You can add a parsing rule to the standardParser or to your own instance of the parser. If you want to use any of the configuration properties within makesure you use a weak reference to the parser so you don't create a retain cycle.
 
-````
+````objc
 NSRegularExpression *boldParsing = [NSRegularExpression regularExpressionWithPattern:@"(\\*\\*|__)(.+?)(\\1)" options:kNilOptions error:nil];
 __weak TSMarkdownParser *weakSelf = self;
 [self addParsingRuleWithRegularExpression:boldParsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
@@ -106,5 +104,5 @@ __weak TSMarkdownParser *weakSelf = self;
 }];
 ````
 
-#License
+# License
 TSMarkdownParser is distributed under a MIT licence, see the licence file for more info.

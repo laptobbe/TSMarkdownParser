@@ -17,6 +17,7 @@ NS_ROOT_CLASS
 
 + (UIFont *)convertFont:(UIFont *)font toHaveTrait:(TSFontTraitMask)traits;
 + (UIFont *)convertFont:(UIFont *)font toNotHaveTrait:(TSFontTraitMask)traits;
++ (UIFont *)monospaceFontOfSize:(CGFloat)fontSize;
 
 @end
 

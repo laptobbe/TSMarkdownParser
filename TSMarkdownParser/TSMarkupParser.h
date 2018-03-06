@@ -16,15 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^TSSimpleFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range);
 
 /// @param    range depends on context
-/// @param    markupLength is the part of the markup that is relevant to interprete it
+/// @param    markupLength is the part of the markup that is relevant to interpret it
 typedef void (^TSMarkupLengthFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range, NSUInteger markupLength);
 
 /// @param    range depends on context
-/// @param    markupString is the part of the markup that is relevant to interprete it
+/// @param    markupString is the part of the markup that is relevant to interpret it
 typedef void (^TSMarkupStringFormattingBlock)(NSMutableAttributedString *attributedString, NSRange range, NSString *markupString);
 
 /// @param    matchRange is the part of the string enclosed by the markup
-/// @param    markupRange is the part of the markup that is relevant to interprete it
+/// @param    markupRange is the part of the markup that is relevant to interpret it
 /// @param    fullRange is the full markup, eventual separators and the enclosed text
 typedef void (^TSFullFormattingBlock)(NSMutableAttributedString *attributedString, NSRange matchRange, NSRange markupRange, NSRange fullRange);
 

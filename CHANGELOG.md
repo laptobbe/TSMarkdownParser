@@ -1,9 +1,9 @@
-#Change Log
+# Change Log
 All notable changes to this project will be documented in this file.
 `TSMarkdownParser` adheres to [Semantic Versioning](http://semver.org/).
 
 --- 
-## [3.0.0](https://github.com/laptobbe/TSMarkdownParser/releases/tag/3.0.0) (2016/XX/XX)
+## [3.0.0](https://github.com/laptobbe/TSMarkdownParser/releases/tag/3.0.0) (2018/XX/XX)
 Unreleased. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A3.0.0+is%3Aclosed).
 
 #### Added
@@ -22,6 +22,28 @@ Unreleased. All issues associated with this milestone can be found using this [f
 * renamed OSX to macOS
 
 ---
+## [2.1.4](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.4) (2018/03/05)
+Released on 2018/03/05.
+
+#### Fixed
+* Fixed crash on missing fonts [#69](https://github.com/laptobbe/TSMarkdownParser/issues/69)
+* Fixed compatibility with macOS 10.7 to 10.10
+
+
+## [2.1.3](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.3) (2017/02/21)
+Released on 2017/02/21.
+
+#### Fixed
+* Fixed link autodetection conflicts with link markup [#62](https://github.com/laptobbe/TSMarkdownParser/issues/62)
+
+
+## [2.1.2](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.2) (2016/12/11)
+Released on 2016/12/11.
+
+#### Fixed
+* Fixed Unicode links autodetection [#61](https://github.com/laptobbe/TSMarkdownParser/pull/61)
+
+
 ## [2.1.1](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.1) (2016/06/04)
 Released on 2016/06/04. All issues associated with this milestone can be found using this [filter](https://github.com/laptobbe/TSMarkdownParser/issues?q=milestone%3A2.1.1+is%3Aclosed).
 

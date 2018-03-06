@@ -28,7 +28,8 @@
 {
     if (!attributesArray.count)
         return;
-    NSDictionary<NSString *, id> *attributes = level < attributesArray.count ? attributesArray[level] : attributesArray.lastObject;
+    // 'objectAtIndexedSubscript:' is only available on macOS 10.8 or newer
+    NSDictionary<NSString *, id> *attributes = level < attributesArray.count ? [attributesArray objectAtIndex:level] : attributesArray.lastObject;
     [self addAttributes:attributes range:range];
 }
 
@@ -38,7 +39,8 @@
 {
     if (!traitsArray.count)
         return;
-    NSNumber *traits = level < traitsArray.count ? traitsArray[level] : traitsArray.lastObject;
+    // 'objectAtIndexedSubscript:' is only available on macOS 10.8 or newer
+    NSNumber *traits = level < traitsArray.count ? [traitsArray objectAtIndex:level] : traitsArray.lastObject;
     [self ts_addTrait:traits.unsignedIntValue range:range];
 }
 

@@ -58,4 +58,16 @@
     return [UIFont fontWithDescriptor:[fontDescriptor fontDescriptorWithSymbolicTraits:fontDescriptor.symbolicTraits & ~traits] size:0];
 }
 
++ (UIFont *)monospaceFontOfSize:(CGFloat)fontSize
+{
+    // Courier New and Courier are the only monospace fonts compatible with watchOS 2
+    UIFont *font = [UIFont fontWithName:@"Courier New" size:fontSize] ?: [UIFont fontWithName:@"Courier" size:fontSize];
+    //if (font == nil)
+    //    font = [UIFont monospacedDigitSystemFontOfSize:fontSize weight:UIFontWeightRegular];
+    // #69: avoiding crash if font is missing
+    if (font == nil)
+        font = [UIFont systemFontOfSize:fontSize];
+    return font;
+}
+    
 @end

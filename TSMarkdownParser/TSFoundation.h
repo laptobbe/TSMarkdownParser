@@ -9,6 +9,8 @@
 #ifndef TSFoundation_h
 #define TSFoundation_h
 
+#import "TargetConditionals.h"
+
 #if TARGET_OS_IPHONE
 // iOS, watchOS, tvOS
 @import UIKit;
