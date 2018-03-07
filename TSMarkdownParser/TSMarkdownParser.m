@@ -21,6 +21,10 @@ typedef NSColor UIColor;
 typedef NSImage UIImage;
 typedef NSFont UIFont;
 #endif
+#ifndef NSFoundationVersionNumber10_10_Max
+// macOS 10.11+ test compatible with Xcode 7
+#define NSFoundationVersionNumber10_10_Max 1199
+#endif
 
 @implementation TSMarkdownParser
 
