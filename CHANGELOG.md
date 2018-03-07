@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.1.5](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.5) (2018/03/07)
+Released on 2018/03/07.
+
+#### Fixed
+* Fixed compatibility with Xcode 7
+
+
 ## [2.1.4](https://github.com/laptobbe/TSMarkdownParser/releases/tag/2.1.4) (2018/03/05)
 Released on 2018/03/05.
 
