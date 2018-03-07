@@ -16,7 +16,8 @@
     if (!trait)
         return;
     [self enumerateAttributesInRange:range options:0 usingBlock:^(NSDictionary<NSString *, id> * _Nonnull attrs, NSRange range, __unused BOOL * _Nonnull stop) {
-        UIFont *font = attrs[NSFontAttributeName];
+        // 'objectForKeyedSubscript:' is only available on macOS 10.8 or newer
+        UIFont *font = [attrs objectForKey:NSFontAttributeName];
         if (font)
             [self addAttribute:NSFontAttributeName value:[TSFontHelper convertFont:font toHaveTrait:trait] range:range];
     }];

@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+#import "TSFoundation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,13 +23,13 @@ typedef void (^TSBaseParserMatchBlock)(NSTextCheckingResult *match, NSMutableAtt
 /**
  Default attributes for `attributedStringFromMarkup:`.
  */
-@property (nonatomic, strong, nullable) NSDictionary<NSString *, id> *defaultAttributes;
+@property (nonatomic, strong, nullable) NSDictionary<NSAttributedStringKey, id> *defaultAttributes;
 
 /// Applies defaultAttributes then applies markup
 - (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup;
 
 /// Applies attributes then applies markup
-- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSString *, id> *)attributes;
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes;
 
 /// Applies markup
 - (NSAttributedString *)attributedStringFromAttributedMarkupString:(NSAttributedString *)attributedString;

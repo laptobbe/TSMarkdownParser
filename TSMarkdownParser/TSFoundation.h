@@ -29,4 +29,13 @@ typedef NSFontSymbolicTraits UIFontDescriptorSymbolicTraits;
 #define NSFoundationVersionNumber10_10_Max 1199
 #endif
 
+#if !defined(NS_EXTENSIBLE_STRING_ENUM)
+// Xcode 7-
+typedef NSString * NSAttributedStringKey;
+// Testing Xcode version (https://stackoverflow.com/a/46927445/1033581)
+#elif __clang_major__ < 9
+// Xcode 8-
+typedef NSString * NSAttributedStringKey NS_EXTENSIBLE_STRING_ENUM;
+#endif
+
 #endif /* TSFoundation_h */

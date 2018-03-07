@@ -153,14 +153,15 @@
         
 #if !TARGET_OS_WATCH
 #if !TARGET_OS_IPHONE
-#if defined(__MAC_10_13)
-        // macOS 10.11+ test compatible with Xcode 9+
-        // NSTextAttachment works on macOS 10.10 but is tricky for image support
-        if (@available(macOS 10.11, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
-#else
+// Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#if __clang_major__ < 9
         // macOS 10.11+ test compatible with Xcode 8-
         // NSTextAttachment works on macOS 10.10 but is tricky for image support
         if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_10_Max) {
+#else
+        // macOS 10.11+ test compatible with Xcode 9+
+        // NSTextAttachment works on macOS 10.10 but is tricky for image support
+        if (@available(macOS 10.11, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
 #endif
 #else
         {
