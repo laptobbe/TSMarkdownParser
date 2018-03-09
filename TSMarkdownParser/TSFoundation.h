@@ -15,7 +15,7 @@
 // iOS, watchOS, tvOS
 @import UIKit;
 #else
-// macOS
+// Compatibility with macOS
 @import AppKit;
 typedef NSColor UIColor;
 typedef NSImage UIImage;
@@ -25,16 +25,18 @@ typedef NSFontSymbolicTraits UIFontDescriptorSymbolicTraits;
 #endif
 
 #ifndef NSFoundationVersionNumber10_10_Max
-// macOS 10.11+ test compatible with Xcode 7
+// Compatibility with Xcode 7
 #define NSFoundationVersionNumber10_10_Max 1199
 #endif
 
-#if !defined(NS_EXTENSIBLE_STRING_ENUM)
-// Xcode 7-
-typedef NSString * NSAttributedStringKey;
+#ifndef NS_EXTENSIBLE_STRING_ENUM
+// Compatibility with Xcode 7
+#define NS_EXTENSIBLE_STRING_ENUM
+#endif
+
 // Testing Xcode version (https://stackoverflow.com/a/46927445/1033581)
-#elif __clang_major__ < 9
-// Xcode 8-
+#if __clang_major__ < 9
+// Compatibility with Xcode 8-
 typedef NSString * NSAttributedStringKey NS_EXTENSIBLE_STRING_ENUM;
 #endif
 

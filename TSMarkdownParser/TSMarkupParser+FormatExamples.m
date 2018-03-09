@@ -31,7 +31,7 @@ static NSString *const TSMarkdownExampleEmphasisSymbol      = @"\\*|_";
 //static NSString *const TSMarkupExampleHashtagSymbol       = @"#";
 
 static inline TSFullFormattingBlock TSMarkupFullBlockWithLeadAndTextBlocks(TSMarkupLengthFormattingBlock _Nullable leadFormattingBlock, TSMarkupLengthFormattingBlock _Nullable textFormattingBlock) {
-    return ^(NSMutableAttributedString * _Nonnull attributedString, NSRange textRange, NSRange leadRange, NSRange fullRange) {
+    return ^(NSMutableAttributedString * _Nonnull attributedString, NSRange textRange, NSRange leadRange, __unused NSRange fullRange) {
         NSUInteger level = leadRange.length;
         NSRange leadingRange = NSMakeRange(leadRange.location, textRange.location - leadRange.location);
         // formatting string (may alter the length)
@@ -47,7 +47,7 @@ static inline TSFullFormattingBlock TSMarkupFullBlockWithLeadAndTextBlocks(TSMar
 }
 
 static inline TSFullFormattingBlock TSMarkupFullBlockWithTrailAndTextBlocks(TSMarkupLengthFormattingBlock _Nullable trailFormattingBlock, TSMarkupLengthFormattingBlock _Nullable textFormattingBlock) {
-    return ^(NSMutableAttributedString * _Nonnull attributedString, NSRange textRange, NSRange trailRange, NSRange fullRange) {
+    return ^(NSMutableAttributedString * _Nonnull attributedString, NSRange textRange, NSRange trailRange, __unused NSRange fullRange) {
         NSUInteger level = trailRange.length;
         NSRange trailingRange = NSMakeRange(textRange.location + textRange.length, trailRange.location + trailRange.length - textRange.location - textRange.length);
         // formatting trailing markup (may alter the length)

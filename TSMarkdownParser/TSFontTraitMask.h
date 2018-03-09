@@ -11,7 +11,7 @@
 
 #if TARGET_OS_IPHONE
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
-// iOS 6
+// iOS 6 support
 @import CoreText.CTFont;
 typedef CTFontSymbolicTraits TSFontTraitMask;
 typedef NS_OPTIONS(uint32_t, TSFontMask) {

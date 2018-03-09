@@ -36,8 +36,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="211" id="saF-I0-2UD"/>
                                         </constraints>
-                                        <string key="text"># header
-###### header
+                                        <string key="text"># header 1
+###### header 6
 * list, _emphasis_, *emphasis*
 ++ list, __bold__, **bold**
 --- list, `code`, ``code``

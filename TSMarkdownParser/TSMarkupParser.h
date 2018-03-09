@@ -52,6 +52,7 @@ typedef void (^TSFullFormattingBlock)(NSMutableAttributedString *attributedStrin
  */
 @property (nonatomic, assign) BOOL skipLinkAttribute;
 
+#if !TARGET_OS_WATCH
 /**
  * bundle for markup resources
  * 
@@ -59,6 +60,7 @@ typedef void (^TSFullFormattingBlock)(NSMutableAttributedString *attributedStrin
  * default is mainBundle
  */
 @property (nonatomic, strong) NSBundle *resourceBundle NS_AVAILABLE(10_7, 8_0);
+#endif// !TARGET_OS_WATCH
 
 /*
  It is recommended to use `[TSMarkupParser new]` for an empty markup parser.

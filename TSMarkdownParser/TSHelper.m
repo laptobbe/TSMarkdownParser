@@ -1,14 +1,14 @@
 //
-//  TSFontHelper.m
+//  TSHelper.m
 //  TSMarkdownParser
 //
 //  Created by Antoine Cœur on 03/05/2016.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
 //
 
-#import "TSFontHelper.h"
+#import "TSHelper.h"
 
-@implementation TSFontHelper
+@implementation TSHelper
 
 + (UIFont *)convertFont:(UIFont *)font toHaveTrait:(TSFontTraitMask)traits
 {
@@ -17,8 +17,21 @@
 #else
     // to support iOS6
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
-    if (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_7_0) {
-        // CoreText font equivalent
+    // Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#if __clang_major__ >= 9
+    // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 9+
+    if (@available(macOS 10.9, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+    // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 8-
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
+#endif
+#endif
+        UIFontDescriptor *fontDescriptor = font.fontDescriptor;
+        // making the new font
+        return [UIFont fontWithDescriptor:[fontDescriptor fontDescriptorWithSymbolicTraits:fontDescriptor.symbolicTraits | traits] size:0];
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+    } else {
+        // iOS 6: CoreText font equivalent
         CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
         // adding traits
         traits = CTFontGetSymbolicTraits(ctFont) | traits;
@@ -30,18 +43,31 @@
         return newFont;
     }
 #endif
-    UIFontDescriptor *fontDescriptor = font.fontDescriptor;
-    // making the new font
-    return [UIFont fontWithDescriptor:[fontDescriptor fontDescriptorWithSymbolicTraits:fontDescriptor.symbolicTraits | traits] size:0];
-#endif
+#endif// !TARGET_OS_IPHONE
 }
 
 + (UIFont *)convertFont:(UIFont *)font toNotHaveTrait:(TSFontTraitMask)traits
 {
+#if !TARGET_OS_IPHONE
+    return [[NSFontManager sharedFontManager] convertFont:font toNotHaveTrait:traits];
+#else
     // to support iOS6
 #if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
-    if (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_7_0) {
-        // CoreText font equivalent
+    // Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#if __clang_major__ >= 9
+    // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 9+
+    if (@available(macOS 10.9, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+    // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 8-
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
+#endif
+#endif
+        UIFontDescriptor *fontDescriptor = font.fontDescriptor;
+        // making the new font
+        return [UIFont fontWithDescriptor:[fontDescriptor fontDescriptorWithSymbolicTraits:fontDescriptor.symbolicTraits & ~traits] size:0];
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+    } else {
+        // iOS 6: CoreText font equivalent
         CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
         // removing traits
         traits = CTFontGetSymbolicTraits(ctFont) & ~traits;
@@ -53,9 +79,7 @@
         return newFont;
     }
 #endif
-    UIFontDescriptor *fontDescriptor = font.fontDescriptor;
-    // making the new font
-    return [UIFont fontWithDescriptor:[fontDescriptor fontDescriptorWithSymbolicTraits:fontDescriptor.symbolicTraits & ~traits] size:0];
+#endif// !TARGET_OS_IPHONE
 }
 
 + (UIFont *)monospaceFontOfSize:(CGFloat)fontSize
@@ -69,5 +93,14 @@
         font = [UIFont systemFontOfSize:fontSize];
     return font;
 }
-    
+
+/// #61: tries link and fallback for an unescaped link
++ (nullable NSURL *)URLWithStringByAddingPercentEncoding:(NSString *)link
+{
+    // TODO: use [link stringByAddingPercentEncodingWithAllowedCharacters:<#(nonnull NSCharacterSet *)#>];
+    NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
+                                                [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    return url;
+}
+
 @end

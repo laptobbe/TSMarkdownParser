@@ -7,7 +7,7 @@
 //
 
 #import "NSMutableAttributedString+TSTraits.h"
-#import "TSFontHelper.h"
+#import "TSHelper.h"
 
 @implementation NSMutableAttributedString (TSTraits)
 
@@ -19,7 +19,7 @@
         // 'objectForKeyedSubscript:' is only available on macOS 10.8 or newer
         UIFont *font = [attrs objectForKey:NSFontAttributeName];
         if (font)
-            [self addAttribute:NSFontAttributeName value:[TSFontHelper convertFont:font toHaveTrait:trait] range:range];
+            [self addAttribute:NSFontAttributeName value:[TSHelper convertFont:font toHaveTrait:trait] range:range];
     }];
 }
 

@@ -26,8 +26,8 @@
     // Configure interface objects here.
     self.parser = [TSMarkdownStandardParser new];
     
-    NSString *input = @"# header\n\
-###### header\n\
+    NSString *input = @"# header 1\n\
+###### header 6\n\
 * list, _emphasis_, *emphasis*\n\
 ++ list, __bold__, **bold**\n\
 --- list, `code`, ``code``\n\

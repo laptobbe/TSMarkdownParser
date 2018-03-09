@@ -9,7 +9,7 @@
 #import "TSMarkdownStandardParser.h"
 #import "NSMutableAttributedString+TSTraits.h"
 #import "TSMarkupParser+FormatExamples.h"
-#import "TSFontHelper.h"
+#import "TSHelper.h"
 
 #if TARGET_OS_IPHONE
 @implementation UIColor (ts)
@@ -98,7 +98,7 @@
                          NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) };
     
     // Courier New and Courier are the only monospace fonts compatible with watchOS 2
-    _monospaceAttributes = @{ NSFontAttributeName: [TSFontHelper monospaceFontOfSize:defaultSize],
+    _monospaceAttributes = @{ NSFontAttributeName: [TSHelper monospaceFontOfSize:defaultSize],
                               NSForegroundColorAttributeName: [UIColor colorWithSRGBRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongTraits = (TSFontTraitMask)TSFontMaskBold;
     _emphasisTraits = (TSFontTraitMask)TSFontMaskItalic;
@@ -150,53 +150,47 @@
     /* bracket parsing */
     
     [self addImageParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
-        
-#if !TARGET_OS_WATCH
-#if !TARGET_OS_IPHONE
-// Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
-#if __clang_major__ < 9
-        // macOS 10.11+ test compatible with Xcode 8-
-        // NSTextAttachment works on macOS 10.10 but is tricky for image support
-        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_10_Max) {
-#else
-        // macOS 10.11+ test compatible with Xcode 9+
-        // NSTextAttachment works on macOS 10.10 but is tricky for image support
-        if (@available(macOS 10.11, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
-#endif
-#else
+// testing for NSLinkAttributeName support
+#if !TARGET_OS_IPHONE || !TARGET_OS_IOS || __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
         {
+#elif __clang_major__ >= 9
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 9+
+        if (@available(macOS 10.9, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 8-
+        if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
 #endif
-            UIImage *image;
-            NSBundle *resourceBundle = weakSelf.resourceBundle;
-#if !TARGET_OS_IPHONE
-            if (resourceBundle) {
-                image = [resourceBundle imageForResource:link];
-            } else
-#elif __has_include(<UIKit/UITraitCollection.h>)
-                if (resourceBundle && [UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
-                    image = [UIImage imageNamed:link inBundle:resourceBundle compatibleWithTraitCollection:nil];
-                } else
+// testing for `imageAttachmentForResource:` support
+#if !TARGET_OS_WATCH
+#if TARGET_OS_IPHONE
+            {
+#elif __clang_major__ >= 9
+            // macOS 10.11+ (/ iOS 9+) test compatible with Xcode 9+
+            if (@available(macOS 10.11, iOS 9.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+            // macOS 10.11+ (/ iOS 9+) test compatible with Xcode 8-
+            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_10_Max) {
 #endif
-                {
-                    image = [UIImage imageNamed:link];
+                // to display something, link actually needs to be a resource name
+                UIImage *image = [weakSelf imageForResource:link];
+                if (image) {
+                    NSTextAttachment *imageAttachment = [NSTextAttachment new];
+                    imageAttachment.image = image;
+                    // this isn't a perfect vertical alignment and should be improved
+                    imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
+                    NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+                    [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
+                    return;
                 }
-            if (image) {
-                NSTextAttachment *imageAttachment = [NSTextAttachment new];
-                imageAttachment.image = image;
-                imageAttachment.bounds = CGRectMake(0, -5, image.size.width, image.size.height);
-                NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:imageAttachment];
-                [attributedString replaceCharactersInRange:range withAttributedString:imgStr];
-                return;
             }
-        }
-#endif
-        if (!weakSelf.skipLinkAttribute) {
-            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
-                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            if (url.scheme) {
-                [attributedString addAttribute:NSLinkAttributeName
-                                         value:url
-                                         range:range];
+#endif// !TARGET_OS_WATCH
+            if (!weakSelf.skipLinkAttribute) {
+                NSURL *url = [TSHelper URLWithStringByAddingPercentEncoding:link];
+                if (url.scheme) {
+                    [attributedString addAttribute:NSLinkAttributeName
+                                             value:url
+                                             range:range];
+                }
             }
         }
         if (weakSelf.imageAttributes)
@@ -205,13 +199,23 @@
     }];
     
     [self addLinkParsingWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString * link) {
-        if (!weakSelf.skipLinkAttribute) {
-            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
-                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            if (url) {
-                [attributedString addAttribute:NSLinkAttributeName
-                                         value:url
-                                         range:range];
+// testing for NSLinkAttributeName support
+#if !TARGET_OS_IPHONE || !TARGET_OS_IOS || __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        {
+#elif __clang_major__ >= 9
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 9+
+        if (@available(macOS 10.9, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 8-
+        if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
+#endif
+            if (!weakSelf.skipLinkAttribute) {
+                NSURL *url = [TSHelper URLWithStringByAddingPercentEncoding:link];
+                if (url) {
+                    [attributedString addAttribute:NSLinkAttributeName
+                                             value:url
+                                             range:range];
+                }
             }
         }
         if (weakSelf.linkAttributes)
@@ -222,28 +226,38 @@
     /* autodetection */
     
     [self addLinkDetectionWithLinkFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSString *link) {
-        if (!weakSelf.skipLinkAttribute) {
-            __block BOOL alreadyLinked = NO;
-            [attributedString enumerateAttribute:NSLinkAttributeName
-                                         inRange:range
-                                         options:0
-                                      usingBlock:^(id _Nullable value, __unused NSRange range, BOOL * _Nonnull stop)
-             {
-                 if (value) {
-                     // #62: this range has a link that overlaps with the autodetect range, so skip
-                     alreadyLinked = YES;
-                     *stop = YES;
-                 }
-             }];
-            if (alreadyLinked) {
-                return;
+// testing for NSLinkAttributeName support
+#if !TARGET_OS_IPHONE || !TARGET_OS_IOS || __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        {
+#elif __clang_major__ >= 9
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 9+
+        if (@available(macOS 10.9, iOS 7.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+        // iOS 7+ (/ macOS 10.9+) test compatible with Xcode 8-
+        if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
+#endif
+            if (!weakSelf.skipLinkAttribute) {
+                __block BOOL alreadyLinked = NO;
+                [attributedString enumerateAttribute:NSLinkAttributeName
+                                             inRange:range
+                                             options:0
+                                          usingBlock:^(id _Nullable value, __unused NSRange range, BOOL * _Nonnull stop)
+                 {
+                     if (value) {
+                         // #62: this range has a link that overlaps with the autodetect range, so skip
+                         alreadyLinked = YES;
+                         *stop = YES;
+                     }
+                 }];
+                if (alreadyLinked) {
+                    return;
+                }
+                // #61: fallback for unescaped links
+                NSURL *url = [TSHelper URLWithStringByAddingPercentEncoding:link];
+                [attributedString addAttribute:NSLinkAttributeName
+                                         value:url
+                                         range:range];
             }
-            // #61: fallback for unescaped links
-            NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
-                                                        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            [attributedString addAttribute:NSLinkAttributeName
-                                     value:url
-                                     range:range];
         }
         if (weakSelf.linkAttributes)
             [attributedString addAttributes:weakSelf.linkAttributes range:range];
@@ -274,5 +288,59 @@
     
     [self addUnescapingParsing];
 }
+
+#if !TARGET_OS_WATCH
+        
+#pragma mark - imageAttachment for ressource bundle
+
+- (nullable UIImage *)imageForResource:(NSString *)name NS_AVAILABLE(10_7, 7_0) {
+#if !TARGET_OS_IPHONE
+    {
+#elif __clang_major__ >= 9
+    if (@available(macOS 10.10, iOS 8.0, tvOS 9.0, *)) {
+#else
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+#endif
+        return [TSMarkdownStandardParser imageForResource:name bundle:self.resourceBundle];
+    }
+    // iOS 7
+    return [TSMarkdownStandardParser imageForResource:name bundle:nil];
+}
+
+/// Not thread safe on iOS 7/8 (see [UIImage imageNamed:] and [UIImage imageNamed:inBundle:compatibleWithTraitCollection:])
+/// `resourceBundle` is unsupported on watchOS, iOS 7 or without <UIKit/UITraitCollection.h>
++ (nullable UIImage *)imageForResource:(NSString *)name bundle:(nullable NSBundle *)resourceBundle NS_AVAILABLE(10_7, 7_0)
+{
+    if (resourceBundle) {
+#if !TARGET_OS_IPHONE
+        // doesn't support cache: https://developer.apple.com/documentation/foundation/nsbundle/1519901-imageforresource
+        return [resourceBundle imageForResource:name];
+        // Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#else
+        // macro required for Xcode 7/8/9
+#if __has_include(<UIKit/UITraitCollection.h>)
+#if __clang_major__ >= 9
+        // @available replaces `respondsToSelector:`: https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available
+        if (@available(iOS 8.0, tvOS 9.0, *)) {
+#else
+        if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+#endif
+            // supports cache: https://developer.apple.com/documentation/uikit/uiimage/1624154-imagenamed
+            return [UIImage imageNamed:name inBundle:resourceBundle compatibleWithTraitCollection:nil];
+        } else {
+#else
+        {
+#endif
+            if (resourceBundle != NSBundle.mainBundle)
+                // watchOS, iOS 7 or no <UIKit/UITraitCollection.h>
+                return nil;
+        }
+#endif
+    }
+    // supports cache
+    return [UIImage imageNamed:name];
+}
+
+#endif// !TARGET_OS_WATCH
 
 @end

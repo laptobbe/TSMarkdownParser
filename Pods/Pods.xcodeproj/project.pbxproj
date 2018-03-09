@@ -7,135 +7,123 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03C4E6C839B3A4BD7EA7444EF4E09111 /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; };
-		04632251B712CDFC4C6D91ABB7669775 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0337691AA8C17761F2FD1F5E8F794B89 /* TSMarkdownParser-watchOS2.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE11D9568A3EA1ECD7EED0DC1C81E98 /* TSMarkdownParser-watchOS2.2-dummy.m */; };
 		0555B341196704FCDC2DAF6BAC251DC2 /* Pods-TSMarkdownParserTests tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD31CB428B6309EE2E6DC3DC583C477 /* Pods-TSMarkdownParserTests tvOS-dummy.m */; };
 		0562F1F9E95B132E633B7D0B48A77AAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2763F96F254CB66A2CD7D5B1F7AFF273 /* Foundation.framework */; };
-		05A4961A6F145B0DEBBBE1AA5678362E /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		070F99A878ABBEBF90FB2437EB790BA1 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		08CAF52B2BE800FABBE8EC30B2DA6563 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; };
+		0674B5D262A762F51C529C6EFDAE2129 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; };
 		0981394E4D1C611E27E592C5C547FEAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2763F96F254CB66A2CD7D5B1F7AFF273 /* Foundation.framework */; };
-		0DC08F5E27CE54D9F8675CFD9603BF3C /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0FAD897BBAC9AD08631CA0C9E1F1272A /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0FA79409C24136882CDE1064B5E843BF /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		10BB1193185F939746C514884ABC19DC /* Pods-TSMarkdownParserExample watchOS Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5845791112BF40A61DE41206B36AE1 /* Pods-TSMarkdownParserExample watchOS Extension-dummy.m */; };
 		10DCEC47564C9A4649E6A15373D7A5C7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD701F4653C2FBEB7B23439439A32C4D /* Cocoa.framework */; };
-		12DC5ECA37BF244DC9AFAE2E1BF0C6B2 /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		132EDCE962D69131F9FEC9B2C289DB88 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		178E2D31A51A2DE14B14A34709466455 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1864764890AEA7AA636F89224EAF1F84 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; };
+		11D4987ECC004709D3A1EB2217C92BF3 /* TSMarkdownParser-macOS10.10-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93046EBDCBA20D2CB2843A4DCB501EF7 /* TSMarkdownParser-macOS10.10-dummy.m */; };
+		134C538D4BB32D133248353769F03FCE /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		162D558D3B3FFD7C92FB1867BAE7A1EB /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		181C6AB88C6EA9FD08AB9B6D045B1F59 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		18F46F2F208B9F02E6A1C191FB407CF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2763F96F254CB66A2CD7D5B1F7AFF273 /* Foundation.framework */; };
-		19D4F786EED892C635681D0BE4E6350D /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		19DCD9CE79A429EE857EFBCA70CDF83B /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; };
-		1B7949D2F3573B5D1749219DC6280CC5 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1B902BD95EF3B4B1F98AB332FE61486E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD701F4653C2FBEB7B23439439A32C4D /* Cocoa.framework */; };
-		1E22C54BC4F495297F4AACC0DB603AB0 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1D9D347E71F773DC2AE330718B0053B6 /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1EED64F41CED55B9A71CB7B145721A1F /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1F4E565D78F36953347C43443089391C /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2135540178A5CF0A50E52ECBF6F6FEF4 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2179CE20F0FC7FF37F57E57A814EFE2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAD1D23691FE875327F0E7A7DD8B90E /* Foundation.framework */; };
-		21E2127319DBC280BA6469DB61686069 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2434142C07535ED1A69025E49AB15D96 /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		249A180CD424AB88AD0AB5FA08F7D7AD /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; };
-		266FC6AF9299E0A439AAE43FA5E400CB /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; };
-		2714F1E5978A8122EA4A028125AA2A96 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		29B07838094A29E4C2DD2EBC3FE201E6 /* TSMarkdownParser-iOS8.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E09F1F6FB0604028F045E94161ADAE /* TSMarkdownParser-iOS8.0-dummy.m */; };
-		2D0ACC264B30345356053F24A076CFA5 /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2E332001A2AC7D7B379EB7C58C45D18E /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2EBD9BEFB893CF668459877BF0693239 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; };
-		319B3986BE9281CB9937DEDB56AEAEA4 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		31BCF4C171B08F11B4938A88A47B504E /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3204ED80F557A667BE6A98D5A767D1BD /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; };
+		254E40445FB4393F7BEDF85AFDA3369D /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; };
+		26F1D4D2F5091FB95C3B88E4267C36DC /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; };
+		27515C9BC2F86D7A9EE9D395F2172994 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		27CE660A29F197161CA739A331ECD784 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; };
+		28592742E9F335B23F318B9D89B0DEA3 /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2C62B3D66BF8563F2FC221A72E52984D /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; };
+		2EF6A04A8C1996E3B70475A16AC43396 /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		301DD4D71D1C4BDE8D96F44D512595D6 /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; };
+		313CA2AFE3B93DDE461E8C5DD44C61D5 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; };
 		324F6AB688F11A9CC13173CF4D7934D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A26E632ABAB1396B1F461371BD3D5 /* Foundation.framework */; };
-		339FE123DA723EA6256A8B931A3DB633 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		349B9FD4F6C9B738619A01B6216CF6D0 /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		3842CAF865CD0384E2646D88F34C33FA /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3866D38E002FD08DE5BC8962308F526E /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3B9A0598B076B9330D7465AA3916D8E4 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3C4B3D6AEEAB484F3FCF897C5B660C67 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3EBF72E626DD7EEB148537FC1F9BCA49 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		3F51A8DDFDC0EA336390EC9FDB74D0C7 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		401143F11F2741B450397189031362AE /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C2EF441829B310332D0E0B4F20F9BE1 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C73E0ECA38E2EBF514A306DD57FC293 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4D331806C4F33347EF8FBFB3FA1B843F /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4D9678F5C8325BE47CD3DFCD26334A5B /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4DBE7BE6B233ABE4E527A4CF10B2DEB9 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4F262971815E43F3CA286472F6475082 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		35C7AD2A72DB0E21027A75078908BB66 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3AE88BCE2ED2B77DB108AFBB2BE8F85A /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; };
+		4080BF6180F9776D9897CD2F3DDB6D63 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4BDA77A2406D7BAC2D88ED5FA727DC01 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		50F31296C9F6F9FDE6080A536B5ED0F9 /* Pods-TSMarkdownParserExample tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0F671B12E29124A0A43DC40874FCB /* Pods-TSMarkdownParserExample tvOS-dummy.m */; };
-		55034A6192817DE0498263038ACBEEBB /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		55051F416FFF7D696476EF99A9F84A70 /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		572572ED8D4BC9C756068810480B89E4 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; };
+		52915BDB297D3712E3B92F20583544C6 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		52B62EA040D29448B7C49FB6349B55C7 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; };
+		54B1823429CBA9E8F9CF41B7ADECBAB0 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; };
+		5587D57F2A88C8ADEF99DC71EF77CA49 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55B48EE8F1EBE8F739941074E834208D /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5B373465CEE1EDF05D265080B1303A97 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD701F4653C2FBEB7B23439439A32C4D /* Cocoa.framework */; };
+		5B3FE76A1BE5FBB8938E0E8B9EA06AD0 /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5D48787F187F6C178EA209A590CCB13A /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; };
+		5EE52BAC2471DB754C19821699364DEE /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5F39B8909C14CB02E2C099F41A237453 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAD1D23691FE875327F0E7A7DD8B90E /* Foundation.framework */; };
 		6272D64BBA60EB333C8028AF38D0F953 /* Pods-TSMarkdownParserExample macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A04DC34ECAFAC7D499A992154CA97 /* Pods-TSMarkdownParserExample macOS-dummy.m */; };
-		6B48826382FE36A797D359750FDAC77F /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6B892CC4EFBBD7EE1A82A4FA65E301A5 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; };
-		6E6119437F95472FFA0A283ECF9FA042 /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; };
-		7086C3FAE7C4AE6C0359CB1231A02AA7 /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		720CFBC611F99487C2A8D2C997A752E2 /* TSMarkdownParser-macOS10.11-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D493D72BA006885A311D91869119C /* TSMarkdownParser-macOS10.11-dummy.m */; };
-		760E57C345A452434DF641F162C42D89 /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; };
-		765F71DC5E5A0F24D639DFC8414F806A /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; };
-		78123834186560B5ED8CA3E6BD3CA8CD /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6331844F726919B7CEE359BB542C921D /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		646DDBEB0901B9AD2806E6DA2DA42BCC /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; };
+		64AA414BF29AB0FFD0D4F8C5E53653C0 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		699AFDAEE08DC3387CEAEB63DEDC41B6 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6B29ABB4D67194216883EB2FFA2BBE74 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; };
+		71A28F2F074009F334CC4AA620540647 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; };
+		7553D24EC5CCD8C23A1667B38E41AC46 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		75BC285052271EAC512D787439237CEA /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		79B71EA1F498D6393D550F312ECA8736 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; };
 		7BDD5E08D3036415153BF326D7CBD0ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2763F96F254CB66A2CD7D5B1F7AFF273 /* Foundation.framework */; };
 		7C17E6DAF842225CA6F8C996A200D05A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF37CFED06790EB9B502101394D4DAC9 /* AppKit.framework */; };
 		7DDA13A60037D9B68FE9A809E8753C17 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD701F4653C2FBEB7B23439439A32C4D /* Cocoa.framework */; };
 		7EDE3BD1276F81B4A6975540D7267BB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAD1D23691FE875327F0E7A7DD8B90E /* Foundation.framework */; };
-		81D0A7608CA8D934EB62B7439C99357B /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		828177FA64A1D101C56EEA1A7FEF6B7B /* Pods-TSMarkdownParserTests macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CDE3514907E1FAF9F041ACF80F2991 /* Pods-TSMarkdownParserTests macOS-dummy.m */; };
 		82BC0188B68B9506A89CB915A0545642 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9121D765F3B68E0DB60E41C0E10C9A /* UIKit.framework */; };
-		86DBA2A707543A9453807E6B239C4F57 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		89018434E54A0B215229BB3D17433A28 /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; };
-		899F000B76101CA0BC00E3C4DDAA9064 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		82E854A5DD39A08D3BB700973EB90384 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; };
+		84259EB085BDD6B429A33EEF71118893 /* TSMarkdownParser-iOS8.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14980693F030EEB705C2853AB7D5849F /* TSMarkdownParser-iOS8.0-dummy.m */; };
+		85D06E4528C7211E17FCD60B5DA37338 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8E25BF7872FA98FAEA1434565B77BB8C /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; };
 		8E4993AB4136450CEC60ED3E85BE31AB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872E2E87B70A61AA5F98AEC661171BC3 /* CoreText.framework */; };
-		8EAA8A19E5B7EB398CB859F7F65C7ABF /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9259105529BA37D311D9F6E7F284F887 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9597F3B27479EB5A7CF22AD209ACDE96 /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9A857D66F46EBE039C0ADC76B93DDA27 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9CCBA96CA3A6E4FD69E97BD27FD8D917 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; };
+		8F3B7939521F254DE5A87CD9E50D979F /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		94DF637BCF86F73329AF7F62623A2BD0 /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		99F27DBFA329A7B98CA95E4C4746B861 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D1A1B8C1674505FCC146D993ABB6BBC /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D3B999C002DDFF74CF990577D8F5A2A /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9FBF7B7404065BBF07B0EF65FF351447 /* Pods-TSMarkdownParserExample iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C2BFBEDA2CA462A5C5FD91B1B24CB /* Pods-TSMarkdownParserExample iOS-dummy.m */; };
-		A074481E26C845E7424DEF5D210B366A /* TSURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */; };
+		A0EDBEAD6E0216D215C8BA8193A2206E /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A1DC8FF920D0869C7C27BC6F168042B4 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A2076276396740167FCD64750D945A88 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF37CFED06790EB9B502101394D4DAC9 /* AppKit.framework */; };
-		A7225AE9E9FEF0708BE2DBA7F60BC282 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ABAE9FD13E203336822A3E6A76484F43 /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ACC65A23E115A634869DDC9798DCAB18 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A34AF04F9E09EEDD27A70CB8904ED966 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A7037FB8C533880FC1894690F0EAAB57 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A790638EA911B84B82464C94893FFA04 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; };
+		A8E779949F38159059CFB73AAB9A72A9 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A99A69AED26A2C10D6B41C14A7137B85 /* TSMarkdownParser-tvOS9.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AE85563C793A0FDDDB0CD3EDB61339 /* TSMarkdownParser-tvOS9.0-dummy.m */; };
+		ABE4076807413D8ED55D3BE9B4236DBB /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ACA0AA9B4ABFD2C2B77E316E318218C4 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		AE2EA504A898B54A01812F0FAA0A13C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9121D765F3B68E0DB60E41C0E10C9A /* UIKit.framework */; };
-		AE35BF661DE6800A5E59BD65A1C896E4 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		AE7AB02ABAF4F6443B0FA8550D06BD43 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; };
-		AFE0261CF4A3876E5DC45372EA5547A1 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B362B1369BF64698E0E910521A82CEC2 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; };
-		B3F3AA93A6D36D70F51B3F4FCAB5E258 /* TSMarkdownParser-macOS10.10-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9432420A060772F9D2EB24B02BC4936C /* TSMarkdownParser-macOS10.10-dummy.m */; };
-		B6469D7517E0A9C6C055B2ED1659E03D /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B802968F63523676B6EFD8680240EF3D /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B885E47F66DB7DF9A3D4CFEF670A57FA /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BF6B4311AD921A5BCF6C34E1175D05A8 /* TSMarkdownParser-tvOS9.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB50C74EF01C9A78E9637C18427A627 /* TSMarkdownParser-tvOS9.0-dummy.m */; };
-		C14BBDBB49C1E612ADAD3F5374658B33 /* TSMarkdownParser-watchOS2.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF373E63CF469A4302750E112EF70B9 /* TSMarkdownParser-watchOS2.2-dummy.m */; };
-		C5C20C8D0791B1D441A89FD57BD81015 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; };
-		C6B3B69861AE5901E00263B67F7B8CA7 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; };
-		CBE7AB132E2BA05BDE228E9906F62ADD /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CC1D51C559899185DB0BE52984A9D1CD /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; };
-		D5535E8E5A1672A415A52FEDB41C0ABD /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D56744820D8D7884582C7DCE1D888226 /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D8039CADCA7F57F7B9E830AB44E515CA /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; };
-		D8ECE63A5EC9C205EEA82316E36D3230 /* TSMarkdownParser-tvOS9.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF9F510C8DA9E21A7FD9ECCF21EDAB1 /* TSMarkdownParser-tvOS9.2-dummy.m */; };
-		D919B4678B53E28899A3AA9D7643D543 /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DBBDACB9B247915B9CFBD8776858BB8C /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DDC1C60803288A0FB0C8525CEC8E22DB /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DDD6C76B1A132CB402DB93CC41C78C38 /* TSURLHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E05BBCDD1D3E41731DB6BD3414E672B8 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E0F59236B6066E6E4F25D48340E0446C /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; };
-		E19DFFCDC4A1DF3DF2847E564BD4D089 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E622E499061F9D79E7A0FFC3616BBB68 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E66F9AF21223483A74B99F71443C4CCF /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; };
+		AF3B163FCEAD7CD7900F7D80D3980FA5 /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; };
+		B013EBA7CF975CA3EF8B25910B5DE0E8 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B092843B209FF8F6CB7CEED6251A48A6 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B21111D446FBCA417209E3956FF872B7 /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B4A37660BA8DCB1E5451D6F3CDF9470F /* TSMarkdownStandardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B7F44B1BE28F6D3D2E400C1D46F23212 /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BB8AD124A5D6D00B5B242B8E8D44B1D4 /* TSHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 540999B92A31A9F57B495574252F85A2 /* TSHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BEF29F7F76D6C6AC8CFB3AE79D19141F /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; };
+		BFAE30896E922F063C8F035E2D90DD71 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C286F76842FB1951332A70A915C268DF /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C4291CB7DA81183B5108AE8F670F2E7B /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C8B4452859F53DBE2D9FB6B3474BFC7A /* NSMutableAttributedString+TSTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C8B7DA30902AAB88724229DD26A890CD /* TSMarkdownParser-macOS10.11-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C58466DA14C6D4901D6B9CA375D8AD81 /* TSMarkdownParser-macOS10.11-dummy.m */; };
+		CC9511EA8698D1AE11335021AF6E0727 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; };
+		CEBFD159D2F40325964B4BCE7861EDD6 /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CFC122054F21BB65A1EBD08905C50E36 /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D1E389A576B94D5888851792E5AF06EF /* TSMarkdownParser-tvOS9.2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A36D28DA9920148F4DE8107F8EEE6C /* TSMarkdownParser-tvOS9.2-dummy.m */; };
+		D3DE2FC63C6ABDF5AC441F52084AE898 /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D560712DE87270C277E89BE82D2C468F /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D85D8BA3E0B7397DF4102CC9FC736CA4 /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DBD39CDBB96B85C9C236C78AD882BE0D /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD52F59AAC3DBCA151AB20F914E1C4A3 /* TSMarkdownStandardParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E16D5328BD2DEA301806EB2E0BD5E231 /* TSMarkupParser+FormatExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */; };
+		E2756B79D34EB2775087A115CB790200 /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = 134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E53FD8D9633D65B76E4D2609B7DCFC91 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E6AF435406EBA2BF7D3DCCC121481918 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; };
 		E714D400F65D30C0123C130564C4D39F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41A26E632ABAB1396B1F461371BD3D5 /* Foundation.framework */; };
-		E99ECA37DA6FC45B667F62E96E6CDAC5 /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E775234E79CDF9D2308A871C603988E4 /* TSBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E779B49A3CC20BC7DB80AC0DCB5F2699 /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EB72B06423F80217FB3CCD912064B4D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBA3E618C0B9FAFCAE3D1E48A5438CF /* UIKit.framework */; };
-		EC32DBDE6AE35373C76F8C3BF661F18C /* TSFontTraitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EC5C5E4212EFB8B8898B5013E5E701EF /* TSFontHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EE0F0570CB2720ECCE22EB151BCA962B /* NSMutableAttributedString+TSTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */; };
-		EF2CB00B4A799558B8DE85A0597A7616 /* TSFontHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */; };
-		EF2DC2874CB993E5AD02C37AE0D47E1A /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EF714C0D71D6BE2AFB153311B02FD0F9 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; };
-		F397FCF5B78DC86168B39B93ACCBFEB3 /* TSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ECF89419777523EAC89895583238790A /* TSMarkupParser+FormatExamples.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F5E577C203C9E827148F3A468D063F11 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F6A30ABD6DD3A87A32E5A164CD13E952 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21BE8B723BB23D1498DC52BF828C853 /* UIKit.framework */; };
+		FBDAF860A13BC3651727F7FDC7BD19DD /* TSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */; };
 		FEC90625B3F8AC911ADC2B63745EDC2B /* Pods-TSMarkdownParserTests iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB23630DFB3C0004D48A05272ADB99 /* Pods-TSMarkdownParserTests iOS-dummy.m */; };
-		FFDAF9E37B1B23C794DD8E3C002E44D4 /* TSBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,111 +181,109 @@
 /* Begin PBXFileReference section */
 		00DAFAD80AD5269F7B49E1F4ED3BE6C8 /* Pods-TSMarkdownParserExample iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample iOS-frameworks.sh"; sourceTree = "<group>"; };
 		020735F7C056473897DEDA72B0280081 /* Pods-TSMarkdownParserExample tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSFontTraitMask.h; path = TSMarkdownParser/TSFontTraitMask.h; sourceTree = "<group>"; };
 		07659275CB5FFBF37A158D6AF37A10ED /* Pods-TSMarkdownParserExample tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample tvOS-resources.sh"; sourceTree = "<group>"; };
 		077E7AC4FB7E4934F3C063FDE3940D94 /* libTSMarkdownParser-tvOS9.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-tvOS9.2.a"; path = "libTSMarkdownParser-tvOS9.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09CDE3514907E1FAF9F041ACF80F2991 /* Pods-TSMarkdownParserTests macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserTests macOS-dummy.m"; sourceTree = "<group>"; };
-		0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSURLHelper.h; path = TSMarkdownParser/TSURLHelper.h; sourceTree = "<group>"; };
 		0A5845791112BF40A61DE41206B36AE1 /* Pods-TSMarkdownParserExample watchOS Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserExample watchOS Extension-dummy.m"; sourceTree = "<group>"; };
 		0A5E5447E7311842CE1A26C49289D3F6 /* Pods-TSMarkdownParserTests macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkupParser+FormatExamples.m"; path = "TSMarkdownParser/TSMarkupParser+FormatExamples.m"; sourceTree = "<group>"; };
 		0B7660F8F360B8B80A4E4924A5D4C32A /* Pods-TSMarkdownParserExample watchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample watchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		0B8C06C6DFBFC601C7C889F9A1FC12B0 /* Pods-TSMarkdownParserExample iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample iOS.release.xcconfig"; sourceTree = "<group>"; };
-		0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMarkupParser.h; path = TSMarkdownParser/TSMarkupParser.h; sourceTree = "<group>"; };
+		0DCA4E42BF6870B319DE8B954F7486D7 /* TSMarkdownParser.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = TSMarkdownParser.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSBaseParser.h; path = TSMarkdownParser/TSBaseParser.h; sourceTree = "<group>"; };
 		10D59B979F5F0C654680B7B4939B6EF6 /* libPods-TSMarkdownParserTests macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserTests macOS.a"; path = "libPods-TSMarkdownParserTests macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F4D1E2FB2AECDF9CE7B3C1EFDEFA5A /* Pods-TSMarkdownParserExample watchOS Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample watchOS Extension-resources.sh"; sourceTree = "<group>"; };
 		114228598980CBF075BB10ACD2250776 /* libTSMarkdownParser-macOS10.11.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-macOS10.11.a"; path = "libTSMarkdownParser-macOS10.11.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TSMarkdownStandardParser.h; sourceTree = "<group>"; };
 		12D23FE7CA3F92135C2A8C50C486DA73 /* libPods-TSMarkdownParserExample macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserExample macOS.a"; path = "libPods-TSMarkdownParserExample macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+TSTraits.m"; path = "TSMarkdownParser/NSMutableAttributedString+TSTraits.m"; sourceTree = "<group>"; };
 		13BC937638C5BC67A8E5CE167BDD9865 /* Pods-TSMarkdownParserTests tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests tvOS-frameworks.sh"; sourceTree = "<group>"; };
 		14796C4AC2844C374D0447980D55ED8D /* Pods-TSMarkdownParserTests tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		14980693F030EEB705C2853AB7D5849F /* TSMarkdownParser-iOS8.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TSMarkdownParser-iOS8.0-dummy.m"; sourceTree = "<group>"; };
 		15D23A5E816EB60ACBCCBAB82A42C83D /* Pods-TSMarkdownParserExample iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserExample iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSFoundation.h; path = TSMarkdownParser/TSFoundation.h; sourceTree = "<group>"; };
 		1C9B0C083829E6E44E080FA588671A01 /* libPods-TSMarkdownParserTests iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserTests iOS.a"; path = "libPods-TSMarkdownParserTests iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD31CB428B6309EE2E6DC3DC583C477 /* Pods-TSMarkdownParserTests tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserTests tvOS-dummy.m"; sourceTree = "<group>"; };
-		1DF9F510C8DA9E21A7FD9ECCF21EDAB1 /* TSMarkdownParser-tvOS9.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-tvOS9.2-dummy.m"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2-dummy.m"; sourceTree = "<group>"; };
 		1E3DD0716BF671C7941D35FB4BA4ECDF /* Pods-TSMarkdownParserExample iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample iOS-resources.sh"; sourceTree = "<group>"; };
 		1EAD1D23691FE875327F0E7A7DD8B90E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		21607EFBA06755142D34349C1B3431BA /* TSMarkdownParser-tvOS9.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-tvOS9.0-prefix.pch"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0-prefix.pch"; sourceTree = "<group>"; };
 		21BBF7826094558DAB53E4D2342096B6 /* Pods-TSMarkdownParserTests macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests macOS-resources.sh"; sourceTree = "<group>"; };
+		2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSFoundation.h; path = TSMarkdownParser/TSFoundation.h; sourceTree = "<group>"; };
 		262893FCB7918BF90037E66C9AC82225 /* Pods-TSMarkdownParserExample macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		26C83846EC2720A1D0B66E3F281EC288 /* Pods-TSMarkdownParserExample watchOS Extension-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample watchOS Extension-frameworks.sh"; sourceTree = "<group>"; };
 		2707DD0905774594E4B6839590C90DEE /* Pods-TSMarkdownParserTests macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests macOS-frameworks.sh"; sourceTree = "<group>"; };
 		2763F96F254CB66A2CD7D5B1F7AFF273 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		28DB23630DFB3C0004D48A05272ADB99 /* Pods-TSMarkdownParserTests iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserTests iOS-dummy.m"; sourceTree = "<group>"; };
-		2B8DDC502DE0C178C391F23FEC8AA494 /* TSMarkdownParser-iOS8.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "TSMarkdownParser-iOS8.0.xcconfig"; sourceTree = "<group>"; };
 		2FE53A0C13E863C4E0960FCCAF3F35F3 /* Pods-TSMarkdownParserExample macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample macOS-resources.sh"; sourceTree = "<group>"; };
 		33222F0FD21DCF55C707ABBC9ECBB8B2 /* Pods-TSMarkdownParserExample iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		33DBA3E9587E48DD49F6D295D396C800 /* TSMarkdownParser-tvOS9.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-tvOS9.2.xcconfig"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2.xcconfig"; sourceTree = "<group>"; };
 		3536DA60AA06F93B273FE51A9CB6BB2C /* libTSMarkdownParser-macOS10.10.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-macOS10.10.a"; path = "libTSMarkdownParser-macOS10.10.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		367734C29D0D8D91E9BC36E945BA4C21 /* TSMarkdownParser-tvOS9.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-tvOS9.2-prefix.pch"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2-prefix.pch"; sourceTree = "<group>"; };
 		36F05721D5B513D4F98EDA7A1125B269 /* Pods-TSMarkdownParserTests iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests iOS-resources.sh"; sourceTree = "<group>"; };
 		38132529223BF68A921467EBFC3F526D /* Pods-TSMarkdownParserExample tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample tvOS-frameworks.sh"; sourceTree = "<group>"; };
 		3816016DD5D2BFDDC96B97E944EC446B /* Pods-TSMarkdownParserTests iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests iOS.release.xcconfig"; sourceTree = "<group>"; };
-		3A7FA2CF6DD0722ACFD17057A2CDDDC4 /* TSMarkdownParser-iOS8.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-iOS8.0-prefix.pch"; sourceTree = "<group>"; };
 		3B40039C0791D6CC6965B2DE45D2EEBC /* Pods-TSMarkdownParserExample macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserExample macOS-frameworks.sh"; sourceTree = "<group>"; };
+		421505EBF934F107C7618F0673A51F49 /* TSMarkdownParser-macOS10.10.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-macOS10.10.xcconfig"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10.xcconfig"; sourceTree = "<group>"; };
+		4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+TSTraits.h"; path = "TSMarkdownParser/NSMutableAttributedString+TSTraits.h"; sourceTree = "<group>"; };
 		4562158ED59D8343EED13561B26F99B8 /* libTSMarkdownParser-watchOS2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-watchOS2.2.a"; path = "libTSMarkdownParser-watchOS2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		479007016F1C7ED1F2F431BD438B3BB5 /* Pods-TSMarkdownParserTests macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserTests macOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		47AE85563C793A0FDDDB0CD3EDB61339 /* TSMarkdownParser-tvOS9.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-tvOS9.0-dummy.m"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0-dummy.m"; sourceTree = "<group>"; };
 		497C2BFBEDA2CA462A5C5FD91B1B24CB /* Pods-TSMarkdownParserExample iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserExample iOS-dummy.m"; sourceTree = "<group>"; };
-		4C474D85EC3634B19A6B89C1C9F36049 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMarkupParser.m; path = TSMarkdownParser/TSMarkupParser.m; sourceTree = "<group>"; };
+		4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkupParser+FormatExamples.h"; path = "TSMarkdownParser/TSMarkupParser+FormatExamples.h"; sourceTree = "<group>"; };
 		4ECC04676FB8B3071C079350C3895943 /* Pods-TSMarkdownParserExample tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		4FF373E63CF469A4302750E112EF70B9 /* TSMarkdownParser-watchOS2.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-watchOS2.2-dummy.m"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2-dummy.m"; sourceTree = "<group>"; };
 		5075792AC19C8491B261F34D30BFEB31 /* libTSMarkdownParser-iOS8.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-iOS8.0.a"; path = "libTSMarkdownParser-iOS8.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A9F278C2ECFAE4FF4251F8B3E1DFC4 /* libPods-TSMarkdownParserTests tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserTests tvOS.a"; path = "libPods-TSMarkdownParserTests tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+TSTraits.h"; path = "TSMarkdownParser/NSMutableAttributedString+TSTraits.h"; sourceTree = "<group>"; };
-		5E1E617A604DB8F32DEFD1FE8B5553E4 /* TSMarkdownParser-macOS10.11-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-macOS10.11-prefix.pch"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11-prefix.pch"; sourceTree = "<group>"; };
-		66E09F1F6FB0604028F045E94161ADAE /* TSMarkdownParser-iOS8.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TSMarkdownParser-iOS8.0-dummy.m"; sourceTree = "<group>"; };
+		540999B92A31A9F57B495574252F85A2 /* TSHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSHelper.h; path = TSMarkdownParser/TSHelper.h; sourceTree = "<group>"; };
+		5FF2D349B767D7EA3C4FD298FDCA0C12 /* TSMarkdownParser-iOS8.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "TSMarkdownParser-iOS8.0.xcconfig"; sourceTree = "<group>"; };
+		66413FC50157DCF0BCB8158CB31EF892 /* TSMarkdownParser-macOS10.10-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-macOS10.10-prefix.pch"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10-prefix.pch"; sourceTree = "<group>"; };
 		6C3F647C5C4C053C923BAC67232E583D /* Pods-TSMarkdownParserTests iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserTests iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		764E00550E5043E20167DA339172FDC7 /* TSMarkdownParser-watchOS2.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-watchOS2.2.xcconfig"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2.xcconfig"; sourceTree = "<group>"; };
-		7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSBaseParser.h; path = TSMarkdownParser/TSBaseParser.h; sourceTree = "<group>"; };
-		7C1C4E69AA0E59B6803010694D95989D /* TSMarkdownParser-macOS10.10.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-macOS10.10.xcconfig"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10.xcconfig"; sourceTree = "<group>"; };
+		77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSHelper.m; path = TSMarkdownParser/TSHelper.m; sourceTree = "<group>"; };
+		7942A579B8DBD28D5EE1B9FA8FC24C40 /* TSMarkdownParser-iOS8.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-iOS8.0-prefix.pch"; sourceTree = "<group>"; };
+		7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TSMarkdownStandardParser.h; sourceTree = "<group>"; };
+		7F5FD8626F7D16CC16E2800848B73AFE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		7FBA556F42566EAEBA45B0F16C01C5B6 /* Pods-TSMarkdownParserTests iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserTests iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		809F2B96D551BC944F0C210FB6AFBE4A /* TSMarkdownParser-tvOS9.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-tvOS9.2-prefix.pch"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2-prefix.pch"; sourceTree = "<group>"; };
 		872E2E87B70A61AA5F98AEC661171BC3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSBaseParser.m; path = TSMarkdownParser/TSBaseParser.m; sourceTree = "<group>"; };
+		8AE11D9568A3EA1ECD7EED0DC1C81E98 /* TSMarkdownParser-watchOS2.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-watchOS2.2-dummy.m"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2-dummy.m"; sourceTree = "<group>"; };
+		8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSBaseParser.m; path = TSMarkdownParser/TSBaseParser.m; sourceTree = "<group>"; };
+		8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMarkupParser.m; path = TSMarkdownParser/TSMarkupParser.m; sourceTree = "<group>"; };
 		900796E903FAC986E9C9DAC169BEEE91 /* libTSMarkdownParser-tvOS9.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libTSMarkdownParser-tvOS9.0.a"; path = "libTSMarkdownParser-tvOS9.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9242B96C25E8EF41FD9825EBAB3CF61A /* Pods-TSMarkdownParserExample macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserExample macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		93046EBDCBA20D2CB2843A4DCB501EF7 /* TSMarkdownParser-macOS10.10-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-macOS10.10-dummy.m"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkupParser+FormatExamples.m"; path = "TSMarkdownParser/TSMarkupParser+FormatExamples.m"; sourceTree = "<group>"; };
-		9432420A060772F9D2EB24B02BC4936C /* TSMarkdownParser-macOS10.10-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-macOS10.10-dummy.m"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10-dummy.m"; sourceTree = "<group>"; };
 		955FDBC2CFD74131F93EB5D43D2CFA65 /* Pods-TSMarkdownParserExample watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 		959C9C56D0F29706A3F9DC58067ABDF3 /* libPods-TSMarkdownParserExample iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserExample iOS.a"; path = "libPods-TSMarkdownParserExample iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		995C964DC600959F7904FCF85F44AFD1 /* TSMarkdownParser-macOS10.10-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-macOS10.10-prefix.pch"; path = "../TSMarkdownParser-macOS10.10/TSMarkdownParser-macOS10.10-prefix.pch"; sourceTree = "<group>"; };
+		966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownStandardParser.m; sourceTree = "<group>"; };
+		9725CB19AC821F97B11A2C3B0BA8AC11 /* TSMarkdownParser-macOS10.11-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-macOS10.11-prefix.pch"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11-prefix.pch"; sourceTree = "<group>"; };
 		9A1D6CA2B6A1C82402D6EF3E7CE6A732 /* Pods-TSMarkdownParserTests tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserTests tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSFontHelper.h; path = TSMarkdownParser/TSFontHelper.h; sourceTree = "<group>"; };
+		A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMarkupParser.h; path = TSMarkdownParser/TSMarkupParser.h; sourceTree = "<group>"; };
+		A33A32474E64F356EAEE5DEA68B645B6 /* TSMarkdownParser-watchOS2.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-watchOS2.2.xcconfig"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2.xcconfig"; sourceTree = "<group>"; };
+		A5A36D28DA9920148F4DE8107F8EEE6C /* TSMarkdownParser-tvOS9.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-tvOS9.2-dummy.m"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2-dummy.m"; sourceTree = "<group>"; };
 		ACC77CA5C6A42A9662E09816952DCBDC /* Pods-TSMarkdownParserExample iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserExample iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		AD9121D765F3B68E0DB60E41C0E10C9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AD98B9E759312D8119AE5A56CF5D0482 /* TSMarkdownParser-watchOS2.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-watchOS2.2-prefix.pch"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2-prefix.pch"; sourceTree = "<group>"; };
 		B0695F5F41723C2C92983344307B44B7 /* Pods-TSMarkdownParserExample watchOS Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserExample watchOS Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B0D8A50007AF5BAC0446CAF0E9C223F6 /* Pods-TSMarkdownParserExample macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserExample macOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSFontTraitMask.h; path = TSMarkdownParser/TSFontTraitMask.h; sourceTree = "<group>"; };
 		B41A26E632ABAB1396B1F461371BD3D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B511B7FF9612463599EECCF7042009E1 /* TSMarkdownParser.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = TSMarkdownParser.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TSMarkdownStandardParser.m; sourceTree = "<group>"; };
-		B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSURLHelper.m; path = TSMarkdownParser/TSURLHelper.m; sourceTree = "<group>"; };
-		B8A8D51F1DA2573415D13600319801EE /* TSMarkdownParser-tvOS9.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-tvOS9.0.xcconfig"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0.xcconfig"; sourceTree = "<group>"; };
 		BA55609DF5472E682FBA408DB4D69C44 /* Pods-TSMarkdownParserTests iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests iOS-frameworks.sh"; sourceTree = "<group>"; };
 		BB76369769A815504FC8CA1B36FBDB62 /* Pods-TSMarkdownParserExample watchOS Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserExample watchOS Extension-acknowledgements.plist"; sourceTree = "<group>"; };
-		BBDF54BE6C82963E442DB106B88C1CEE /* TSMarkdownParser-tvOS9.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-tvOS9.0-prefix.pch"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0-prefix.pch"; sourceTree = "<group>"; };
-		C15CE3200C451B6FEA5D81442DAD48E9 /* TSMarkdownParser-tvOS9.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-tvOS9.2.xcconfig"; path = "../TSMarkdownParser-tvOS9.2/TSMarkdownParser-tvOS9.2.xcconfig"; sourceTree = "<group>"; };
+		BF92B976F425100B79B6ED3BB923080B /* TSMarkdownParser-tvOS9.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-tvOS9.0.xcconfig"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0.xcconfig"; sourceTree = "<group>"; };
 		C1D0F671B12E29124A0A43DC40874FCB /* Pods-TSMarkdownParserExample tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserExample tvOS-dummy.m"; sourceTree = "<group>"; };
 		C21BE8B723BB23D1498DC52BF828C853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		C58466DA14C6D4901D6B9CA375D8AD81 /* TSMarkdownParser-macOS10.11-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-macOS10.11-dummy.m"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11-dummy.m"; sourceTree = "<group>"; };
 		CF3B7CD63794F1279C4B3BD46D0626A1 /* Pods-TSMarkdownParserTests macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests macOS.release.xcconfig"; sourceTree = "<group>"; };
 		D23072E4C454592E624E3920C21561C0 /* libPods-TSMarkdownParserExample watchOS Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserExample watchOS Extension.a"; path = "libPods-TSMarkdownParserExample watchOS Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EB4C5A04FAD76A47048B1AC632424F /* Pods-TSMarkdownParserExample macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserExample macOS.release.xcconfig"; sourceTree = "<group>"; };
-		D830A0289186DA757DCA2584DD139110 /* TSMarkdownParser-macOS10.11.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-macOS10.11.xcconfig"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11.xcconfig"; sourceTree = "<group>"; };
 		D88A04DC34ECAFAC7D499A992154CA97 /* Pods-TSMarkdownParserExample macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TSMarkdownParserExample macOS-dummy.m"; sourceTree = "<group>"; };
+		DC6B0E6E82230AB921BD1AAAD1FFADBE /* TSMarkdownParser-macOS10.11.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TSMarkdownParser-macOS10.11.xcconfig"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11.xcconfig"; sourceTree = "<group>"; };
 		DE6B13FF711DCA171235F93502F3A39D /* Pods-TSMarkdownParserTests iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSFontHelper.m; path = TSMarkdownParser/TSFontHelper.m; sourceTree = "<group>"; };
 		DF37CFED06790EB9B502101394D4DAC9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		DFCB36BEF3EE205296F5B172AB04BC55 /* Pods-TSMarkdownParserExample tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserExample tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E19F9A12AC7DB649C45C41B53B92CA64 /* Pods-TSMarkdownParserExample tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TSMarkdownParserExample tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		E1DE241D860081F59B75907B155CBCA8 /* Pods-TSMarkdownParserTests tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TSMarkdownParserTests tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E92A78AF18AF0244CF6ECA10C8135999 /* Pods-TSMarkdownParserTests macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserTests macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkupParser+FormatExamples.h"; path = "TSMarkdownParser/TSMarkupParser+FormatExamples.h"; sourceTree = "<group>"; };
-		EA2D493D72BA006885A311D91869119C /* TSMarkdownParser-macOS10.11-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-macOS10.11-dummy.m"; path = "../TSMarkdownParser-macOS10.11/TSMarkdownParser-macOS10.11-dummy.m"; sourceTree = "<group>"; };
-		EAB50C74EF01C9A78E9637C18427A627 /* TSMarkdownParser-tvOS9.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TSMarkdownParser-tvOS9.0-dummy.m"; path = "../TSMarkdownParser-tvOS9.0/TSMarkdownParser-tvOS9.0-dummy.m"; sourceTree = "<group>"; };
-		EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+TSTraits.m"; path = "TSMarkdownParser/NSMutableAttributedString+TSTraits.m"; sourceTree = "<group>"; };
 		F15C71DEF27649A923707C80A71D509A /* Pods-TSMarkdownParserTests tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TSMarkdownParserTests tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F33B608749D5B4FA98C1E86D958E5C2C /* Pods-TSMarkdownParserTests tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TSMarkdownParserTests tvOS-resources.sh"; sourceTree = "<group>"; };
+		F4C1E2B2AC46717FCA3F1A1D4F8E7EDB /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
 		F6ACBB5FAD9B342B9CEA22A33C544295 /* libPods-TSMarkdownParserExample tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TSMarkdownParserExample tvOS.a"; path = "libPods-TSMarkdownParserExample tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9975711ACF4BFC84E764AD5F7A06101 /* TSMarkdownParser-watchOS2.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TSMarkdownParser-watchOS2.2-prefix.pch"; path = "../TSMarkdownParser-watchOS2.2/TSMarkdownParser-watchOS2.2-prefix.pch"; sourceTree = "<group>"; };
-		F9AF2E2C950E4A8A368DCD1758D01F47 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
 		FCBA3E618C0B9FAFCAE3D1E48A5438CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		FD701F4653C2FBEB7B23439439A32C4D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -441,6 +427,16 @@
 			path = "Target Support Files/Pods-TSMarkdownParserTests iOS";
 			sourceTree = "<group>";
 		};
+		179E38E3560FD12627AF771E0357705A /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				7BA3C1F7E0F7ACC35DE3186DCB65E298 /* TSMarkdownStandardParser.h */,
+				966DC8667DC0C90785DA4967D55938DA /* TSMarkdownStandardParser.m */,
+			);
+			name = Parsers;
+			path = TSMarkdownParser/Parsers;
+			sourceTree = "<group>";
+		};
 		1B7322809135EA75AB244F27A5354E62 /* Pods-TSMarkdownParserExample watchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,14 +463,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		427B9551AE6370B04219735D012E2131 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5B60CF2736C3A3AFBF10C00C4ED0880D /* TSMarkdownParser */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		43B96CCD3623CA5DF34837D98B1F230A /* Pods-TSMarkdownParserExample tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,36 +487,24 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
-		5A8A5DC1825E2907FDC7B70999736A4D /* Pod */ = {
+		5CE83636487FC30C276A146777550F3B /* TSMarkdownParser */ = {
 			isa = PBXGroup;
 			children = (
-				F9AF2E2C950E4A8A368DCD1758D01F47 /* LICENSE.md */,
-				4C474D85EC3634B19A6B89C1C9F36049 /* README.md */,
-				B511B7FF9612463599EECCF7042009E1 /* TSMarkdownParser.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		5B60CF2736C3A3AFBF10C00C4ED0880D /* TSMarkdownParser */ = {
-			isa = PBXGroup;
-			children = (
-				598426C9E9EA31978DA6E45F6A645150 /* NSMutableAttributedString+TSTraits.h */,
-				EF1538B0EC12D92AD38D4F94C5D4A5DF /* NSMutableAttributedString+TSTraits.m */,
-				7A12F41E59A604587F0C9C8BD6F0E35F /* TSBaseParser.h */,
-				8C6DD456ED2BE4E16AE1AD11F52B2D36 /* TSBaseParser.m */,
-				ABB08002C33F6BA62286B210C052AE4D /* TSFontHelper.h */,
-				DE9BEE9C19DF0EA1A606BAEFDE94811E /* TSFontHelper.m */,
-				B23CC866EFE44622EF7A6AD22B602A20 /* TSFontTraitMask.h */,
-				1AADF3C05DDD55A953A7F85D5B6D03DF /* TSFoundation.h */,
-				0E4E1D6E8F8F85377A9499F55667BC5A /* TSMarkupParser.h */,
-				4D097C77D98D8ADD426C0DA8F793A48E /* TSMarkupParser.m */,
-				E9F5CBA38E00E20BAD0133AE09091D51 /* TSMarkupParser+FormatExamples.h */,
-				9430205BA683CA12D20D710A0AC08BBB /* TSMarkupParser+FormatExamples.m */,
-				0A24C719C2662734D37B692CDBC8000F /* TSURLHelper.h */,
-				B605D02F91676A293E6046DE3DEE20CC /* TSURLHelper.m */,
-				85948111CC09653014A7F5E9FE997FA4 /* Parsers */,
-				5A8A5DC1825E2907FDC7B70999736A4D /* Pod */,
-				EF6CB1D96E5D5442CC0B925D16769674 /* Support Files */,
+				4482723127A100119A59475847D69EFC /* NSMutableAttributedString+TSTraits.h */,
+				134FC13D173AE0549FFC5BB94BC8DD63 /* NSMutableAttributedString+TSTraits.m */,
+				0E8B696EAE2047D228176D53BF5A8419 /* TSBaseParser.h */,
+				8EB42041A146DD5EB8A201220EEFDD21 /* TSBaseParser.m */,
+				06626207BC00FF9865FAA32199AB8E05 /* TSFontTraitMask.h */,
+				2606A39E26C0804BEC35EE92DC85A7C3 /* TSFoundation.h */,
+				540999B92A31A9F57B495574252F85A2 /* TSHelper.h */,
+				77506B3FF135F9BDC861FEC7994C714A /* TSHelper.m */,
+				A0A5B6391FA50F5436B304CC5C90CF3B /* TSMarkupParser.h */,
+				8EE6B94C7866470BF86357A04DA8A5FB /* TSMarkupParser.m */,
+				4E62D2C8B3453E37A9A2924CAC7A9685 /* TSMarkupParser+FormatExamples.h */,
+				0B0B49FCFBF893931C697B7DB324B685 /* TSMarkupParser+FormatExamples.m */,
+				179E38E3560FD12627AF771E0357705A /* Parsers */,
+				F271DD0C335491C53055B8A0F2806AAC /* Pod */,
+				701199CC209DA3F39463B7312019B5B7 /* Support Files */,
 			);
 			name = TSMarkdownParser;
 			path = ..;
@@ -547,6 +523,40 @@
 			);
 			name = "Pods-TSMarkdownParserTests tvOS";
 			path = "Target Support Files/Pods-TSMarkdownParserTests tvOS";
+			sourceTree = "<group>";
+		};
+		701199CC209DA3F39463B7312019B5B7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5FF2D349B767D7EA3C4FD298FDCA0C12 /* TSMarkdownParser-iOS8.0.xcconfig */,
+				14980693F030EEB705C2853AB7D5849F /* TSMarkdownParser-iOS8.0-dummy.m */,
+				7942A579B8DBD28D5EE1B9FA8FC24C40 /* TSMarkdownParser-iOS8.0-prefix.pch */,
+				421505EBF934F107C7618F0673A51F49 /* TSMarkdownParser-macOS10.10.xcconfig */,
+				93046EBDCBA20D2CB2843A4DCB501EF7 /* TSMarkdownParser-macOS10.10-dummy.m */,
+				66413FC50157DCF0BCB8158CB31EF892 /* TSMarkdownParser-macOS10.10-prefix.pch */,
+				DC6B0E6E82230AB921BD1AAAD1FFADBE /* TSMarkdownParser-macOS10.11.xcconfig */,
+				C58466DA14C6D4901D6B9CA375D8AD81 /* TSMarkdownParser-macOS10.11-dummy.m */,
+				9725CB19AC821F97B11A2C3B0BA8AC11 /* TSMarkdownParser-macOS10.11-prefix.pch */,
+				BF92B976F425100B79B6ED3BB923080B /* TSMarkdownParser-tvOS9.0.xcconfig */,
+				47AE85563C793A0FDDDB0CD3EDB61339 /* TSMarkdownParser-tvOS9.0-dummy.m */,
+				21607EFBA06755142D34349C1B3431BA /* TSMarkdownParser-tvOS9.0-prefix.pch */,
+				33DBA3E9587E48DD49F6D295D396C800 /* TSMarkdownParser-tvOS9.2.xcconfig */,
+				A5A36D28DA9920148F4DE8107F8EEE6C /* TSMarkdownParser-tvOS9.2-dummy.m */,
+				367734C29D0D8D91E9BC36E945BA4C21 /* TSMarkdownParser-tvOS9.2-prefix.pch */,
+				A33A32474E64F356EAEE5DEA68B645B6 /* TSMarkdownParser-watchOS2.2.xcconfig */,
+				8AE11D9568A3EA1ECD7EED0DC1C81E98 /* TSMarkdownParser-watchOS2.2-dummy.m */,
+				AD98B9E759312D8119AE5A56CF5D0482 /* TSMarkdownParser-watchOS2.2-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Pods/Target Support Files/TSMarkdownParser-iOS8.0";
+			sourceTree = "<group>";
+		};
+		78805143A6A98C96CAB089446DCF3656 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CE83636487FC30C276A146777550F3B /* TSMarkdownParser */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		7B64E0AD485144052E55108778242DDE /* Pods-TSMarkdownParserExample iOS */ = {
@@ -568,21 +578,11 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				427B9551AE6370B04219735D012E2131 /* Development Pods */,
+				78805143A6A98C96CAB089446DCF3656 /* Development Pods */,
 				2784852F5FDFBF81E783A7D3AD47A367 /* Frameworks */,
 				B832C788F537A0D20F1681CD76BB47F6 /* Products */,
 				E1F61332E1BF6FDE3B6EBE7A9C932D23 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		85948111CC09653014A7F5E9FE997FA4 /* Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				12C7443D1DEA0B3187711370EAA48DDD /* TSMarkdownStandardParser.h */,
-				B57FE4CB0A97D7D87569DE52EAE55618 /* TSMarkdownStandardParser.m */,
-			);
-			name = Parsers;
-			path = TSMarkdownParser/Parsers;
 			sourceTree = "<group>";
 		};
 		8CA79C5D3BFE5F8291143A46E5D6ADAD /* tvOS */ = {
@@ -658,30 +658,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		EF6CB1D96E5D5442CC0B925D16769674 /* Support Files */ = {
+		F271DD0C335491C53055B8A0F2806AAC /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				2B8DDC502DE0C178C391F23FEC8AA494 /* TSMarkdownParser-iOS8.0.xcconfig */,
-				66E09F1F6FB0604028F045E94161ADAE /* TSMarkdownParser-iOS8.0-dummy.m */,
-				3A7FA2CF6DD0722ACFD17057A2CDDDC4 /* TSMarkdownParser-iOS8.0-prefix.pch */,
-				7C1C4E69AA0E59B6803010694D95989D /* TSMarkdownParser-macOS10.10.xcconfig */,
-				9432420A060772F9D2EB24B02BC4936C /* TSMarkdownParser-macOS10.10-dummy.m */,
-				995C964DC600959F7904FCF85F44AFD1 /* TSMarkdownParser-macOS10.10-prefix.pch */,
-				D830A0289186DA757DCA2584DD139110 /* TSMarkdownParser-macOS10.11.xcconfig */,
-				EA2D493D72BA006885A311D91869119C /* TSMarkdownParser-macOS10.11-dummy.m */,
-				5E1E617A604DB8F32DEFD1FE8B5553E4 /* TSMarkdownParser-macOS10.11-prefix.pch */,
-				B8A8D51F1DA2573415D13600319801EE /* TSMarkdownParser-tvOS9.0.xcconfig */,
-				EAB50C74EF01C9A78E9637C18427A627 /* TSMarkdownParser-tvOS9.0-dummy.m */,
-				BBDF54BE6C82963E442DB106B88C1CEE /* TSMarkdownParser-tvOS9.0-prefix.pch */,
-				C15CE3200C451B6FEA5D81442DAD48E9 /* TSMarkdownParser-tvOS9.2.xcconfig */,
-				1DF9F510C8DA9E21A7FD9ECCF21EDAB1 /* TSMarkdownParser-tvOS9.2-dummy.m */,
-				809F2B96D551BC944F0C210FB6AFBE4A /* TSMarkdownParser-tvOS9.2-prefix.pch */,
-				764E00550E5043E20167DA339172FDC7 /* TSMarkdownParser-watchOS2.2.xcconfig */,
-				4FF373E63CF469A4302750E112EF70B9 /* TSMarkdownParser-watchOS2.2-dummy.m */,
-				F9975711ACF4BFC84E764AD5F7A06101 /* TSMarkdownParser-watchOS2.2-prefix.pch */,
+				F4C1E2B2AC46717FCA3F1A1D4F8E7EDB /* LICENSE.md */,
+				7F5FD8626F7D16CC16E2800848B73AFE /* README.md */,
+				0DCA4E42BF6870B319DE8B954F7486D7 /* TSMarkdownParser.podspec */,
 			);
-			name = "Support Files";
-			path = "Pods/Target Support Files/TSMarkdownParser-iOS8.0";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		F64B1CB8BEF79D5E5F971BEDB922A9DA /* iOS */ = {
@@ -697,99 +681,93 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		00EB507712B15E9738BBF448C545E2A3 /* Headers */ = {
+		3111728EB40B7A0C672D7188C12921FC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				319B3986BE9281CB9937DEDB56AEAEA4 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				86DBA2A707543A9453807E6B239C4F57 /* TSBaseParser.h in Headers */,
-				EC5C5E4212EFB8B8898B5013E5E701EF /* TSFontHelper.h in Headers */,
-				4DBE7BE6B233ABE4E527A4CF10B2DEB9 /* TSFontTraitMask.h in Headers */,
-				31BCF4C171B08F11B4938A88A47B504E /* TSFoundation.h in Headers */,
-				3842CAF865CD0384E2646D88F34C33FA /* TSMarkdownStandardParser.h in Headers */,
-				E622E499061F9D79E7A0FFC3616BBB68 /* TSMarkupParser+FormatExamples.h in Headers */,
-				4C2EF441829B310332D0E0B4F20F9BE1 /* TSMarkupParser.h in Headers */,
-				ABAE9FD13E203336822A3E6A76484F43 /* TSURLHelper.h in Headers */,
+				8F3B7939521F254DE5A87CD9E50D979F /* NSMutableAttributedString+TSTraits.h in Headers */,
+				2135540178A5CF0A50E52ECBF6F6FEF4 /* TSBaseParser.h in Headers */,
+				35C7AD2A72DB0E21027A75078908BB66 /* TSFontTraitMask.h in Headers */,
+				55B48EE8F1EBE8F739941074E834208D /* TSFoundation.h in Headers */,
+				94DF637BCF86F73329AF7F62623A2BD0 /* TSHelper.h in Headers */,
+				D560712DE87270C277E89BE82D2C468F /* TSMarkdownStandardParser.h in Headers */,
+				B092843B209FF8F6CB7CEED6251A48A6 /* TSMarkupParser+FormatExamples.h in Headers */,
+				C286F76842FB1951332A70A915C268DF /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		418EBC788BE2C45B65D88749EE9CE6A4 /* Headers */ = {
+		43D2260B071DC56234528CC752946818 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9259105529BA37D311D9F6E7F284F887 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				0DC08F5E27CE54D9F8675CFD9603BF3C /* TSBaseParser.h in Headers */,
-				12DC5ECA37BF244DC9AFAE2E1BF0C6B2 /* TSFontHelper.h in Headers */,
-				19D4F786EED892C635681D0BE4E6350D /* TSFontTraitMask.h in Headers */,
-				6B48826382FE36A797D359750FDAC77F /* TSFoundation.h in Headers */,
-				339FE123DA723EA6256A8B931A3DB633 /* TSMarkdownStandardParser.h in Headers */,
-				05A4961A6F145B0DEBBBE1AA5678362E /* TSMarkupParser+FormatExamples.h in Headers */,
-				D919B4678B53E28899A3AA9D7643D543 /* TSMarkupParser.h in Headers */,
-				DDD6C76B1A132CB402DB93CC41C78C38 /* TSURLHelper.h in Headers */,
+				1EED64F41CED55B9A71CB7B145721A1F /* NSMutableAttributedString+TSTraits.h in Headers */,
+				E775234E79CDF9D2308A871C603988E4 /* TSBaseParser.h in Headers */,
+				6331844F726919B7CEE359BB542C921D /* TSFontTraitMask.h in Headers */,
+				9D1A1B8C1674505FCC146D993ABB6BBC /* TSFoundation.h in Headers */,
+				5EE52BAC2471DB754C19821699364DEE /* TSHelper.h in Headers */,
+				1F4E565D78F36953347C43443089391C /* TSMarkdownStandardParser.h in Headers */,
+				ECF89419777523EAC89895583238790A /* TSMarkupParser+FormatExamples.h in Headers */,
+				134C538D4BB32D133248353769F03FCE /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5AAE6DFF6431520360FDF4689B962FE5 /* Headers */ = {
+		6941C3A8D17E0C1F9EFFAAF1597179FB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C73E0ECA38E2EBF514A306DD57FC293 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				899F000B76101CA0BC00E3C4DDAA9064 /* TSBaseParser.h in Headers */,
-				3866D38E002FD08DE5BC8962308F526E /* TSFontHelper.h in Headers */,
-				EC32DBDE6AE35373C76F8C3BF661F18C /* TSFontTraitMask.h in Headers */,
-				EF2DC2874CB993E5AD02C37AE0D47E1A /* TSFoundation.h in Headers */,
-				4F262971815E43F3CA286472F6475082 /* TSMarkdownStandardParser.h in Headers */,
-				DBBDACB9B247915B9CFBD8776858BB8C /* TSMarkupParser+FormatExamples.h in Headers */,
-				401143F11F2741B450397189031362AE /* TSMarkupParser.h in Headers */,
-				2434142C07535ED1A69025E49AB15D96 /* TSURLHelper.h in Headers */,
+				C8B4452859F53DBE2D9FB6B3474BFC7A /* NSMutableAttributedString+TSTraits.h in Headers */,
+				ABE4076807413D8ED55D3BE9B4236DBB /* TSBaseParser.h in Headers */,
+				5587D57F2A88C8ADEF99DC71EF77CA49 /* TSFontTraitMask.h in Headers */,
+				CFC122054F21BB65A1EBD08905C50E36 /* TSFoundation.h in Headers */,
+				BB8AD124A5D6D00B5B242B8E8D44B1D4 /* TSHelper.h in Headers */,
+				4080BF6180F9776D9897CD2F3DDB6D63 /* TSMarkdownStandardParser.h in Headers */,
+				B013EBA7CF975CA3EF8B25910B5DE0E8 /* TSMarkupParser+FormatExamples.h in Headers */,
+				181C6AB88C6EA9FD08AB9B6D045B1F59 /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64E94A7344310A02A711AFE331DFF52A /* Headers */ = {
+		7A674F1E7912BCF6DAEC1C4D721C70C0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9A0598B076B9330D7465AA3916D8E4 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				B885E47F66DB7DF9A3D4CFEF670A57FA /* TSBaseParser.h in Headers */,
-				55051F416FFF7D696476EF99A9F84A70 /* TSFontHelper.h in Headers */,
-				070F99A878ABBEBF90FB2437EB790BA1 /* TSFontTraitMask.h in Headers */,
-				8EAA8A19E5B7EB398CB859F7F65C7ABF /* TSFoundation.h in Headers */,
-				9A857D66F46EBE039C0ADC76B93DDA27 /* TSMarkdownStandardParser.h in Headers */,
-				E05BBCDD1D3E41731DB6BD3414E672B8 /* TSMarkupParser+FormatExamples.h in Headers */,
-				AFE0261CF4A3876E5DC45372EA5547A1 /* TSMarkupParser.h in Headers */,
-				55034A6192817DE0498263038ACBEEBB /* TSURLHelper.h in Headers */,
+				699AFDAEE08DC3387CEAEB63DEDC41B6 /* NSMutableAttributedString+TSTraits.h in Headers */,
+				DBD39CDBB96B85C9C236C78AD882BE0D /* TSBaseParser.h in Headers */,
+				D85D8BA3E0B7397DF4102CC9FC736CA4 /* TSFontTraitMask.h in Headers */,
+				D3DE2FC63C6ABDF5AC441F52084AE898 /* TSFoundation.h in Headers */,
+				5B3FE76A1BE5FBB8938E0E8B9EA06AD0 /* TSHelper.h in Headers */,
+				A8E779949F38159059CFB73AAB9A72A9 /* TSMarkdownStandardParser.h in Headers */,
+				E53FD8D9633D65B76E4D2609B7DCFC91 /* TSMarkupParser+FormatExamples.h in Headers */,
+				52915BDB297D3712E3B92F20583544C6 /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C054C6F5FDC1A804706B9464435A310 /* Headers */ = {
+		8D16D509C2973988EF39C41B3BF799D5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7225AE9E9FEF0708BE2DBA7F60BC282 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				ACC65A23E115A634869DDC9798DCAB18 /* TSBaseParser.h in Headers */,
-				D5535E8E5A1672A415A52FEDB41C0ABD /* TSFontHelper.h in Headers */,
-				CBE7AB132E2BA05BDE228E9906F62ADD /* TSFontTraitMask.h in Headers */,
-				F397FCF5B78DC86168B39B93ACCBFEB3 /* TSFoundation.h in Headers */,
-				04632251B712CDFC4C6D91ABB7669775 /* TSMarkdownStandardParser.h in Headers */,
-				B802968F63523676B6EFD8680240EF3D /* TSMarkupParser+FormatExamples.h in Headers */,
-				1B7949D2F3573B5D1749219DC6280CC5 /* TSMarkupParser.h in Headers */,
-				2E332001A2AC7D7B379EB7C58C45D18E /* TSURLHelper.h in Headers */,
+				99F27DBFA329A7B98CA95E4C4746B861 /* NSMutableAttributedString+TSTraits.h in Headers */,
+				BFAE30896E922F063C8F035E2D90DD71 /* TSBaseParser.h in Headers */,
+				75BC285052271EAC512D787439237CEA /* TSFontTraitMask.h in Headers */,
+				CEBFD159D2F40325964B4BCE7861EDD6 /* TSFoundation.h in Headers */,
+				2EF6A04A8C1996E3B70475A16AC43396 /* TSHelper.h in Headers */,
+				DD52F59AAC3DBCA151AB20F914E1C4A3 /* TSMarkdownStandardParser.h in Headers */,
+				0FA79409C24136882CDE1064B5E843BF /* TSMarkupParser+FormatExamples.h in Headers */,
+				4BDA77A2406D7BAC2D88ED5FA727DC01 /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC24DEFEAB4C56916D79F49B31E1D0E9 /* Headers */ = {
+		D2ED755420CD9728A59B633E007866B3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F51A8DDFDC0EA336390EC9FDB74D0C7 /* NSMutableAttributedString+TSTraits.h in Headers */,
-				21E2127319DBC280BA6469DB61686069 /* TSBaseParser.h in Headers */,
-				78123834186560B5ED8CA3E6BD3CA8CD /* TSFontHelper.h in Headers */,
-				178E2D31A51A2DE14B14A34709466455 /* TSFontTraitMask.h in Headers */,
-				4D9678F5C8325BE47CD3DFCD26334A5B /* TSFoundation.h in Headers */,
-				1E22C54BC4F495297F4AACC0DB603AB0 /* TSMarkdownStandardParser.h in Headers */,
-				2714F1E5978A8122EA4A028125AA2A96 /* TSMarkupParser+FormatExamples.h in Headers */,
-				3C4B3D6AEEAB484F3FCF897C5B660C67 /* TSMarkupParser.h in Headers */,
-				9597F3B27479EB5A7CF22AD209ACDE96 /* TSURLHelper.h in Headers */,
+				B7F44B1BE28F6D3D2E400C1D46F23212 /* NSMutableAttributedString+TSTraits.h in Headers */,
+				A34AF04F9E09EEDD27A70CB8904ED966 /* TSBaseParser.h in Headers */,
+				A0EDBEAD6E0216D215C8BA8193A2206E /* TSFontTraitMask.h in Headers */,
+				162D558D3B3FFD7C92FB1867BAE7A1EB /* TSFoundation.h in Headers */,
+				B21111D446FBCA417209E3956FF872B7 /* TSHelper.h in Headers */,
+				85D06E4528C7211E17FCD60B5DA37338 /* TSMarkdownStandardParser.h in Headers */,
+				E779B49A3CC20BC7DB80AC0DCB5F2699 /* TSMarkupParser+FormatExamples.h in Headers */,
+				C4291CB7DA81183B5108AE8F670F2E7B /* TSMarkupParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,9 +863,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCF3EA8FCEA1DB79358D823343149D24 /* Build configuration list for PBXNativeTarget "TSMarkdownParser-iOS8.0" */;
 			buildPhases = (
-				B6E858A89ACCDA2D21D681BA750444A3 /* Sources */,
+				2CB6C05FC5D4EFA44ABE30CBB0434D2A /* Sources */,
 				B5CD99578536E0A5719032A13CDEAD87 /* Frameworks */,
-				5AAE6DFF6431520360FDF4689B962FE5 /* Headers */,
+				6941C3A8D17E0C1F9EFFAAF1597179FB /* Headers */,
 			);
 			buildRules = (
 			);
@@ -902,9 +880,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B926BDACE5A862F2A8B77C8ED3E2D46 /* Build configuration list for PBXNativeTarget "TSMarkdownParser-macOS10.10" */;
 			buildPhases = (
-				112DB67C5CE9B5BEA0BABA9F382E4C4A /* Sources */,
+				4851AEF215EC80305550E463DBED31EA /* Sources */,
 				57554263F84FE0A75F773C73F5CE50C9 /* Frameworks */,
-				00EB507712B15E9738BBF448C545E2A3 /* Headers */,
+				7A674F1E7912BCF6DAEC1C4D721C70C0 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -919,9 +897,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06E091FF9FB97845CFCE5D80885C6801 /* Build configuration list for PBXNativeTarget "TSMarkdownParser-tvOS9.2" */;
 			buildPhases = (
-				684B269988461C6F99CEC100ABF08F83 /* Sources */,
+				C9CBEB9522B4E3860B8F31541AA92AFB /* Sources */,
 				937CA1D32B6C158A7B5E9494FD2E1AE2 /* Frameworks */,
-				9C054C6F5FDC1A804706B9464435A310 /* Headers */,
+				8D16D509C2973988EF39C41B3BF799D5 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -953,9 +931,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5042B4DE3A9B5D51BB96182D45F63F4A /* Build configuration list for PBXNativeTarget "TSMarkdownParser-tvOS9.0" */;
 			buildPhases = (
-				FF248136495C07C4591F751DD24884EE /* Sources */,
+				6347F6B23FA37C7F0102D032AA8CB7A4 /* Sources */,
 				6AA8F524AFA803840F907B91A15AA6AE /* Frameworks */,
-				418EBC788BE2C45B65D88749EE9CE6A4 /* Headers */,
+				3111728EB40B7A0C672D7188C12921FC /* Headers */,
 			);
 			buildRules = (
 			);
@@ -970,9 +948,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA1D468740A501B80D5F4DDABF662071 /* Build configuration list for PBXNativeTarget "TSMarkdownParser-watchOS2.2" */;
 			buildPhases = (
-				862CF9D09897E29BE0D262B84E5D2CFC /* Sources */,
+				881D11779196219158331860B63D3298 /* Sources */,
 				8C40261D847BECFE9BECCF54FAE6173C /* Frameworks */,
-				AC24DEFEAB4C56916D79F49B31E1D0E9 /* Headers */,
+				D2ED755420CD9728A59B633E007866B3 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -987,9 +965,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55B02FA2653246B23F5C25ACD20A7B84 /* Build configuration list for PBXNativeTarget "TSMarkdownParser-macOS10.11" */;
 			buildPhases = (
-				2918CC2A08734C93447954C501F1F52D /* Sources */,
+				3ECB74540572463DC70B474FB89AE117 /* Sources */,
 				C08D999EF78DCD13FD127BDE01B01E5E /* Frameworks */,
-				64E94A7344310A02A711AFE331DFF52A /* Headers */,
+				43D2260B071DC56234528CC752946818 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -1056,21 +1034,6 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		112DB67C5CE9B5BEA0BABA9F382E4C4A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D331806C4F33347EF8FBFB3FA1B843F /* NSMutableAttributedString+TSTraits.m in Sources */,
-				AE35BF661DE6800A5E59BD65A1C896E4 /* TSBaseParser.m in Sources */,
-				7086C3FAE7C4AE6C0359CB1231A02AA7 /* TSFontHelper.m in Sources */,
-				B3F3AA93A6D36D70F51B3F4FCAB5E258 /* TSMarkdownParser-macOS10.10-dummy.m in Sources */,
-				B6469D7517E0A9C6C055B2ED1659E03D /* TSMarkdownStandardParser.m in Sources */,
-				81D0A7608CA8D934EB62B7439C99357B /* TSMarkupParser+FormatExamples.m in Sources */,
-				E99ECA37DA6FC45B667F62E96E6CDAC5 /* TSMarkupParser.m in Sources */,
-				349B9FD4F6C9B738619A01B6216CF6D0 /* TSURLHelper.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		21E19AA43F2951C563FB0A418A965BB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1079,18 +1042,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2918CC2A08734C93447954C501F1F52D /* Sources */ = {
+		2CB6C05FC5D4EFA44ABE30CBB0434D2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132EDCE962D69131F9FEC9B2C289DB88 /* NSMutableAttributedString+TSTraits.m in Sources */,
-				E19DFFCDC4A1DF3DF2847E564BD4D089 /* TSBaseParser.m in Sources */,
-				0FAD897BBAC9AD08631CA0C9E1F1272A /* TSFontHelper.m in Sources */,
-				720CFBC611F99487C2A8D2C997A752E2 /* TSMarkdownParser-macOS10.11-dummy.m in Sources */,
-				D56744820D8D7884582C7DCE1D888226 /* TSMarkdownStandardParser.m in Sources */,
-				DDC1C60803288A0FB0C8525CEC8E22DB /* TSMarkupParser+FormatExamples.m in Sources */,
-				3EBF72E626DD7EEB148537FC1F9BCA49 /* TSMarkupParser.m in Sources */,
-				2D0ACC264B30345356053F24A076CFA5 /* TSURLHelper.m in Sources */,
+				6B29ABB4D67194216883EB2FFA2BBE74 /* NSMutableAttributedString+TSTraits.m in Sources */,
+				CC9511EA8698D1AE11335021AF6E0727 /* TSBaseParser.m in Sources */,
+				3AE88BCE2ED2B77DB108AFBB2BE8F85A /* TSHelper.m in Sources */,
+				84259EB085BDD6B429A33EEF71118893 /* TSMarkdownParser-iOS8.0-dummy.m in Sources */,
+				254E40445FB4393F7BEDF85AFDA3369D /* TSMarkdownStandardParser.m in Sources */,
+				26F1D4D2F5091FB95C3B88E4267C36DC /* TSMarkupParser+FormatExamples.m in Sources */,
+				71A28F2F074009F334CC4AA620540647 /* TSMarkupParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,18 +1064,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		684B269988461C6F99CEC100ABF08F83 /* Sources */ = {
+		3ECB74540572463DC70B474FB89AE117 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E66F9AF21223483A74B99F71443C4CCF /* NSMutableAttributedString+TSTraits.m in Sources */,
-				EF714C0D71D6BE2AFB153311B02FD0F9 /* TSBaseParser.m in Sources */,
-				760E57C345A452434DF641F162C42D89 /* TSFontHelper.m in Sources */,
-				D8ECE63A5EC9C205EEA82316E36D3230 /* TSMarkdownParser-tvOS9.2-dummy.m in Sources */,
-				C6B3B69861AE5901E00263B67F7B8CA7 /* TSMarkdownStandardParser.m in Sources */,
-				B362B1369BF64698E0E910521A82CEC2 /* TSMarkupParser+FormatExamples.m in Sources */,
-				D8039CADCA7F57F7B9E830AB44E515CA /* TSMarkupParser.m in Sources */,
-				03C4E6C839B3A4BD7EA7444EF4E09111 /* TSURLHelper.m in Sources */,
+				A1DC8FF920D0869C7C27BC6F168042B4 /* NSMutableAttributedString+TSTraits.m in Sources */,
+				F5E577C203C9E827148F3A468D063F11 /* TSBaseParser.m in Sources */,
+				28592742E9F335B23F318B9D89B0DEA3 /* TSHelper.m in Sources */,
+				C8B7DA30902AAB88724229DD26A890CD /* TSMarkdownParser-macOS10.11-dummy.m in Sources */,
+				B4A37660BA8DCB1E5451D6F3CDF9470F /* TSMarkdownStandardParser.m in Sources */,
+				7553D24EC5CCD8C23A1667B38E41AC46 /* TSMarkupParser+FormatExamples.m in Sources */,
+				9D3B999C002DDFF74CF990577D8F5A2A /* TSMarkupParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4851AEF215EC80305550E463DBED31EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2756B79D34EB2775087A115CB790200 /* NSMutableAttributedString+TSTraits.m in Sources */,
+				64AA414BF29AB0FFD0D4F8C5E53653C0 /* TSBaseParser.m in Sources */,
+				1D9D347E71F773DC2AE330718B0053B6 /* TSHelper.m in Sources */,
+				11D4987ECC004709D3A1EB2217C92BF3 /* TSMarkdownParser-macOS10.10-dummy.m in Sources */,
+				A7037FB8C533880FC1894690F0EAAB57 /* TSMarkdownStandardParser.m in Sources */,
+				27515C9BC2F86D7A9EE9D395F2172994 /* TSMarkupParser+FormatExamples.m in Sources */,
+				ACA0AA9B4ABFD2C2B77E316E318218C4 /* TSMarkupParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6347F6B23FA37C7F0102D032AA8CB7A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0674B5D262A762F51C529C6EFDAE2129 /* NSMutableAttributedString+TSTraits.m in Sources */,
+				E6AF435406EBA2BF7D3DCCC121481918 /* TSBaseParser.m in Sources */,
+				AF3B163FCEAD7CD7900F7D80D3980FA5 /* TSHelper.m in Sources */,
+				A99A69AED26A2C10D6B41C14A7137B85 /* TSMarkdownParser-tvOS9.0-dummy.m in Sources */,
+				2C62B3D66BF8563F2FC221A72E52984D /* TSMarkdownStandardParser.m in Sources */,
+				313CA2AFE3B93DDE461E8C5DD44C61D5 /* TSMarkupParser+FormatExamples.m in Sources */,
+				54B1823429CBA9E8F9CF41B7ADECBAB0 /* TSMarkupParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,18 +1122,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		862CF9D09897E29BE0D262B84E5D2CFC /* Sources */ = {
+		881D11779196219158331860B63D3298 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CCBA96CA3A6E4FD69E97BD27FD8D917 /* NSMutableAttributedString+TSTraits.m in Sources */,
-				266FC6AF9299E0A439AAE43FA5E400CB /* TSBaseParser.m in Sources */,
-				EF2CB00B4A799558B8DE85A0597A7616 /* TSFontHelper.m in Sources */,
-				C14BBDBB49C1E612ADAD3F5374658B33 /* TSMarkdownParser-watchOS2.2-dummy.m in Sources */,
-				3204ED80F557A667BE6A98D5A767D1BD /* TSMarkdownStandardParser.m in Sources */,
-				19DCD9CE79A429EE857EFBCA70CDF83B /* TSMarkupParser+FormatExamples.m in Sources */,
-				08CAF52B2BE800FABBE8EC30B2DA6563 /* TSMarkupParser.m in Sources */,
-				6E6119437F95472FFA0A283ECF9FA042 /* TSURLHelper.m in Sources */,
+				BEF29F7F76D6C6AC8CFB3AE79D19141F /* NSMutableAttributedString+TSTraits.m in Sources */,
+				A790638EA911B84B82464C94893FFA04 /* TSBaseParser.m in Sources */,
+				301DD4D71D1C4BDE8D96F44D512595D6 /* TSHelper.m in Sources */,
+				0337691AA8C17761F2FD1F5E8F794B89 /* TSMarkdownParser-watchOS2.2-dummy.m in Sources */,
+				8E25BF7872FA98FAEA1434565B77BB8C /* TSMarkdownStandardParser.m in Sources */,
+				52B62EA040D29448B7C49FB6349B55C7 /* TSMarkupParser+FormatExamples.m in Sources */,
+				27CE660A29F197161CA739A331ECD784 /* TSMarkupParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,21 +1152,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6E858A89ACCDA2D21D681BA750444A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EE0F0570CB2720ECCE22EB151BCA962B /* NSMutableAttributedString+TSTraits.m in Sources */,
-				2EBD9BEFB893CF668459877BF0693239 /* TSBaseParser.m in Sources */,
-				89018434E54A0B215229BB3D17433A28 /* TSFontHelper.m in Sources */,
-				29B07838094A29E4C2DD2EBC3FE201E6 /* TSMarkdownParser-iOS8.0-dummy.m in Sources */,
-				C5C20C8D0791B1D441A89FD57BD81015 /* TSMarkdownStandardParser.m in Sources */,
-				572572ED8D4BC9C756068810480B89E4 /* TSMarkupParser+FormatExamples.m in Sources */,
-				6B892CC4EFBBD7EE1A82A4FA65E301A5 /* TSMarkupParser.m in Sources */,
-				765F71DC5E5A0F24D639DFC8414F806A /* TSURLHelper.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C83A4867EF81E8F59BEB31C53E73895A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1187,18 +1160,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF248136495C07C4591F751DD24884EE /* Sources */ = {
+		C9CBEB9522B4E3860B8F31541AA92AFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1D51C559899185DB0BE52984A9D1CD /* NSMutableAttributedString+TSTraits.m in Sources */,
-				FFDAF9E37B1B23C794DD8E3C002E44D4 /* TSBaseParser.m in Sources */,
-				E0F59236B6066E6E4F25D48340E0446C /* TSFontHelper.m in Sources */,
-				BF6B4311AD921A5BCF6C34E1175D05A8 /* TSMarkdownParser-tvOS9.0-dummy.m in Sources */,
-				1864764890AEA7AA636F89224EAF1F84 /* TSMarkdownStandardParser.m in Sources */,
-				AE7AB02ABAF4F6443B0FA8550D06BD43 /* TSMarkupParser+FormatExamples.m in Sources */,
-				249A180CD424AB88AD0AB5FA08F7D7AD /* TSMarkupParser.m in Sources */,
-				A074481E26C845E7424DEF5D210B366A /* TSURLHelper.m in Sources */,
+				646DDBEB0901B9AD2806E6DA2DA42BCC /* NSMutableAttributedString+TSTraits.m in Sources */,
+				5D48787F187F6C178EA209A590CCB13A /* TSBaseParser.m in Sources */,
+				FBDAF860A13BC3651727F7FDC7BD19DD /* TSHelper.m in Sources */,
+				D1E389A576B94D5888851792E5AF06EF /* TSMarkdownParser-tvOS9.2-dummy.m in Sources */,
+				79B71EA1F498D6393D550F312ECA8736 /* TSMarkdownStandardParser.m in Sources */,
+				E16D5328BD2DEA301806EB2E0BD5E231 /* TSMarkupParser+FormatExamples.m in Sources */,
+				82E854A5DD39A08D3BB700973EB90384 /* TSMarkupParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,7 +1224,7 @@
 /* Begin XCBuildConfiguration section */
 		0143F42F0C35B9857CA6BF90F52F1E41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8A8D51F1DA2573415D13600319801EE /* TSMarkdownParser-tvOS9.0.xcconfig */;
+			baseConfigurationReference = BF92B976F425100B79B6ED3BB923080B /* TSMarkdownParser-tvOS9.0.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1273,7 +1245,7 @@
 		};
 		016550E00542DE265E759333CE09C2B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B8DDC502DE0C178C391F23FEC8AA494 /* TSMarkdownParser-iOS8.0.xcconfig */;
+			baseConfigurationReference = 5FF2D349B767D7EA3C4FD298FDCA0C12 /* TSMarkdownParser-iOS8.0.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1294,7 +1266,7 @@
 		};
 		108C2BE458770806E39B39BEA10887E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C1C4E69AA0E59B6803010694D95989D /* TSMarkdownParser-macOS10.10.xcconfig */;
+			baseConfigurationReference = 421505EBF934F107C7618F0673A51F49 /* TSMarkdownParser-macOS10.10.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1457,7 +1429,7 @@
 		};
 		379E58F4AE6DC2D72967306BC9F40427 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 764E00550E5043E20167DA339172FDC7 /* TSMarkdownParser-watchOS2.2.xcconfig */;
+			baseConfigurationReference = A33A32474E64F356EAEE5DEA68B645B6 /* TSMarkdownParser-watchOS2.2.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1479,7 +1451,7 @@
 		};
 		3A3EF85D0EF99F442016853AEA39E4FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D830A0289186DA757DCA2584DD139110 /* TSMarkdownParser-macOS10.11.xcconfig */;
+			baseConfigurationReference = DC6B0E6E82230AB921BD1AAAD1FFADBE /* TSMarkdownParser-macOS10.11.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1519,7 +1491,7 @@
 		};
 		4DA843E80534508CC5ABA93FE70B1162 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B8DDC502DE0C178C391F23FEC8AA494 /* TSMarkdownParser-iOS8.0.xcconfig */;
+			baseConfigurationReference = 5FF2D349B767D7EA3C4FD298FDCA0C12 /* TSMarkdownParser-iOS8.0.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1583,7 +1555,7 @@
 		};
 		7E80ECCF528A0068BDD04AD7CC52B663 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C1C4E69AA0E59B6803010694D95989D /* TSMarkdownParser-macOS10.10.xcconfig */;
+			baseConfigurationReference = 421505EBF934F107C7618F0673A51F49 /* TSMarkdownParser-macOS10.10.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1603,7 +1575,7 @@
 		};
 		80CF01CF035C2FE26E16C5EDFE382ACD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 764E00550E5043E20167DA339172FDC7 /* TSMarkdownParser-watchOS2.2.xcconfig */;
+			baseConfigurationReference = A33A32474E64F356EAEE5DEA68B645B6 /* TSMarkdownParser-watchOS2.2.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1624,7 +1596,7 @@
 		};
 		86328CBA8C9B8BAEC507473A84C586D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C15CE3200C451B6FEA5D81442DAD48E9 /* TSMarkdownParser-tvOS9.2.xcconfig */;
+			baseConfigurationReference = 33DBA3E9587E48DD49F6D295D396C800 /* TSMarkdownParser-tvOS9.2.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1704,7 +1676,7 @@
 		};
 		AA0CBAA366106CC348342774E55695C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D830A0289186DA757DCA2584DD139110 /* TSMarkdownParser-macOS10.11.xcconfig */;
+			baseConfigurationReference = DC6B0E6E82230AB921BD1AAAD1FFADBE /* TSMarkdownParser-macOS10.11.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1764,7 +1736,7 @@
 		};
 		CD20648BDCB3820E0BFDB6B84D008E76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8A8D51F1DA2573415D13600319801EE /* TSMarkdownParser-tvOS9.0.xcconfig */;
+			baseConfigurationReference = BF92B976F425100B79B6ED3BB923080B /* TSMarkdownParser-tvOS9.0.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1784,7 +1756,7 @@
 		};
 		D2C72694A53F5DB9DFC6612DF2F2ED55 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C15CE3200C451B6FEA5D81442DAD48E9 /* TSMarkdownParser-tvOS9.2.xcconfig */;
+			baseConfigurationReference = 33DBA3E9587E48DD49F6D295D396C800 /* TSMarkdownParser-tvOS9.2.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
