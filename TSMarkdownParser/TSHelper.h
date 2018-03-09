@@ -21,6 +21,10 @@ NS_ROOT_CLASS
 
 + (nullable NSURL *)URLWithStringByAddingPercentEncoding:(NSString *)URLString;
 
+/// Not thread safe on iOS 7/8 (see [UIImage imageNamed:] and [UIImage imageNamed:inBundle:compatibleWithTraitCollection:])
+/// `resourceBundle` is unsupported on watchOS, iOS 7 or without <UIKit/UITraitCollection.h>
++ (nullable UIImage *)imageForResource:(NSString *)name bundle:(nullable NSBundle *)resourceBundle NS_AVAILABLE(10_7, 7_0);
+
 @end
 
 NS_ASSUME_NONNULL_END

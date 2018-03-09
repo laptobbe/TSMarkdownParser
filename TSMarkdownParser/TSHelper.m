@@ -82,15 +82,29 @@
 #endif// !TARGET_OS_IPHONE
 }
 
+/// tries "Courier New" and "Courier" and fallback for monospacedDigitSystemFont and systemFont
 + (UIFont *)monospaceFontOfSize:(CGFloat)fontSize
 {
     // Courier New and Courier are the only monospace fonts compatible with watchOS 2
     UIFont *font = [UIFont fontWithName:@"Courier New" size:fontSize] ?: [UIFont fontWithName:@"Courier" size:fontSize];
-    //if (font == nil)
-    //    font = [UIFont monospacedDigitSystemFontOfSize:fontSize weight:UIFontWeightRegular];
-    // #69: avoiding crash if font is missing
-    if (font == nil)
-        font = [UIFont systemFontOfSize:fontSize];
+    if (font == nil) {
+#if __clang_major__ >= 9
+        // macOS 10.11+ / iOS 9+ test compatible with Xcode 9+
+        if (@available(macOS 10.11, iOS 9.0, watchOS 2.0, tvOS 9.0, *)) {
+#else
+        // macOS 10.11+ / iOS 9+ test compatible with Xcode 8-
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_10_Max) {
+#endif
+#if TARGET_OS_IPHONE
+            font = [UIFont monospacedDigitSystemFontOfSize:fontSize weight:UIFontWeightRegular];
+#else
+            font = [UIFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular];
+#endif
+        }
+        // #69: avoiding crash if font is missing
+        if (font == nil)
+            font = [UIFont systemFontOfSize:fontSize];
+    }
     return font;
 }
 
@@ -101,6 +115,40 @@
     NSURL *url = [NSURL URLWithString:link] ?: [NSURL URLWithString:
                                                 [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     return url;
+}
+
+/// Not thread safe on iOS 7/8 (see [UIImage imageNamed:] and [UIImage imageNamed:inBundle:compatibleWithTraitCollection:])
+/// `resourceBundle` is unsupported on watchOS, iOS 7 or without <UIKit/UITraitCollection.h>
++ (nullable UIImage *)imageForResource:(NSString *)name bundle:(nullable NSBundle *)resourceBundle NS_AVAILABLE(10_7, 7_0)
+{
+    if (resourceBundle) {
+#if !TARGET_OS_IPHONE
+        // doesn't support cache: https://developer.apple.com/documentation/foundation/nsbundle/1519901-imageforresource
+        return [resourceBundle imageForResource:name];
+        // Testing availability of @available (https://stackoverflow.com/a/46927445/1033581)
+#else
+// macro required for Xcode 7/8/9
+#if __has_include(<UIKit/UITraitCollection.h>)
+#if __clang_major__ >= 9
+        // @available replaces `respondsToSelector:`: https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available
+        if (@available(iOS 8.0, tvOS 9.0, *)) {
+#else
+        if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+#endif
+            // supports cache: https://developer.apple.com/documentation/uikit/uiimage/1624154-imagenamed
+            return [UIImage imageNamed:name inBundle:resourceBundle compatibleWithTraitCollection:nil];
+        } else {
+#else
+        {
+#endif
+            if (resourceBundle != NSBundle.mainBundle)
+                // watchOS, iOS 7 or no <UIKit/UITraitCollection.h>
+                return nil;
+        }
+#endif
+    }
+    // supports cache
+    return [UIImage imageNamed:name];
 }
 
 @end

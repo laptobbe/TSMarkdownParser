@@ -60,6 +60,8 @@ typedef void (^TSFullFormattingBlock)(NSMutableAttributedString *attributedStrin
  * default is mainBundle
  */
 @property (nonatomic, strong) NSBundle *resourceBundle NS_AVAILABLE(10_7, 8_0);
+/// Helper for iOS 7
+- (nullable UIImage *)imageForResource:(NSString *)name NS_AVAILABLE(10_7, 7_0);
 #endif// !TARGET_OS_WATCH
 
 /*

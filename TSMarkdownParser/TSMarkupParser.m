@@ -7,6 +7,7 @@
 //
 
 #import "TSMarkupParser.h"
+#import "TSHelper.h"
 
 
 @implementation TSMarkupParser
@@ -229,5 +230,24 @@ static inline NSString *TSMarkupStringWithHexaStringAndIndex(NSString *hexaStrin
         [attributedString replaceCharactersInRange:match.range withString:unescapedString];
     }];
 }
+
+#if !TARGET_OS_WATCH
+
+#pragma mark - imageAttachment for resource bundle
+
+- (nullable UIImage *)imageForResource:(NSString *)name NS_AVAILABLE(10_7, 7_0) {
+#if !TARGET_OS_IPHONE
+    {
+#elif __clang_major__ >= 9
+    if (@available(macOS 10.10, iOS 8.0, tvOS 9.0, *)) {
+#else
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+#endif
+        return [TSHelper imageForResource:name bundle:self.resourceBundle];
+    }
+    // iOS 7
+    return [TSHelper imageForResource:name bundle:nil];
+}
+#endif// !TARGET_OS_WATCH
 
 @end
