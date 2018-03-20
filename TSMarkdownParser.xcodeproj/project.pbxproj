@@ -35,8 +35,8 @@
 		3760CB0D1D0DFA840058E478 /* TSMarkdownStandardParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownStandardParserTests_iOS.m */; };
 		37E0F8D11D058F2600C45348 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
 		37E0F8D21D058F2700C45348 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
-		37E0F8D31D058F2C00C45348 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
-		37E0F8D41D058F2C00C45348 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
+		37E0F8D31D058F2C00C45348 /* markdown_test_i m a g e.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_i m a g e.png */; };
+		37E0F8D41D058F2C00C45348 /* markdown_test_i m a g e.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_i m a g e.png */; };
 		37F2A6861E3E461900556257 /* TSMarkupParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F2A6841E3E460800556257 /* TSMarkupParserTests_iOS.m */; };
 		37F2A6871E3E461900556257 /* TSMarkupParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F2A6841E3E460800556257 /* TSMarkupParserTests_iOS.m */; };
 		37F2A6881E3E461A00556257 /* TSMarkupParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F2A6841E3E460800556257 /* TSMarkupParserTests_iOS.m */; };
@@ -102,7 +102,7 @@
 		CC3C78DD2D0DF48F7FF83FD7 /* markdown.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3C715C2DB22E3B57578ABE /* markdown.png */; };
 		CC3C797C733EECEBC569C218 /* TSMarkdownStandardParserTests_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C73BB320D21E1E765E930 /* TSMarkdownStandardParserTests_iOS.m */; };
 		CC3C7CEAE8E781B631FD0CE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C73AAE67D9E3D273712D4 /* UIKit.framework */; };
-		CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_image.png */; };
+		CF40360D1BA06F0600C67594 /* markdown_test_i m a g e.png in Resources */ = {isa = PBXBuildFile; fileRef = CF40360C1BA06F0600C67594 /* markdown_test_i m a g e.png */; };
 		F5A4F45B1B36EF4A00C4F56C /* TSMarkupParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CC3C79659073897FDCACEC17 /* TSMarkupParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5A4F45C1B36EF4A00C4F56C /* TSMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7B7AEA9B50B9BF782FC5 /* TSMarkupParser.m */; };
 		F99BB2D7611AEA72F2651801 /* libPods-TSMarkdownParserExample watchOS Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E380F885984B6DD4AD50EE /* libPods-TSMarkdownParserExample watchOS Extension.a */; };
@@ -251,7 +251,7 @@
 		CC3C7ACA2B52954F32B183DD /* TSMarkdownParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "TSMarkdownParserTests-Info.plist"; sourceTree = "<group>"; };
 		CC3C7B7AEA9B50B9BF782FC5 /* TSMarkupParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSMarkupParser.m; sourceTree = "<group>"; };
 		CC3C7D01D183A61FD440A876 /* TSMarkdownParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSMarkdownParser-Prefix.pch"; sourceTree = "<group>"; };
-		CF40360C1BA06F0600C67594 /* markdown_test_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markdown_test_image.png; sourceTree = "<group>"; };
+		CF40360C1BA06F0600C67594 /* markdown_test_i m a g e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markdown_test_i m a g e.png"; sourceTree = "<group>"; };
 		DA14C86CAC219FBEED3F7015 /* Pods-TSMarkdownParserExample iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSMarkdownParserExample iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TSMarkdownParserExample iOS/Pods-TSMarkdownParserExample iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EB53F8DF4D8E9ADEA6503CBA /* libPods-TSMarkdownParserExample iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TSMarkdownParserExample iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A4F4421B36EF4100C4F56C /* TSMarkdownParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMarkdownParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,7 +554,7 @@
 				37F2A6841E3E460800556257 /* TSMarkupParserTests_iOS.m */,
 				CC3C73BB320D21E1E765E930 /* TSMarkdownStandardParserTests_iOS.m */,
 				CC3C715C2DB22E3B57578ABE /* markdown.png */,
-				CF40360C1BA06F0600C67594 /* markdown_test_image.png */,
+				CF40360C1BA06F0600C67594 /* markdown_test_i m a g e.png */,
 			);
 			path = TSMarkdownParserTests;
 			sourceTree = "<group>";
@@ -1020,7 +1020,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E0F8D31D058F2C00C45348 /* markdown_test_image.png in Resources */,
+				37E0F8D31D058F2C00C45348 /* markdown_test_i m a g e.png in Resources */,
 				37E0F8D11D058F2600C45348 /* markdown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1029,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E0F8D41D058F2C00C45348 /* markdown_test_image.png in Resources */,
+				37E0F8D41D058F2C00C45348 /* markdown_test_i m a g e.png in Resources */,
 				37E0F8D21D058F2700C45348 /* markdown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1087,7 +1087,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF40360D1BA06F0600C67594 /* markdown_test_image.png in Resources */,
+				CF40360D1BA06F0600C67594 /* markdown_test_i m a g e.png in Resources */,
 				CC3C78DD2D0DF48F7FF83FD7 /* markdown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,9 +20,10 @@
 
 @interface TSMarkdownStandardParserTests : XCTestCase
 
-/// [TSMarkdownStandardParser new] version
+/// `[TSMarkdownStandardParser new]` version.
+/// It should follow the behavior of https://daringfireball.net/projects/markdown/dingus
 @property (nonatomic) TSMarkdownStandardParser *standardParser;
-/// [TSMarkdownStandardParser lenientParser] version
+/// `[TSMarkdownStandardParser lenientParser]` version.
 @property (nonatomic) TSMarkdownStandardParser *lenientParser;
 
 @end
@@ -209,6 +210,24 @@
     XCTAssertEqual(monospaceSnippets.count, 0);
 }
 
+- (void)testStandardBoldEmParsing {
+    TSFontTraitMask strongTrait = (TSFontTraitMask)TSFontMaskBold;
+    TSFontTraitMask emphasisTrait = (TSFontTraitMask)TSFontMaskItalic;
+    NSAttributedString *attributedString;
+    attributedString = [self.standardParser attributedStringFromMarkup:@"This ***is*** a ***nice* boy**"];
+    // Expect: This <strong><em>is</em></strong> a <strong><em>nice</em> boy</strong>
+    XCTAssert((((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:5 effectiveRange:NULL]).fontDescriptor.symbolicTraits & strongTrait));
+    XCTAssert((((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:5 effectiveRange:NULL]).fontDescriptor.symbolicTraits & emphasisTrait));
+    XCTAssert(!(((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL]).fontDescriptor.symbolicTraits & strongTrait));
+    XCTAssert(!(((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL]).fontDescriptor.symbolicTraits & emphasisTrait));
+    attributedString = [self.lenientParser attributedStringFromMarkup:@"This ***is*** a ***nice* boy**"];
+    // Expect: This <strong><em>is</em></strong> a <strong><em>nice</em> boy</strong>
+    XCTAssert((((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:5 effectiveRange:NULL]).fontDescriptor.symbolicTraits & strongTrait));
+    XCTAssert((((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:5 effectiveRange:NULL]).fontDescriptor.symbolicTraits & emphasisTrait));
+    XCTAssert(!(((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL]).fontDescriptor.symbolicTraits & strongTrait));
+    XCTAssert(!(((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:7 effectiveRange:NULL]).fontDescriptor.symbolicTraits & emphasisTrait));
+}
+
 - (void)testStandardListWithAsteriskParsing {
     NSAttributedString *attributedString;
     attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n* I drink in a café everyday\nto use Wi-Fi"];
@@ -376,17 +395,31 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
 
+- (void)testStandardLinkParsingWithEscapedLeftBracketInside {
+    NSString *expectedRawString = @"link with escaped [ inside";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[link with escaped \\[ inside](https://example.net/)"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+- (void)testStandardLinkParsingWithEscapedRightBracketInside {
+    NSString *expectedRawString = @"link with escaped ] inside";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[link with escaped \\] inside](https://example.net/)"];
+    NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
 // https://github.com/laptobbe/TSMarkdownParser/pull/39
 - (void)testStandardLinkParsingWithBracketsInside {
     NSString *expectedRawString = @"Hello\n a link [with brackets inside]";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [a link \\[with brackets inside]](https://example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [a link [with brackets inside]](https://example.net/)"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:35 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
-    
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
@@ -396,13 +429,12 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]"];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:44 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
-    
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
 - (void)testStandardLinkParsingMultipleLinks {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a [link](https://www.example.net/) and this is [a link](https://www.example.com/) too"];
-
+    
     //first link
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:17 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
@@ -624,8 +656,18 @@
     XCTAssertEqualObjects(attributedString.string, @"We use \uFFFC everyday\neverywhere");
 }
 
-- (void)testStandardImageWithUnderscores {
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"A ![AltText](markdown_test_image)"];
+- (void)testStandardImageEnclosedInParenthesis {
+    NSString *expectedRawString = @"This is (\uFFFC) for home";
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"This is (![café](markdown)) for home"];
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+- (void)testStandardImageWithSpacesAndUnderscores {
+#if TARGET_OS_IPHONE
+    UIImage *refImage = [UIImage imageNamed:@"markdown_test_i m a g e.png" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    XCTAssertNotNil(refImage);
+#endif
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"A ![AltText](markdown_test_i m a g e)"];
     NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:2 effectiveRange:NULL];
     XCTAssertNil(link);
     NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:2 effectiveRange:NULL];
@@ -633,6 +675,39 @@
     XCTAssertNotNil(attachment.image);
     XCTAssertEqualObjects(attributedString.string, @"A \uFFFC");
 }
+
+- (void)testStandardLinkWithImage {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[a link ![with image](markdown)](https://example.com)"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertNotNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:7 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertEqualObjects(attributedString.string, @"a link \uFFFC");
+}
+
+// Accepting nested brackets is not possible with NSRegularExpression: https://stackoverflow.com/q/33096411/1033581
+/*
+- (void)testStandardImageWithBracketsInside {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"![an image [with brackets]](markdown)"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertEqualObjects(attributedString.string, @"\uFFFC");
+}
+
+- (void)testStandardLinkWithImageWithBracketsInside {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[a link ![with image [with brackets]](markdown)](https://example.com)"];
+    NSString *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    XCTAssertNotNil(link);
+    NSTextAttachment *attachment = [attributedString attribute:NSAttachmentAttributeName atIndex:7 effectiveRange:NULL];
+    XCTAssertNotNil(attachment);
+    XCTAssertNotNil(attachment.image);
+    XCTAssertEqualObjects(attributedString.string, @"a link \uFFFC");
+}
+*/
 
 - (void)testStandardImageMultiple {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"We use ![café](markdown) and ![café](markdown)\nalways"];

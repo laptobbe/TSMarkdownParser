@@ -32,8 +32,12 @@ static NSString *const TSMarkupEndLineOptionalSpaceRegex      = @"\\s*([^%@].*?)
 static NSString *const TSMarkupSubLineRegex       = @"^(.*)\n((?:%@){%@,})$";
 
 // inline bracket regex
-static NSString *const TSMarkupImageRegex         = @"\\!\\[[^\\[]*?\\]\\(\\S*\\)";
-static NSString *const TSMarkupLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*\\)";
+// TODO: compare perf between \\(.*?\\) and \\([^\\)]*\\)
+/// Image could accept nested brackets inside, but it's not possible: https://stackoverflow.com/q/33096411/1033581
+static NSString *const TSMarkupImageRegex         = @"\\!\\[.*?\\]\\(.*?\\)";
+/// Link must accept balanced brackets inside for images.
+/// Link could accept nested brackets inside, but it's not possible: https://stackoverflow.com/q/33096411/1033581
+static NSString *const TSMarkupLinkRegex          = @"\\[(?:[^\\[\\]]|\\[.*?\\])*?\\]\\([^\\)]*\\)";
 
 // inline enclosed regex
 static NSString *const TSMarkupEnclosedRegex          = @"(%@)(.+?)(\\1)";
