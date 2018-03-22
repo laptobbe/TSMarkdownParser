@@ -64,7 +64,7 @@
     return [self attributedStringFromMarkup:markup attributes:self.defaultAttributes];
 }
 
-- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSString *, id> *)attributes {
+- (NSAttributedString *)attributedStringFromMarkup:(NSString *)markup attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes {
     NSAttributedString *attributedString;
     if (!attributes) {
         attributedString = [[NSAttributedString alloc] initWithString:markup];

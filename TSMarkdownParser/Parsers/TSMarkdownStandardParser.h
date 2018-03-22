@@ -35,14 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)lenientParser;
 
-@property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *headerAttributes;
-@property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *listAttributes;
-@property (nonatomic, strong) NSArray<NSDictionary<NSString *, id> *> *quoteAttributes;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *imageAttributes;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *linkAttributes;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *monospaceAttributes;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *strongAttributes;
-@property (nonatomic, strong) NSDictionary<NSString *, id> *emphasisAttributes;
+@property (nonatomic, strong) NSArray<NSDictionary<NSAttributedStringKey, id> *> *headerAttributes;
+@property (nonatomic, strong) NSArray<NSDictionary<NSAttributedStringKey, id> *> *listAttributes;
+@property (nonatomic, strong) NSArray<NSDictionary<NSAttributedStringKey, id> *> *quoteAttributes;
+@property (nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *imageAttributes;
+@property (nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *linkAttributes;
+@property (nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *monospaceAttributes;
+@property (nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *strongAttributes;
+@property (nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *emphasisAttributes;
 
 // NSFontAttributeName and symbolic traits are mutually exclusive, avoid using both
 

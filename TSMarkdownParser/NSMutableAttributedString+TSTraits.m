@@ -15,7 +15,7 @@
 {
     if (!trait)
         return;
-    [self enumerateAttributesInRange:range options:0 usingBlock:^(NSDictionary<NSString *, id> * _Nonnull attrs, NSRange range, __unused BOOL * _Nonnull stop) {
+    [self enumerateAttributesInRange:range options:0 usingBlock:^(NSDictionary<NSAttributedStringKey, id> * _Nonnull attrs, NSRange range, __unused BOOL * _Nonnull stop) {
         // 'objectForKeyedSubscript:' is only available on macOS 10.8 or newer
         UIFont *font = [attrs objectForKey:NSFontAttributeName];
         if (font)
@@ -23,14 +23,14 @@
     }];
 }
 
-- (void)ts_addAttributes:(NSArray<NSDictionary<NSString *, id> *> *)attributesArray
+- (void)ts_addAttributes:(NSArray<NSDictionary<NSAttributedStringKey, id> *> *)attributesArray
               atIndex:(NSUInteger)level
                 range:(NSRange)range
 {
     if (!attributesArray.count)
         return;
     // 'objectAtIndexedSubscript:' is only available on macOS 10.8 or newer
-    NSDictionary<NSString *, id> *attributes = level < attributesArray.count ? [attributesArray objectAtIndex:level] : attributesArray.lastObject;
+    NSDictionary<NSAttributedStringKey, id> *attributes = level < attributesArray.count ? [attributesArray objectAtIndex:level] : attributesArray.lastObject;
     [self addAttributes:attributes range:range];
 }
 

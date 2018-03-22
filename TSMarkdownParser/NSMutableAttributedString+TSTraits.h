@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)ts_addTrait:(TSFontTraitMask)trait range:(NSRange)range;
 
-- (void)ts_addAttributes:(nullable NSArray<NSDictionary<NSString *, id> *> *)attributesArray
+- (void)ts_addAttributes:(nullable NSArray<NSDictionary<NSAttributedStringKey, id> *> *)attributesArray
                  atIndex:(NSUInteger)level
                    range:(NSRange)range;
 
