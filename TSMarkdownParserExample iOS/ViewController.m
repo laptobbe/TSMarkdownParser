@@ -34,6 +34,10 @@
     
     self.parser = [TSMarkdownStandardParser new];
     
+    // aligning output
+    self.markdownOutputTextView.textContainer.lineFragmentPadding = 0.0;
+    // required for initial scroll position at 0: https://stackoverflow.com/a/48547604/1033581
+    [self.markdownOutputTextView layoutIfNeeded];
     // updating output
     [self textViewDidChange:self.markdownInput];
     
@@ -53,12 +57,15 @@
 }
 
 - (IBAction)switchOutput:(UISegmentedControl *)segmentedControl {
-    if (segmentedControl.selectedSegmentIndex == 0) {
-        self.markdownOutputLabelScrollView.hidden = NO;
-        self.markdownOutputTextView.hidden = YES;
-    } else {
-        self.markdownOutputLabelScrollView.hidden = YES;
-        self.markdownOutputTextView.hidden = NO;
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.markdownOutputLabelScrollView.hidden = NO;
+            self.markdownOutputTextView.hidden = YES;
+            break;
+        case 1:
+            self.markdownOutputTextView.hidden = NO;
+            self.markdownOutputLabelScrollView.hidden = YES;
+            break;
     }
 }
 

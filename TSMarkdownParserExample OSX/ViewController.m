@@ -44,13 +44,15 @@ http://example.net\n\
     
     self.parser = [TSMarkdownStandardParser new];
     
+    // aligning output
+    self.markdownOutputTextView.textContainer.lineFragmentPadding = 1.0;
     // updating output
     [self textViewDidChange:self.markdownInput];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
-
+    
     // Update the view, if already loaded.
 }
 
@@ -71,12 +73,12 @@ http://example.net\n\
 - (IBAction)switchOutput:(NSSegmentedControl *)segmentedControl {
     switch (segmentedControl.selectedSegment) {
         case 0:
-            self.markdownOutputTextViewScrollView.hidden = NO;
-            self.markdownOutputTextFieldScrollView.hidden = YES;
+            self.markdownOutputTextFieldScrollView.hidden = NO;
+            self.markdownOutputTextViewScrollView.hidden = YES;
             break;
         case 1:
-            self.markdownOutputTextViewScrollView.hidden = YES;
-            self.markdownOutputTextFieldScrollView.hidden = NO;
+            self.markdownOutputTextViewScrollView.hidden = NO;
+            self.markdownOutputTextFieldScrollView.hidden = YES;
             break;
     }
 }
