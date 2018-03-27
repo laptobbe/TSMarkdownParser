@@ -391,24 +391,27 @@
 }
 
 - (void)testStandardLinkParsingEnclosedInParenthesis {
+    NSString *markupString = @"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home";
     NSString *expectedRawString = @"Hello\n This is a (link) to test Wi-Fi\nat home";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n This is a ([link](https://www.example.net/)) to test Wi-Fi\nat home"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
 - (void)testStandardLinkParsingWithEscapedLeftBracketInside {
+    NSString *markupString = @"[link with escaped \\[ inside](https://example.net/)";
     NSString *expectedRawString = @"link with escaped [ inside";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[link with escaped \\[ inside](https://example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
 - (void)testStandardLinkParsingWithEscapedRightBracketInside {
+    NSString *markupString = @"[link with escaped \\] inside](https://example.net/)";
     NSString *expectedRawString = @"link with escaped ] inside";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"[link with escaped \\] inside](https://example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
@@ -416,8 +419,9 @@
 
 // https://github.com/laptobbe/TSMarkdownParser/pull/39
 - (void)testStandardLinkParsingWithBracketsInside {
+    NSString *markupString = @"Hello\n [a link [with brackets inside]](https://example.net/)";
     NSString *expectedRawString = @"Hello\n a link [with brackets inside]";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [a link [with brackets inside]](https://example.net/)"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:35 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
@@ -425,8 +429,9 @@
 
 // https://github.com/laptobbe/TSMarkdownParser/pull/39
 - (void)testStandardLinkParsingWithBracketsOutside {
+    NSString *markupString = @"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]";
     NSString *expectedRawString = @"Hello\n [This is not a link] but this is a link to test [the difference]";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello\n [This is not a link] but this is a [link](https://www.example.net/) to test [the difference]"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:44 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/"]);
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
@@ -461,8 +466,9 @@
 
 // https://github.com/laptobbe/TSMarkdownParser/pull/22
 - (void)testStandardLinkParsingWithPipe {
+    NSString *markupString = @"Hello ([link](https://www.example.net/|)). Bye";
     NSString *expectedRawString = @"Hello (link). Bye";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello ([link](https://www.example.net/|)). Bye"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
 
@@ -471,11 +477,23 @@
 
 // https://github.com/laptobbe/TSMarkdownParser/issues/30
 - (void)testStandardLinkParsingWithSharp {
+    NSString *markupString = @"Hello ([link](https://www.example.net/#)). Bye";
     NSString *expectedRawString = @"Hello (link). Bye";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"Hello ([link](https://www.example.net/#)). Bye"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/#"]);
 
+    XCTAssertEqualObjects(attributedString.string, expectedRawString);
+}
+
+// https://stackoverflow.com/questions/33558933/why-is-the-return-value-of-string-addingpercentencoding-optional
+- (void)testStandardLinkParsingWithUTF16 {
+    // [!](�)
+    uint8_t bytes[] = { 0x00, 0x5B, 0x00, 0x21, 0x00, 0x5D, 0x00, 0x28, 0xD8, 0x00, 0x00, 0x29 };
+    NSString *markupString = [[NSString alloc] initWithBytes:bytes length:12 encoding:NSUTF16BigEndianStringEncoding];
+    NSString *expectedRawString = @"!";
+    // we're only testing that it doesn't crash on some improperly handled `stringByAddingPercentEncodingWithAllowedCharacters:`
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
@@ -657,8 +675,9 @@
 }
 
 - (void)testStandardImageEnclosedInParenthesis {
+    NSString *markupString = @"This is (![café](markdown)) for home";
     NSString *expectedRawString = @"This is (\uFFFC) for home";
-    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:@"This is (![café](markdown)) for home"];
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
