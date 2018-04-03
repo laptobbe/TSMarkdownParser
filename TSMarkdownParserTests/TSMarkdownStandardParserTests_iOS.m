@@ -28,6 +28,7 @@
 
 @end
 
+// Note: @"\uFFFC" is the same as `unichar c = NSAttachmentCharacter; NSString *s = [NSString stringWithCharacters:&c length:1];`
 
 @implementation TSMarkdownStandardParserTests
 
@@ -142,7 +143,7 @@
     XCTAssert(!(((UIFont*)[attributedString attribute:NSFontAttributeName atIndex:9 effectiveRange:NULL]).fontDescriptor.symbolicTraits & strongTrait));
 }
 
-//https://github.com/laptobbe/TSMarkdownParser/issues/24
+// https://github.com/laptobbe/TSMarkdownParser/issues/24
 - (void)testStandardEmParsingOneCharacter {
     TSFontTraitMask emphasisTrait = (TSFontTraitMask)TSFontMaskItalic;
     NSAttributedString *attributedString;
@@ -314,7 +315,7 @@
     XCTAssertEqualObjects(underline, @(NSUnderlineStyleSingle));
     UIColor *linkColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:20 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor, [UIColor blueColor]);
-
+    
     NSURL *linkAtTheNextCharacter = [attributedString attribute:NSLinkAttributeName atIndex:21 effectiveRange:NULL];
     XCTAssertNil(linkAtTheNextCharacter);
 }
@@ -457,7 +458,7 @@
     XCTAssertEqualObjects(underline2, @(NSUnderlineStyleSingle));
     UIColor *linkColor2 = [attributedString attribute:NSForegroundColorAttributeName atIndex:37 effectiveRange:NULL];
     XCTAssertEqualObjects(linkColor2, [UIColor blueColor]);
-
+    
     XCTAssertTrue([attributedString.string rangeOfString:@"["].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"]"].location == NSNotFound);
     XCTAssertTrue([attributedString.string rangeOfString:@"("].location == NSNotFound);
@@ -471,7 +472,7 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:[@"https://www.example.net/|" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
-
+    
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
@@ -482,7 +483,7 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkup:markupString];
     NSURL *link = [attributedString attribute:NSLinkAttributeName atIndex:8 effectiveRange:NULL];
     XCTAssertEqualObjects(link, [NSURL URLWithString:@"https://www.example.net/#"]);
-
+    
     XCTAssertEqualObjects(attributedString.string, expectedRawString);
 }
 
