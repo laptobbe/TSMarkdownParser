@@ -77,6 +77,8 @@ typedef NSFont UIFont;
                               NSForegroundColorAttributeName: [UIColor colorWithSRGBRed:0.95 green:0.54 blue:0.55 alpha:1] };
     _strongAttributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:defaultSize] };
     
+    _strongAndEmphasisAttributes = @{ NSFontAttributeName: [UIFont fontWithDescriptor:[[[UIFont systemFontOfSize:defaultSize] fontDescriptor] fontDescriptorWithSymbolicTraits:(UIFontDescriptorTraitBold | UIFontDescriptorTraitItalic)] size:defaultSize] };
+    
     return self;
 }
 
@@ -208,6 +210,10 @@ typedef NSFont UIFont;
         [attributedString addAttributes:weakParser.emphasisAttributes range:range];
     }];
     
+    [defaultParser addStrongAndEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttributes:weakParser.strongAndEmphasisAttributes range:range];
+    }];
+    
     /* unescaping parsing */
     
     [defaultParser addCodeUnescapingParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -249,6 +255,7 @@ static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*
 static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
 static NSString *const TSMarkdownStrongRegex        = @"(\\*\\*|__)(.+?)(\\1)";
 static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
+static NSString *const TSMarkdownStrongEmRegex      = @"(((\\*\\*\\*)(.|\\s)*(\\*\\*\\*))|((___)(.|\\s)*(___)))";
 
 #pragma mark escaping parsing
 
@@ -433,11 +440,22 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
     NSRegularExpression *parsing = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:nil];
     [self addParsingRuleWithRegularExpression:parsing block:^(NSTextCheckingResult *match, NSMutableAttributedString *attributedString) {
         // deleting trailing markdown
-        [attributedString deleteCharactersInRange:[match rangeAtIndex:3]];
-        // formatting string (may alter the length)
-        formattingBlock(attributedString, [match rangeAtIndex:2]);
-        // deleting leading markdown
-        [attributedString deleteCharactersInRange:[match rangeAtIndex:1]];
+        NSRange match3 = [match rangeAtIndex:3];
+        if (match3.location != NSNotFound) {
+            [attributedString deleteCharactersInRange:match3];
+        }
+        
+        NSRange match2 = [match rangeAtIndex:2];
+        if (match2.location != NSNotFound) {
+            // formatting string (may alter the length)
+            formattingBlock(attributedString, match2);
+        }
+        
+        NSRange match1 = [match rangeAtIndex:1];
+        if (match1.location != NSNotFound) {
+            // deleting leading markdown
+            [attributedString deleteCharactersInRange:match1];
+        }
     }];
 }
 
@@ -451,6 +469,10 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 - (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
     [self addEnclosedParsingWithPattern:TSMarkdownEmRegex formattingBlock:formattingBlock];
+}
+
+- (void)addStrongAndEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
+    [self addEnclosedParsingWithPattern:TSMarkdownStrongEmRegex formattingBlock:formattingBlock];
 }
 
 #pragma mark link detection
