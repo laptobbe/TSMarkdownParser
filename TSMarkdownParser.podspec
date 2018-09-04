@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.7"
   s.source       = { :git => "https://github.com/laptobbe/TSMarkdownParser.git", :tag => s.version.to_s }
-  s.source_files  = "TSMarkdownParser/**/*.{h,m}"
+  s.source_files  = "TSMarkdownParser/**/*.{h,m,swift}"
   s.requires_arc = true
   s.ios.framework = 'UIKit'
   s.tvos.framework = 'UIKit'
