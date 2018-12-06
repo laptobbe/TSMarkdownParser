@@ -205,6 +205,13 @@
     XCTAssertEqualObjects(attributedString.string, @"\n\n•\t1\n\t\t•\t1.1\n•\t2");
 }
 
+- (void)testStrikethroughParsing {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"~~Hello~~"];
+    NSNumber *strikethrough = [attributedString attribute:NSStrikethroughStyleAttributeName atIndex:2 effectiveRange:NULL];
+    XCTAssertNotNil(strikethrough);
+    XCTAssertEqualObjects(attributedString.string, @"Hello");
+}
+
 - (void)testStandardQuoteParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n> I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\tI drink in a café everyday\nto use Wi-Fi");
