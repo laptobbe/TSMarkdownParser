@@ -242,7 +242,7 @@ static NSString *const TSMarkdownUnescapingRegex    = @"\\\\[0-9a-z]{4}";
 // lead regex
 static NSString *const TSMarkdownHeaderRegex        = @"^(#{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortHeaderRegex   = @"^(#{1,%@})\\s*([^#].*)$";
-static NSString *const TSMarkdownListRegex          = @"^([\\*\\+\\-]{1,%@})\\s+(.+)$";
+static NSString *const TSMarkdownListRegex          = @"^([\\h]*[\\*\\+\\-]{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortListRegex     = @"^([\\*\\+\\-]{1,%@})\\s*([^\\*\\+\\-].*)$";
 static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].*)$";

@@ -200,6 +200,11 @@
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\t•\tI drink in a café everyday\nto use Wi-Fi");
 }
 
+- (void)testNestedList {
+    NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"\n\n- 1\n  - 1.1\n- 2"];
+    XCTAssertEqualObjects(attributedString.string, @"\n\n•\t1\n\t\t•\t1.1\n•\t2");
+}
+
 - (void)testStandardQuoteParsing {
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\n> I drink in a café everyday\nto use Wi-Fi"];
     XCTAssertEqualObjects(attributedString.string, @"Hello\n\tI drink in a café everyday\nto use Wi-Fi");
