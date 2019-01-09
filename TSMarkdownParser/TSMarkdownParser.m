@@ -248,7 +248,7 @@ static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*
 // inline enclosed regex
 static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
 static NSString *const TSMarkdownStrongRegex        = @"(\\*\\*|__)(.+?)(\\1)";
-static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
+static NSString *const TSMarkdownEmRegex            = @"(\\*|\\b\\*|\\b_)(.+?)(\\1)";
 
 #pragma mark escaping parsing
 
