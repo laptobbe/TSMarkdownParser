@@ -100,6 +100,12 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in *a café* everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
+
+    NSAttributedString *matchingAsterisksInLinkString = [self.standardParser attributedStringFromMarkdown: @"https://www.google.com/my*favorite*page.html"];
+    XCTAssertEqualObjects(matchingAsterisksInLinkString.string, @"https://www.google.com/myfavoritepage.html");
+
+    NSAttributedString *matchingLeadingAsterisks = [self.standardParser attributedStringFromMarkdown: @"*This should be emphasized.*"];
+    XCTAssertEqualObjects(matchingLeadingAsterisks.string, @"This should be emphasized.");
 }
 
 - (void)testStandardBoldParsingUnderscores {
@@ -114,6 +120,15 @@
     NSAttributedString *attributedString = [self.standardParser attributedStringFromMarkdown:@"Hello\nI drink in _a café_ everyday"];
     XCTAssertEqualObjects([attributedString attribute:NSFontAttributeName atIndex:20 effectiveRange:NULL], font);
     XCTAssertEqualObjects(attributedString.string, @"Hello\nI drink in a café everyday");
+
+    NSAttributedString *nonMatchingUnderscoresInLinkString = [self.standardParser attributedStringFromMarkdown: @"https://www.google.com/my_favorite_page.html"];
+    XCTAssertEqualObjects(nonMatchingUnderscoresInLinkString.string, @"https://www.google.com/my_favorite_page.html");
+
+    NSAttributedString *matchingLeadingUnderscores = [self.standardParser attributedStringFromMarkdown: @"_This should be emphasized._"];
+    XCTAssertEqualObjects(matchingLeadingUnderscores.string, @"This should be emphasized.");
+
+    NSAttributedString *nonMatchingEndOfWordUnderscore = [self.standardParser attributedStringFromMarkdown:@"This should not m_atch_"];
+    XCTAssertEqualObjects(nonMatchingEndOfWordUnderscore.string, @"This should not m_atch_");
 }
 
 - (void)testStandardMonospaceParsing {
