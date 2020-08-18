@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "TSMarkdownParser",
+    name: "MarkdownParser",
     platforms: [
         .iOS(.v9),
         .macOS(.v10_10),
@@ -13,8 +13,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "TSMarkdownParser",
-            targets: ["TSMarkdownParser"]),
+            name: "MarkdownParser",
+            targets: ["MarkdownParser"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,7 +24,7 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "TSMarkdownParser",
+            name: "MarkdownParser",
             dependencies: [],
             path: "TSMarkdownParser")
     ]
