@@ -74,9 +74,9 @@ typedef NSFont UIFont;
     // Courier New and Courier are the only monospace fonts compatible with watchOS 2
     // #69: avoiding crash if font is missing
     _monospaceAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:defaultSize] ?: [UIFont fontWithName:@"Courier" size:defaultSize] ?: [UIFont systemFontOfSize:defaultSize],
-                              NSForegroundColorAttributeName: [UIColor colorWithSRGBRed:0.95 green:0.54 blue:0.55 alpha:1] };
+                              NSForegroundColorAttributeName: [UIColor blackColor] };
     _strongAttributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:defaultSize] };
-    
+
     return self;
 }
 
@@ -92,12 +92,6 @@ typedef NSFont UIFont;
     [defaultParser addEscapingParsing];
     
     /* block parsing */
-    
-    [defaultParser addHeaderParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
-        [attributedString deleteCharactersInRange:range];
-    } textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
-        [TSMarkdownParser addAttributes:weakParser.headerAttributes atIndex:level - 1 toString:attributedString range:range];
-    }];
     
     [defaultParser addListParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
         NSMutableString *listString = [NSMutableString string];
@@ -204,10 +198,22 @@ typedef NSFont UIFont;
         [attributedString addAttributes:weakParser.strongAttributes range:range];
     }];
     
+    [defaultParser addStrikethroughParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
+        [attributedString addAttribute:NSStrikethroughStyleAttributeName
+                                value:@2
+                                range:range];
+    }];
+    
     [defaultParser addEmphasisParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
         [attributedString addAttributes:weakParser.emphasisAttributes range:range];
     }];
     
+    [defaultParser addHeaderParsingWithMaxLevel:0 leadFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, __unused NSUInteger level) {
+        [attributedString deleteCharactersInRange:range];
+    } textFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range, NSUInteger level) {
+        [TSMarkdownParser addAttributes:weakParser.headerAttributes atIndex:level - 1 toString:attributedString range:range];
+    }];
+            
     /* unescaping parsing */
     
     [defaultParser addCodeUnescapingParsingWithFormattingBlock:^(NSMutableAttributedString *attributedString, NSRange range) {
@@ -236,7 +242,7 @@ static NSString *const TSMarkdownUnescapingRegex    = @"\\\\[0-9a-z]{4}";
 // lead regex
 static NSString *const TSMarkdownHeaderRegex        = @"^(#{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortHeaderRegex   = @"^(#{1,%@})\\s*([^#].*)$";
-static NSString *const TSMarkdownListRegex          = @"^([\\*\\+\\-]{1,%@})\\s+(.+)$";
+static NSString *const TSMarkdownListRegex          = @"^([\\h]*[\\*\\+\\-]{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortListRegex     = @"^([\\*\\+\\-]{1,%@})\\s*([^\\*\\+\\-].*)$";
 static NSString *const TSMarkdownQuoteRegex         = @"^(\\>{1,%@})\\s+(.+)$";
 static NSString *const TSMarkdownShortQuoteRegex    = @"^(\\>{1,%@})\\s*([^\\>].*)$";
@@ -248,6 +254,7 @@ static NSString *const TSMarkdownLinkRegex          = @"\\[[^\\[]*?\\]\\([^\\)]*
 // inline enclosed regex
 static NSString *const TSMarkdownMonospaceRegex     = @"(`+)(\\s*.*?[^`]\\s*)(\\1)(?!`)";
 static NSString *const TSMarkdownStrongRegex        = @"(\\*\\*|__)(.+?)(\\1)";
+static NSString *const TSMarkdownStikethroughRegex  = @"(\\~\\~|__)(.+?)(\\1)";
 static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 #pragma mark escaping parsing
@@ -447,6 +454,10 @@ static NSString *const TSMarkdownEmRegex            = @"(\\*|_)(.+?)(\\1)";
 
 - (void)addStrongParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
     [self addEnclosedParsingWithPattern:TSMarkdownStrongRegex formattingBlock:formattingBlock];
+}
+
+- (void)addStrikethroughParsingWithFormattingBlock:(void(^)(NSMutableAttributedString *attributedString, NSRange range))formattingBlock {
+    [self addEnclosedParsingWithPattern:TSMarkdownStikethroughRegex formattingBlock:formattingBlock];
 }
 
 - (void)addEmphasisParsingWithFormattingBlock:(TSMarkdownParserFormattingBlock)formattingBlock {
