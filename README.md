@@ -53,7 +53,8 @@ Emphasis
 _Em_
 **Strong**
 __Strong__
-
+***Strong Emphasis***
+___Strong Emphasis___
 ````
 
 # Requirements
